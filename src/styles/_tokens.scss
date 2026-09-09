@@ -1,0 +1,6 @@
+// Единая точка доступа ко всем design tokens проекта.
+@forward './breakpoints';
+@forward './colors';
+@forward './typography';
+@forward './layout';
+@forward './radii';

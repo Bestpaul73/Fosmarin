@@ -20,7 +20,7 @@ test('desktop: hover opens submenu', async ({ page }) => {
 
   await expect(
     nav.getByRole('link', {
-      name: 'Fibre Optic Sensing (DAS)',
+      name: 'Fibre Optic Acoustic Sensing (FOAS)',
     })
   ).toBeVisible();
 });
@@ -38,7 +38,7 @@ test('desktop: mouse leave closes submenu', async ({ page }) => {
   });
 
   const firstSubmenuLink = nav.getByRole('link', {
-    name: 'Fibre Optic Sensing (DAS)',
+    name: 'Fibre Optic Acoustic Sensing (FOAS)',
   });
 
   await technologyLink.hover();
@@ -127,16 +127,16 @@ test('keyboard: ArrowRight opens next submenu', async ({ page }) => {
     exact: true,
   });
 
-  const solutionFirstLink = nav.getByRole('link', {
-    name: 'DAS Technology Overview',
+  const useCasesFirstLink = nav.getByRole('link', {
+    name: 'Telecom Cables Protection',
   });
 
   await challengeLink.focus();
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
 
-  await expect(solutionFirstLink).toBeVisible();
-  await expect(solutionFirstLink).toBeFocused();
+  await expect(useCasesFirstLink).toBeVisible();
+  await expect(useCasesFirstLink).toBeFocused();
 });
 
 test('keyboard: Escape closes submenu and returns focus', async ({
@@ -212,7 +212,6 @@ test('1200px: burger is visible', async ({ page }) => {
   });
 
   await expect(burger).toBeVisible();
-
   await expect(burger).toHaveAttribute(
     'aria-controls',
     'primary-navigation'
@@ -242,11 +241,15 @@ test('mobile: burger opens navigation', async ({ page }) => {
 
   await page.goto('/');
 
+  const nav = page.getByRole('navigation', {
+    name: 'Primary navigation',
+  });
+
   const burger = page.getByRole('button', {
     name: 'Toggle navigation',
   });
 
-  const aboutLink = page.getByRole('link', {
+  const aboutLink = nav.getByRole('link', {
     name: 'About Fosmarin',
     exact: true,
   });
@@ -256,11 +259,7 @@ test('mobile: burger opens navigation', async ({ page }) => {
   await burger.click();
 
   await expect(aboutLink).toBeVisible();
-
-  await expect(burger).toHaveAttribute(
-    'aria-expanded',
-    'true'
-  );
+  await expect(burger).toHaveAttribute('aria-expanded', 'true');
 });
 
 test('mobile: submenu toggle opens submenu', async ({ page }) => {
@@ -281,7 +280,7 @@ test('mobile: submenu toggle opens submenu', async ({ page }) => {
     })
     .click();
 
-  const submenuButton = page.getByRole('button', {
+  const submenuButton = nav.getByRole('button', {
     name: 'About Fosmarin sections',
   });
 
@@ -297,7 +296,6 @@ test('mobile: submenu toggle opens submenu', async ({ page }) => {
   await submenuButton.click();
 
   await expect(firstSubmenuLink).toBeVisible();
-
   await expect(submenuButton).toHaveAttribute(
     'aria-expanded',
     'true'
@@ -324,11 +322,11 @@ test('mobile: opening another submenu closes previous one', async ({
     })
     .click();
 
-  const aboutButton = page.getByRole('button', {
+  const aboutButton = nav.getByRole('button', {
     name: 'About Fosmarin sections',
   });
 
-  const challengeButton = page.getByRole('button', {
+  const challengeButton = nav.getByRole('button', {
     name: 'The Challenge sections',
   });
 
@@ -363,19 +361,24 @@ test.describe('wide touch', () => {
     hasTouch: true,
   });
 
-  test('submenu button is available and opens submenu', async ({ page }) => {
+  test('submenu button is available and opens submenu', async ({
+    page,
+  }) => {
     await page.goto('/');
 
-    const submenuButton = page.getByRole('button', {
+    const nav = page.getByRole('navigation', {
+      name: 'Primary navigation',
+    });
+
+    const submenuButton = nav.getByRole('button', {
       name: 'Technology sections',
     });
 
-    const firstSubmenuLink = page.getByRole('link', {
-      name: 'Fibre Optic Sensing (DAS)',
+    const firstSubmenuLink = nav.getByRole('link', {
+      name: 'Fibre Optic Acoustic Sensing (FOAS)',
     });
 
     await expect(submenuButton).toBeVisible();
-
     await expect(submenuButton).toHaveAttribute(
       'aria-controls',
       'submenu-technology'
@@ -384,7 +387,6 @@ test.describe('wide touch', () => {
     await submenuButton.tap();
 
     await expect(firstSubmenuLink).toBeVisible();
-
     await expect(submenuButton).toHaveAttribute(
       'aria-expanded',
       'true'
@@ -394,12 +396,16 @@ test.describe('wide touch', () => {
   test('tap outside closes submenu', async ({ page }) => {
     await page.goto('/');
 
-    const submenuButton = page.getByRole('button', {
+    const nav = page.getByRole('navigation', {
+      name: 'Primary navigation',
+    });
+
+    const submenuButton = nav.getByRole('button', {
       name: 'Technology sections',
     });
 
-    const firstSubmenuLink = page.getByRole('link', {
-      name: 'Fibre Optic Sensing (DAS)',
+    const firstSubmenuLink = nav.getByRole('link', {
+      name: 'Fibre Optic Acoustic Sensing (FOAS)',
     });
 
     await submenuButton.tap();
