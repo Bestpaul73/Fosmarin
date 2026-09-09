@@ -66,37 +66,6 @@ export const navigation = [
   },
 
   {
-    title: 'Our Solution',
-    path: '/solution',
-    sections: [
-      {
-        title: 'DAS Technology Overview',
-        id: 'das-technology-overview',
-      },
-      {
-        title: 'How It Works',
-        id: 'how-it-works',
-      },
-      {
-        title: 'Key Features & Benefits',
-        id: 'key-features-and-benefits',
-      },
-      {
-        title: 'Predictive DAS with AI',
-        id: 'predictive-das-with-ai',
-      },
-      {
-        title: 'System Architecture',
-        id: 'system-architecture',
-      },
-      {
-        title: 'Security by Design',
-        id: 'security-by-design',
-      },
-    ],
-  },
-
-  {
     title: 'Use Cases',
     path: '/use-cases',
     sections: [
@@ -136,8 +105,12 @@ export const navigation = [
     path: '/technology',
     sections: [
       {
-        title: 'Fibre Optic Sensing (DAS)',
-        id: 'fibre-optic-sensing',
+        title: 'Fibre Optic Acoustic Sensing (FOAS)',
+        id: 'fibre-optic-acoustic-sensing',
+      },
+      {
+        title: 'How It Works',
+        id: 'how-it-works',
       },
       {
         title: 'Using Dark Fibre in Existing Cables',
@@ -148,20 +121,20 @@ export const navigation = [
         id: 'multi-parameter-monitoring',
       },
       {
-        title: 'Big Data Analytics & AI',
-        id: 'big-data-analytics-and-ai',
+        title: 'Predictive Analytics & AI',
+        id: 'predictive-analytics-and-ai',
       },
       {
-        title: 'System Components',
-        id: 'system-components',
+        title: 'System Architecture & Components',
+        id: 'system-architecture-and-components',
       },
       {
         title: 'Data Processing & Algorithms',
         id: 'data-processing-and-algorithms',
       },
       {
-        title: 'Integration & Interoperability',
-        id: 'integration-and-interoperability',
+        title: 'Integration, Interoperability & Security',
+        id: 'integration-interoperability-and-security',
       },
     ],
   },
@@ -277,4 +250,4 @@ export const navigation = [
       },
     ],
   },
-]
+];
