@@ -1,0 +1,160 @@
+@use './tokens' as tokens;
+
+.mission-vision {
+  padding: 112px 0 120px;
+
+  background-color: tokens.$deep;
+  color: tokens.$foam;
+
+  border-top: 1px solid tokens.$line;
+  border-bottom: 1px solid tokens.$line;
+}
+
+.mission-vision-inner {
+  width: 100%;
+  max-width: tokens.$container-max-width;
+  margin: 0 auto;
+  padding: 0 tokens.$container-padding;
+}
+
+.mission-vision-header {
+  max-width: 760px;
+  margin-bottom: 48px;
+
+  h2 {
+    margin: 0;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+}
+
+.mission-vision-eyebrow {
+  margin: 0 0 16px;
+
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.mission-vision-card {
+  padding: 44px 40px;
+
+  background-color: tokens.$panel;
+
+  border: 1px solid tokens.$line;
+  border-radius: 24px;
+
+  transform: scale(1);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  h3 {
+    margin: 0 0 16px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  &:hover {
+    background-color: tokens.$panel2;
+    border-color: tokens.$line-strong;
+
+    transform: scale(1.015);
+
+    box-shadow:
+      0 16px 36px rgba(0, 0, 0, 0.24),
+      0 6px 14px rgba(0, 0, 0, 0.16);
+  }
+}
+
+.mission-vision-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: tokens.$cyan-soft;
+  border-radius: 14px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+
+    fill: none;
+    stroke: tokens.$cyan;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .mission-vision-icon-dot {
+    fill: tokens.$cyan;
+    stroke: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .mission-vision {
+    padding: 80px 0;
+  }
+
+  .mission-vision-header {
+    margin-bottom: 36px;
+  }
+
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-vision-card {
+    padding: 34px 28px;
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-vision-card {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
