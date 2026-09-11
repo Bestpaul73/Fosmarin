@@ -1,0 +1,102 @@
+@use './tokens' as tokens;
+
+.scroll-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 300;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: tokens.$foam;
+  background-color: tokens.$panel;
+
+  border: 1px solid tokens.$line-strong;
+  border-radius: 50%;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.28),
+    0 4px 10px rgba(0, 0, 0, 0.18);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0.82);
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+  }
+
+  &:hover {
+    color: tokens.$abyss;
+    background-color: tokens.$cyan;
+    border-color: tokens.$cyan;
+
+    transform: scale(1.08);
+
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, 0.32),
+      0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$cyan;
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 700px) {
+  .scroll-to-top {
+    right: 18px;
+    bottom: 18px;
+
+    width: 46px;
+    height: 46px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top {
+    transition:
+      opacity 0.01ms,
+      visibility 0.01ms;
+  }
+
+  .scroll-to-top:hover {
+    transform: scale(1);
+  }
+}

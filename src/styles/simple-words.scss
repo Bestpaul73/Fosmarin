@@ -1,0 +1,140 @@
+@use './tokens' as tokens;
+
+.simple-words {
+  --simple-cyan: #{tokens.$cyan};
+  --simple-deep: #{tokens.$deep};
+  --simple-cup-top: #1e5a7c;
+  --simple-cup-bottom: #{tokens.$panel2};
+
+  padding: 120px 0;
+
+  background-color: tokens.$abyss;
+  color: tokens.$foam;
+}
+
+.simple-words-inner {
+  width: 100%;
+  max-width: tokens.$container-max-width;
+  margin: 0 auto;
+  padding: 0 tokens.$container-padding;
+}
+
+.simple-words-panel {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px;
+  align-items: center;
+
+  padding: 48px;
+
+  background: linear-gradient(
+    135deg,
+    tokens.$panel,
+    tokens.$deep
+  );
+
+  border: 1px solid tokens.$line;
+  border-radius: 28px;
+}
+
+.simple-words-copy {
+  h2 {
+    margin: 0 0 18px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  > p:not(.simple-words-badge) {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    & + p {
+      margin-top: 14px;
+    }
+  }
+
+  em {
+    color: tokens.$cyan;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.simple-words-badge {
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 6px 12px;
+
+  color: tokens.$amber;
+
+  background-color: rgba(tokens.$amber, 0.1);
+
+  border: 1px solid rgba(tokens.$amber, 0.3);
+  border-radius: 999px;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.simple-words-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    display: block;
+
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+}
+
+@media (max-width: 860px) {
+  .simple-words {
+    padding: 80px 0;
+  }
+
+  .simple-words-panel {
+    grid-template-columns: 1fr;
+    gap: 28px;
+
+    padding: 32px;
+
+    border-radius: 22px;
+  }
+
+  .simple-words-visual {
+    order: -1;
+
+    svg {
+      max-width: 360px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .simple-words-panel {
+    padding: 28px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simple-words-animation {
+    display: none;
+  }
+}

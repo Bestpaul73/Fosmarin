@@ -1,10 +1,16 @@
 @use './tokens' as tokens;
 
 .header {
+  position: relative;
+  z-index: 100;
+
   width: 100%;
 
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: rgba(6, 21, 36, 0.94);
+  border-bottom: 1px solid tokens.$line;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .header-inner {
@@ -22,12 +28,25 @@
 .logo {
   flex-shrink: 0;
 
-  color: tokens.$deep;
+  color: tokens.$foam;
+
   font-family: tokens.$font-display, sans-serif;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 1px;
   text-decoration: none;
+
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: tokens.$cyan;
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$cyan;
+    outline-offset: 5px;
+    border-radius: 2px;
+  }
 }
 
 .main-nav {
@@ -49,7 +68,7 @@
     }
 
     > .nav-link {
-      color: tokens.$cyan;
+      color: tokens.$foam;
 
       &::after {
         transform: scaleX(1);
@@ -67,7 +86,8 @@
   height: 80px;
   padding: 0 12px;
 
-  color: tokens.$deep;
+  color: tokens.$mist;
+
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -81,7 +101,7 @@
 
     position: absolute;
     left: 12px;
-    bottom: 12px;
+    bottom: 18px;
 
     width: calc(100% - 24px);
     height: 1px;
@@ -97,7 +117,7 @@
   }
 
   &:hover {
-    color: tokens.$cyan;
+    color: tokens.$foam;
 
     &::after {
       transform: scaleX(1);
@@ -105,7 +125,7 @@
   }
 
   &.active {
-    color: tokens.$cyan;
+    color: tokens.$foam;
     font-weight: 700;
 
     &::after {
@@ -118,8 +138,8 @@
   position: absolute;
   z-index: 100;
 
-  // Submenu начинается ниже underline и больше его не перекрывает.
-  top: calc(100% - 4px);
+  // Dropdown начинается ниже underline.
+  top: calc(100% - 10px);
   left: 0;
 
   display: none;
@@ -131,18 +151,22 @@
 
   padding: 8px 0;
 
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  background-color: tokens.$deep;
+
+  border: 1px solid tokens.$line-strong;
   border-radius: tokens.$radius-small;
 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(6, 21, 36, 0.18);
 
   a {
     display: block;
 
     padding: 10px 18px;
 
-    color: tokens.$deep;
+    color: tokens.$mist;
+
     font-size: 14px;
     line-height: 1.3;
     text-decoration: none;
@@ -153,8 +177,8 @@
       background-color 0.2s ease;
 
     &:hover {
-      color: tokens.$cyan;
-      background-color: #f5f8fa;
+      color: tokens.$foam;
+      background-color: tokens.$panel;
     }
   }
 }
@@ -168,7 +192,7 @@
 
   width: 56px;
 
-  color: tokens.$deep;
+  color: tokens.$mist;
   font-size: 24px;
 
   background: none;
@@ -182,16 +206,28 @@
     width: 10px;
     height: 10px;
 
-    border-right: 2px solid tokens.$deep;
-    border-bottom: 2px solid tokens.$deep;
+    border-right: 2px solid tokens.$mist;
+    border-bottom: 2px solid tokens.$mist;
 
     transform: rotate(45deg);
 
-    transition: transform 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  &:hover .submenu-arrow {
+    border-color: tokens.$foam;
   }
 
   &.open .submenu-arrow {
+    border-color: tokens.$cyan;
     transform: rotate(-135deg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$cyan;
+    outline-offset: -4px;
   }
 }
 
@@ -200,6 +236,10 @@
   .submenu a:focus {
     outline: 2px solid tokens.$cyan;
     outline-offset: -2px;
+  }
+
+  .nav-link:focus {
+    color: tokens.$foam;
   }
 
   .nav-link:focus::after {
@@ -243,7 +283,7 @@
       width: 24px;
       height: 2px;
 
-      background-color: tokens.$deep;
+      background-color: tokens.$foam;
 
       transition:
         transform 0.25s ease,
@@ -262,6 +302,11 @@
       span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
       }
+    }
+
+    &:focus-visible {
+      outline: 2px solid tokens.$cyan;
+      outline-offset: 2px;
     }
   }
 
@@ -282,10 +327,10 @@
     max-height: calc(100vh - 70px);
     overflow-y: auto;
 
-    background-color: #ffffff;
-    border-top: 1px solid #e5e7eb;
+    background-color: tokens.$abyss;
+    border-top: 1px solid tokens.$line;
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
 
     &.mobile-open {
       display: flex;
@@ -296,15 +341,31 @@
     display: grid;
     grid-template-columns: 1fr auto;
 
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid tokens.$line;
+
+    &.open {
+      > .nav-link {
+        color: tokens.$foam;
+      }
+    }
   }
 
   .nav-link {
     height: auto;
     padding: 16px 24px;
 
+    color: tokens.$mist;
+
     &::after {
       display: none;
+    }
+
+    &:hover {
+      color: tokens.$foam;
+    }
+
+    &.active {
+      color: tokens.$foam;
     }
   }
 
@@ -323,8 +384,10 @@
 
     padding: 4px 0 10px;
 
-    background-color: #f5f8fa;
+    background-color: tokens.$deep;
+
     border: none;
+    border-top: 1px solid tokens.$line;
     border-radius: 0;
 
     box-shadow: none;
@@ -332,7 +395,14 @@
     a {
       padding: 10px 40px;
 
+      color: tokens.$mist;
+
       white-space: normal;
+
+      &:hover {
+        color: tokens.$foam;
+        background-color: tokens.$panel;
+      }
     }
   }
 }
