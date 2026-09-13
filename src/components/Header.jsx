@@ -5,25 +5,47 @@ import '../styles/header.scss';
 import tokens from '../tokens/tokens.json';
 
 const BREAKPOINT_TABLET = tokens.breakpoints.tablet;
+const BREAKPOINT_WIDE_TOUCH_HEADER = tokens.breakpoints.wideTouchHeader;
 
 function canUseHover() {
   return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 }
 
+function usesTouchNavigation() {
+  return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function getLayoutWidth() {
+  return document.documentElement.clientWidth;
+}
+
+function usesDesktopNavigation() {
+  if (usesTouchNavigation()) {
+    return getLayoutWidth() >= BREAKPOINT_WIDE_TOUCH_HEADER;
+  }
+
+  return getLayoutWidth() > BREAKPOINT_TABLET;
+}
+
 function Header() {
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+
   // Показываем keyboard-focus только при работе клавиатурой.
   const [keyboardMode, setKeyboardMode] = useState(false);
 
   // Сам Header — чтобы определять клики за его пределами.
   const headerRef = useRef(null);
+
   // Первые ссылки каждого submenu — для переноса focus после ArrowDown.
   const firstSubmenuLinkRefs = useRef({});
+
   // Submenu, куда нужно поставить focus после его открытия.
   const submenuToFocusRef = useRef(null);
+
   // Основные ссылки меню — для возврата focus после Escape.
   const mainMenuLinkRefs = useRef({});
+
   // Показывает, что текущее submenu открыто с клавиатуры.
   const menuOpenedByKeyboardRef = useRef(false);
 
@@ -51,7 +73,8 @@ function Header() {
       ) {
         setKeyboardMode(true);
 
-        // Tab закрывает hover-submenu, но не мешает Tab-навигации внутри keyboard-submenu.
+        // Tab закрывает hover-submenu, но не мешает
+        // Tab-навигации внутри keyboard-submenu.
         if (event.key === 'Tab' && !event.target.closest?.('.submenu')) {
           setOpenMenu(null);
           menuOpenedByKeyboardRef.current = false;
@@ -90,13 +113,15 @@ function Header() {
   }
 
   function openDesktopMenu(path) {
-    if (window.innerWidth > BREAKPOINT_TABLET && canUseHover()) {
-      // Если мышь попала в уже открытое keyboard-menu — режим не меняем.
+    if (usesDesktopNavigation() && canUseHover()) {
+      // Если мышь попала в уже открытое keyboard-menu —
+      // режим не меняем.
       if (menuOpenedByKeyboardRef.current && openMenu === path) {
         return;
       }
 
-      // Наведение на другой пункт переключает управление обратно на мышь.
+      // Наведение на другой пункт переключает управление
+      // обратно на мышь.
       menuOpenedByKeyboardRef.current = false;
       setKeyboardMode(false);
 
@@ -105,17 +130,18 @@ function Header() {
   }
 
   function closeDesktopMenu() {
-    if (window.innerWidth > BREAKPOINT_TABLET && canUseHover() && !menuOpenedByKeyboardRef.current) {
+    if (usesDesktopNavigation() && canUseHover() && !menuOpenedByKeyboardRef.current) {
       setOpenMenu(null);
     }
   }
 
   function closeDesktopMenuByKeyboard(event) {
-    if (window.innerWidth <= BREAKPOINT_TABLET || !menuOpenedByKeyboardRef.current) {
+    if (!usesDesktopNavigation() || !menuOpenedByKeyboardRef.current) {
       return;
     }
 
-    // Не закрываем меню при переходе стрелками в соседнее submenu.
+    // Не закрываем меню при переходе стрелками
+    // в соседнее submenu.
     if (submenuToFocusRef.current) {
       return;
     }
@@ -127,7 +153,7 @@ function Header() {
   }
 
   function handleMainLinkKeyDown(event, path) {
-    if (event.key !== 'ArrowDown' || window.innerWidth <= BREAKPOINT_TABLET) {
+    if (event.key !== 'ArrowDown' || !usesDesktopNavigation()) {
       return;
     }
 
@@ -136,19 +162,22 @@ function Header() {
     // Дальше меню управляется клавиатурой.
     menuOpenedByKeyboardRef.current = true;
 
-    // Если submenu уже открыто — можно сразу перевести focus внутрь.
+    // Если submenu уже открыто —
+    // можно сразу перевести focus внутрь.
     if (openMenu === path) {
       firstSubmenuLinkRefs.current[path]?.focus();
     } else {
-      // Иначе запоминаем цель focus и сначала открываем submenu.
+      // Иначе запоминаем цель focus
+      // и сначала открываем submenu.
       submenuToFocusRef.current = path;
       setOpenMenu(path);
     }
   }
 
   function handleSubmenuKeyDown(event, path) {
-    // Keyboard-навигация submenu нужна только на desktop.
-    if (window.innerWidth <= BREAKPOINT_TABLET) {
+    // Keyboard-навигация submenu нужна
+    // только в desktop-режиме.
+    if (!usesDesktopNavigation()) {
       return;
     }
 
@@ -165,7 +194,7 @@ function Header() {
 
         break;
 
-      case 'ArrowDown':
+      case 'ArrowDown': {
         event.preventDefault();
 
         // Все ссылки текущего submenu.
@@ -173,27 +202,29 @@ function Header() {
 
         const currentIndex = submenuLinks.indexOf(event.target);
 
-        // Следующий пункт; после последнего возвращаемся к первому.
+        // Следующий пункт; после последнего
+        // возвращаемся к первому.
         const nextIndex = (currentIndex + 1) % submenuLinks.length;
 
         submenuLinks[nextIndex]?.focus();
 
         break;
+      }
 
-      case 'ArrowUp':
+      case 'ArrowUp': {
         event.preventDefault();
 
-        // Все ссылки текущего submenu.
-        const submenuLinksUp = Array.from(event.currentTarget.querySelectorAll('a'));
+        const submenuLinks = Array.from(event.currentTarget.querySelectorAll('a'));
 
-        const currentIndexUp = submenuLinksUp.indexOf(event.target);
+        const currentIndex = submenuLinks.indexOf(event.target);
 
         // Предыдущий пункт; с первого переходим на последний.
-        const previousIndex = (currentIndexUp - 1 + submenuLinksUp.length) % submenuLinksUp.length;
+        const previousIndex = (currentIndex - 1 + submenuLinks.length) % submenuLinks.length;
 
-        submenuLinksUp[previousIndex]?.focus();
+        submenuLinks[previousIndex]?.focus();
 
         break;
+      }
 
       case 'ArrowRight': {
         event.preventDefault();
@@ -201,6 +232,7 @@ function Header() {
         const currentPageIndex = navigation.findIndex((page) => page.path === path);
 
         const nextPageIndex = (currentPageIndex + 1) % navigation.length;
+
         const nextPath = navigation[nextPageIndex].path;
 
         submenuToFocusRef.current = nextPath;
@@ -214,7 +246,8 @@ function Header() {
 
         const currentPageIndex = navigation.findIndex((page) => page.path === path);
 
-        // Предыдущая страница; с первой переходим к последней.
+        // Предыдущая страница;
+        // с первой переходим к последней.
         const previousPageIndex = (currentPageIndex - 1 + navigation.length) % navigation.length;
 
         const previousPath = navigation[previousPageIndex].path;
@@ -224,6 +257,9 @@ function Header() {
 
         break;
       }
+
+      default:
+        break;
     }
   }
 
