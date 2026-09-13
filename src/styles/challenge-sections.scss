@@ -1,0 +1,779 @@
+@use './tokens' as tokens;
+
+.challenge-section {
+  padding: 120px 0;
+
+  color: tokens.$foam;
+
+  border-bottom: 1px solid tokens.$line;
+}
+
+.challenge-threats,
+.challenge-action,
+.challenge-cost {
+  background-color: tokens.$abyss;
+}
+
+.challenge-gaps,
+.challenge-policy {
+  background-color: tokens.$deep;
+}
+
+.challenge-inner {
+  width: 100%;
+  max-width: tokens.$container-max-width;
+
+  margin: 0 auto;
+  padding: 0 tokens.$container-padding;
+}
+
+.challenge-section-header {
+  max-width: 840px;
+
+  margin-bottom: 56px;
+
+  h2 {
+    margin: 0 0 20px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+}
+
+.challenge-eyebrow {
+  margin: 0 0 16px;
+
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.challenge-section-intro {
+  max-width: 740px;
+
+  margin: 0;
+
+  color: tokens.$mist;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* Threats */
+
+.threat-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.threat-group {
+  overflow: hidden;
+
+  background-color: tokens.$deep;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+}
+
+.threat-group-header {
+  padding: 30px;
+
+  border-bottom: 1px solid tokens.$line;
+
+  > span {
+    display: inline-block;
+
+    margin-bottom: 18px;
+    padding: 6px 9px;
+
+    border-radius: tokens.$radius-small;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin: 0 0 12px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+.threat-group--natural {
+  .threat-group-header > span {
+    color: tokens.$cyan;
+    background-color: tokens.$cyan-soft;
+  }
+}
+
+.threat-group--human {
+  .threat-group-header > span {
+    color: tokens.$coral;
+    background-color: tokens.$coral-soft;
+  }
+}
+
+.threat-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    padding: 16px 30px;
+
+    border-bottom: 1px solid tokens.$line;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.threat-name {
+  color: tokens.$foam;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.threat-risk {
+  flex: 0 0 auto;
+
+  min-width: 58px;
+
+  padding: 5px 8px;
+
+  border-radius: tokens.$radius-small;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 9px;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.threat-risk--low {
+  color: tokens.$mist;
+  background-color: rgba(tokens.$mist, 0.1);
+}
+
+.threat-risk--medium {
+  color: tokens.$amber;
+  background-color: rgba(tokens.$amber, 0.12);
+}
+
+.threat-risk--high {
+  color: tokens.$coral;
+  background-color: tokens.$coral-soft;
+}
+
+/* Shared source note */
+
+.challenge-source-note {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+
+  gap: 28px;
+
+  margin-top: 32px;
+  padding: 24px 28px;
+
+  background-color: tokens.$deep;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+
+  > span {
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 13px;
+    line-height: 1.65;
+  }
+}
+
+/* Current gaps */
+
+.surveillance-gaps-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.surveillance-gap-card {
+  grid-column: span 2;
+
+  min-width: 0;
+  min-height: 235px;
+
+  padding: 26px;
+
+  background-color: tokens.$panel;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:nth-child(4),
+  &:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  &:hover {
+    transform: scale(1.015);
+
+    border-color: tokens.$line-strong;
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  h3 {
+    margin: 30px 0 12px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+.surveillance-gap-number {
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+}
+
+.challenge-callout {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+
+  gap: 32px;
+
+  margin-top: 32px;
+  padding: 28px 30px;
+
+  background-color: tokens.$abyss;
+
+  border: 1px solid tokens.$line-strong;
+  border-radius: tokens.$radius-default;
+
+  > span {
+    color: tokens.$coral;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$foam;
+
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+/* Why action is needed */
+
+.action-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  overflow: hidden;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+}
+
+.action-step {
+  min-width: 0;
+  min-height: 270px;
+
+  padding: 28px;
+
+  background-color: tokens.$deep;
+
+  border-right: 1px solid tokens.$line;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  h3 {
+    margin: 34px 0 12px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+.action-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > span:first-child {
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+}
+
+.action-step-arrow {
+  color: tokens.$mist-dim;
+
+  font-size: 20px;
+}
+
+.action-outcome {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+
+  gap: 32px;
+
+  align-items: center;
+
+  margin-top: 28px;
+  padding: 28px 30px;
+
+  background: radial-gradient(circle at 90% 20%, tokens.$cyan-soft, transparent 40%), tokens.$panel;
+
+  border: 1px solid tokens.$line-strong;
+  border-radius: tokens.$radius-default;
+
+  p {
+    margin: 0;
+
+    color: tokens.$foam;
+
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+.action-outcome-marker {
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Cost of inaction */
+
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.cost-card {
+  min-width: 0;
+
+  padding: 30px;
+
+  background-color: tokens.$deep;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+
+  h3 {
+    margin: 0 0 30px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dl > div {
+    padding: 18px 0;
+
+    border-top: 1px solid tokens.$line;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  dt {
+    margin-bottom: 7px;
+
+    color: tokens.$mist-dim;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0;
+
+    color: tokens.$coral;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 600;
+    line-height: 1.05;
+  }
+}
+
+.challenge-source-note--cost {
+  background-color: tokens.$panel;
+}
+
+/* EU policy */
+
+.policy-timeline {
+  position: relative;
+
+  display: grid;
+
+  gap: 18px;
+
+  max-width: 980px;
+
+  &::before {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 55px;
+
+    width: 1px;
+
+    background-color: tokens.$line-strong;
+
+    content: '';
+  }
+}
+
+.policy-item {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+
+  gap: 30px;
+
+  align-items: start;
+}
+
+.policy-year {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 110px;
+  height: 54px;
+
+  color: tokens.$cyan;
+
+  background-color: tokens.$abyss;
+
+  border: 1px solid tokens.$line-strong;
+  border-radius: tokens.$radius-small;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.policy-content {
+  padding: 26px 28px;
+
+  background-color: tokens.$panel;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+
+  h3 {
+    margin: 12px 0 12px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  > p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+.policy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 10px;
+
+  span {
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  small {
+    color: tokens.$mist-dim;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 980px) {
+  .challenge-section {
+    padding: 96px 0;
+  }
+
+  .threat-groups,
+  .cost-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .surveillance-gaps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .surveillance-gap-card,
+  .surveillance-gap-card:nth-child(4),
+  .surveillance-gap-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .surveillance-gap-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .action-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .action-step {
+    border-right: 1px solid tokens.$line;
+    border-bottom: 1px solid tokens.$line;
+
+    &:nth-child(2n) {
+      border-right: 0;
+    }
+
+    &:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .challenge-section {
+    padding: 80px 0;
+  }
+
+  .challenge-section-header {
+    margin-bottom: 38px;
+  }
+
+  .threat-group-header,
+  .cost-card {
+    padding: 26px 24px;
+  }
+
+  .threat-list {
+    li {
+      padding: 15px 24px;
+    }
+  }
+
+  .challenge-source-note,
+  .challenge-callout,
+  .action-outcome {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    padding: 24px;
+  }
+
+  .surveillance-gaps-grid,
+  .action-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .surveillance-gap-card,
+  .surveillance-gap-card:last-child {
+    grid-column: auto;
+
+    min-height: 0;
+  }
+
+  .action-step {
+    min-height: 0;
+
+    border-right: 0;
+    border-bottom: 1px solid tokens.$line;
+
+    &:nth-child(2n),
+    &:nth-last-child(-n + 2) {
+      border-bottom: 1px solid tokens.$line;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .action-step-arrow {
+    display: none;
+  }
+
+  .policy-timeline {
+    gap: 24px;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .policy-item {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .policy-year {
+    width: fit-content;
+    height: auto;
+
+    padding: 8px 11px;
+  }
+
+  .policy-content {
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surveillance-gap-card {
+    transition: none;
+  }
+
+  .surveillance-gap-card:hover {
+    transform: none;
+  }
+}
