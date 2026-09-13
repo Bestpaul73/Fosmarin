@@ -65,9 +65,9 @@ function StepArrow() {
   );
 }
 
-function HowItWorks() {
+function HowItWorks({ id }) {
   return (
-    <section className='how-it-works' aria-labelledby='how-it-works-title'>
+    <section className='how-it-works' id={id} aria-labelledby='how-it-works-title'>
       <div className='how-it-works-inner'>
         <Reveal as='header' className='how-it-works-header'>
           <p className='how-it-works-eyebrow'>How it works</p>
