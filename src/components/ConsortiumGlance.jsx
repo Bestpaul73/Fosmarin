@@ -2,89 +2,13 @@ import { Link } from 'react-router-dom';
 
 import Reveal from './Reveal';
 
-import aitLogo from '../assets/partners/ait.png';
-import melcanoLogo from '../assets/partners/melcano.svg';
-import sintelaLogo from '../assets/partners/sintela.png';
-import additessLogo from '../assets/partners/additess.jpg';
-import forthLogo from '../assets/partners/forth.jpg';
-import plocanLogo from '../assets/partners/plocan.png';
-import nbgLogo from '../assets/partners/nbg.png';
-import kemeaLogo from '../assets/partners/kemea.png';
-import canalinkLogo from '../assets/partners/canalink.png';
-import laresLogo from '../assets/partners/lares-italia.png';
-import globalConnectLogo from '../assets/partners/global-connect.png';
-import grnetLogo from '../assets/partners/grnet.png';
-import shefaLogo from '../assets/partners/shefa.jpg';
+import { coordinator, partners } from '../data/partners';
 
 import '../styles/consortium-glance.scss';
 
-const partners = [
-  {
-    name: 'MELCANO',
-    country: 'AT',
-    logo: melcanoLogo,
-    logoClass: 'consortium-glance-logo--melcano',
-  },
-  {
-    name: 'SINTELA',
-    country: 'UK',
-    logo: sintelaLogo,
-  },
-  {
-    name: 'ADDITESS',
-    country: 'CY',
-    logo: additessLogo,
-  },
-  {
-    name: 'FORTH',
-    country: 'EL',
-    logo: forthLogo,
-  },
-  {
-    name: 'PLOCAN',
-    country: 'ES',
-    logo: plocanLogo,
-  },
-  {
-    name: 'NBG',
-    country: 'AT',
-    logo: nbgLogo,
-  },
-  {
-    name: 'KEMEA',
-    country: 'EL',
-    logo: kemeaLogo,
-    logoClass: 'consortium-glance-logo--kemea',
-  },
-  {
-    name: 'CANALINK',
-    country: 'ES',
-    logo: canalinkLogo,
-  },
-  {
-    name: 'LARES ITALIA',
-    country: 'IT',
-    logo: laresLogo,
-    logoClass: 'consortium-glance-logo--lares',
-  },
-  {
-    name: 'GLOBAL CONNECT',
-    country: 'DK',
-    logo: globalConnectLogo,
-  },
-  {
-    name: 'GRNET',
-    country: 'EL',
-    logo: grnetLogo,
-  },
-  {
-    name: 'SHEFA',
-    country: 'FO',
-    logo: shefaLogo,
-  },
-];
-
 function ConsortiumGlance({ id }) {
+  const otherPartners = partners.filter((partner) => !partner.coordinator);
+
   return (
     <section className='consortium-glance' id={id} aria-labelledby='consortium-glance-title'>
       <div className='consortium-glance-inner'>
@@ -119,7 +43,7 @@ function ConsortiumGlance({ id }) {
             <span className='consortium-glance-label'>Coordinator</span>
 
             <div className='consortium-glance-coordinator-logo'>
-              <img src={aitLogo} alt='' />
+              <img src={coordinator.logo} alt='' />
             </div>
 
             <h3>AIT Austrian Institute of Technology</h3>
@@ -130,7 +54,7 @@ function ConsortiumGlance({ id }) {
           </Reveal>
 
           <Reveal className='consortium-glance-partners'>
-            {partners.map((partner) => (
+            {otherPartners.map((partner) => (
               <article className='consortium-glance-partner' key={partner.name}>
                 <div className='consortium-glance-partner-logo'>
                   <img className={partner.logoClass || ''} src={partner.logo} alt='' />
@@ -138,7 +62,7 @@ function ConsortiumGlance({ id }) {
 
                 <div className='consortium-glance-partner-meta'>
                   <span>{partner.name}</span>
-                  <small>{partner.country}</small>
+                  <small>{partner.countryCode}</small>
                 </div>
               </article>
             ))}
@@ -146,10 +70,7 @@ function ConsortiumGlance({ id }) {
         </div>
 
         <Reveal className='consortium-glance-footer'>
-          <p>
-            The full Consortium section will detail each partner, its role in FOSMARIN and its contribution to the
-            project.
-          </p>
+          <p>Explore every consortium partner, its role in FOSMARIN and the expertise it contributes to the project.</p>
 
           <Link className='consortium-glance-link' to='/consortium#partners'>
             Explore the consortium
