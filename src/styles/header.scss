@@ -1,5 +1,7 @@
 @use './tokens' as tokens;
 
+$wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
+
 .header {
   position: relative;
   z-index: 100;
@@ -254,7 +256,14 @@
   }
 }
 
-@media (max-width: tokens.$breakpoint-tablet) {
+// Обычный tablet/mobile режим.
+//
+// Также используем burger на touch/coarse-устройствах шириной меньше 1600px.
+// Полное горизонтальное touch-меню со всеми стрелками физически требует
+// больше места, чем обычное desktop-меню.
+@media (max-width: tokens.$breakpoint-tablet),
+  (max-width: $wide-touch-mobile-max) and (hover: none),
+  (max-width: $wide-touch-mobile-max) and (pointer: coarse) {
   .header-inner {
     position: relative;
 
@@ -407,8 +416,16 @@
   }
 }
 
-@media (min-width: tokens.$breakpoint-tablet) and (hover: none),
-  (min-width: tokens.$breakpoint-tablet) and (pointer: coarse) {
+// Очень широкий touch/coarse экран.
+//
+// Здесь уже хватает места оставить основную навигацию горизонтальной.
+// Header получает всю доступную ширину, а кнопки submenu остаются видимыми.
+@media (min-width: tokens.$breakpoint-wide-touch-header) and (hover: none),
+  (min-width: tokens.$breakpoint-wide-touch-header) and (pointer: coarse) {
+  .header-inner {
+    max-width: none;
+  }
+
   .submenu-toggle {
     display: block;
   }

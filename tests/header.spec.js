@@ -21,7 +21,7 @@ test('desktop: hover opens submenu', async ({ page }) => {
   await expect(
     nav.getByRole('link', {
       name: 'Fibre Optic Acoustic Sensing (FOAS)',
-    })
+    }),
   ).toBeVisible();
 });
 
@@ -54,9 +54,7 @@ test('desktop: mouse leave closes submenu', async ({ page }) => {
 // KEYBOARD
 //
 
-test('keyboard: ArrowDown opens submenu and focuses first link', async ({
-  page,
-}) => {
+test('keyboard: ArrowDown opens submenu and focuses first link', async ({ page }) => {
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -79,9 +77,7 @@ test('keyboard: ArrowDown opens submenu and focuses first link', async ({
   await expect(firstSubmenuLink).toBeFocused();
 });
 
-test('keyboard: ArrowDown and ArrowUp cycle through submenu', async ({
-  page,
-}) => {
+test('keyboard: ArrowDown and ArrowUp cycle through submenu', async ({ page }) => {
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -139,9 +135,7 @@ test('keyboard: ArrowRight opens next submenu', async ({ page }) => {
   await expect(useCasesFirstLink).toBeFocused();
 });
 
-test('keyboard: Escape closes submenu and returns focus', async ({
-  page,
-}) => {
+test('keyboard: Escape closes submenu and returns focus', async ({ page }) => {
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -212,10 +206,7 @@ test('1200px: burger is visible', async ({ page }) => {
   });
 
   await expect(burger).toBeVisible();
-  await expect(burger).toHaveAttribute(
-    'aria-controls',
-    'primary-navigation'
-  );
+  await expect(burger).toHaveAttribute('aria-controls', 'primary-navigation');
 });
 
 test('1201px: burger is hidden', async ({ page }) => {
@@ -229,7 +220,7 @@ test('1201px: burger is hidden', async ({ page }) => {
   await expect(
     page.getByRole('button', {
       name: 'Toggle navigation',
-    })
+    }),
   ).not.toBeVisible();
 });
 
@@ -288,23 +279,15 @@ test('mobile: submenu toggle opens submenu', async ({ page }) => {
     name: 'Project Overview',
   });
 
-  await expect(submenuButton).toHaveAttribute(
-    'aria-controls',
-    'submenu-about'
-  );
+  await expect(submenuButton).toHaveAttribute('aria-controls', 'submenu-about');
 
   await submenuButton.click();
 
   await expect(firstSubmenuLink).toBeVisible();
-  await expect(submenuButton).toHaveAttribute(
-    'aria-expanded',
-    'true'
-  );
+  await expect(submenuButton).toHaveAttribute('aria-expanded', 'true');
 });
 
-test('mobile: opening another submenu closes previous one', async ({
-  page,
-}) => {
+test('mobile: opening another submenu closes previous one', async ({ page }) => {
   await page.setViewportSize({
     width: 900,
     height: 800,
@@ -355,15 +338,13 @@ test('mobile: opening another submenu closes previous one', async ({
 test.describe('wide touch', () => {
   test.use({
     viewport: {
-      width: 1366,
+      width: 1600,
       height: 1024,
     },
     hasTouch: true,
   });
 
-  test('submenu button is available and opens submenu', async ({
-    page,
-  }) => {
+  test('submenu button is available and opens submenu', async ({ page }) => {
     await page.goto('/');
 
     const nav = page.getByRole('navigation', {
@@ -379,18 +360,12 @@ test.describe('wide touch', () => {
     });
 
     await expect(submenuButton).toBeVisible();
-    await expect(submenuButton).toHaveAttribute(
-      'aria-controls',
-      'submenu-technology'
-    );
+    await expect(submenuButton).toHaveAttribute('aria-controls', 'submenu-technology');
 
     await submenuButton.tap();
 
     await expect(firstSubmenuLink).toBeVisible();
-    await expect(submenuButton).toHaveAttribute(
-      'aria-expanded',
-      'true'
-    );
+    await expect(submenuButton).toHaveAttribute('aria-expanded', 'true');
   });
 
   test('tap outside closes submenu', async ({ page }) => {
@@ -415,5 +390,26 @@ test.describe('wide touch', () => {
     await page.getByRole('heading', { level: 1 }).tap();
 
     await expect(firstSubmenuLink).not.toBeVisible();
+  });
+});
+
+test.describe('touch compact header', () => {
+  test.use({
+    viewport: {
+      width: 1366,
+      height: 1024,
+    },
+    hasTouch: true,
+  });
+
+  test('1366px touch: burger is visible', async ({ page }) => {
+    await page.goto('/');
+
+    const burger = page.getByRole('button', {
+      name: 'Toggle navigation',
+    });
+
+    await expect(burger).toBeVisible();
+    await expect(burger).toHaveAttribute('aria-controls', 'primary-navigation');
   });
 });
