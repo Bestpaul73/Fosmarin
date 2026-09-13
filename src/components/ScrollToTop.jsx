@@ -6,7 +6,7 @@ function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > window.innerHeight * 0.75);
+      setIsVisible(window.scrollY > window.innerHeight * 0.55);
     };
 
     handleScroll();
@@ -21,7 +21,9 @@ function ScrollToTop() {
   }, []);
 
   const scrollToTop = () => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
     window.scrollTo({
       top: 0,
@@ -37,7 +39,11 @@ function ScrollToTop() {
       aria-label='Back to top'
       title='Back to top'
     >
-      <svg viewBox='0 0 24 24' aria-hidden='true' focusable='false'>
+      <svg
+        viewBox='0 0 24 24'
+        aria-hidden='true'
+        focusable='false'
+      >
         <path d='M6 15l6-6 6 6' />
       </svg>
     </button>

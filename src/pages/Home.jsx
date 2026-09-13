@@ -1,17 +1,13 @@
 import Hero from '../components/Hero';
-import MissionVision from '../components/MissionVision';
-import WhyItMatters from '../components/WhyItMatters';
-import SimpleWords from '../components/SimpleWords';
-import HowItWorks from '../components/HowItWorks';
+import LatestNews from '../components/LatestNews';
+import KeyProjectPillars from '../components/KeyProjectPillars';
 
 function Home() {
   return (
     <>
       <Hero />
-      <MissionVision />
-      <WhyItMatters />
-      <SimpleWords />
-      <HowItWorks />
+      <LatestNews />
+      <KeyProjectPillars />
     </>
   );
 }
