@@ -1,0 +1,255 @@
+@use './tokens' as tokens;
+
+.use-case-section {
+  padding: 112px 0;
+
+  color: tokens.$foam;
+  background-color: tokens.$abyss;
+
+  border-bottom: 1px solid tokens.$line;
+}
+
+.use-case-section--reverse {
+  background-color: tokens.$deep;
+}
+
+.use-case-inner {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+
+  gap: 70px;
+
+  width: 100%;
+  max-width: tokens.$container-max-width;
+
+  margin: 0 auto;
+  padding: 0 tokens.$container-padding;
+}
+
+.use-case-number {
+  span {
+    display: block;
+
+    color: transparent;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(5rem, 10vw, 8.5rem);
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: -0.07em;
+
+    -webkit-text-stroke: 1px tokens.$line-strong;
+  }
+}
+
+.use-case-main {
+  min-width: 0;
+
+  > h2 {
+    max-width: 790px;
+
+    margin: 0 0 22px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+}
+
+.use-case-eyebrow {
+  margin: 0 0 16px;
+
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.use-case-intro {
+  max-width: 760px;
+
+  margin: 0;
+
+  color: tokens.$mist;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.use-case-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin: 30px 0 0;
+  padding: 0;
+
+  list-style: none;
+
+  li {
+    padding: 7px 11px;
+
+    color: tokens.$cyan;
+
+    background-color: tokens.$cyan-soft;
+
+    border: 1px solid rgba(tokens.$cyan, 0.22);
+    border-radius: tokens.$radius-small;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+.use-case-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-top: 38px;
+
+  article {
+    min-width: 0;
+    min-height: 230px;
+
+    padding: 25px;
+
+    background-color: tokens.$deep;
+
+    border: 1px solid tokens.$line;
+    border-radius: tokens.$radius-default;
+
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+
+    &:hover {
+      transform: scale(1.015);
+
+      border-color: tokens.$line-strong;
+
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    > span {
+      color: tokens.$cyan;
+
+      font-family: tokens.$font-mono, monospace;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    h3 {
+      margin: 30px 0 11px;
+
+      color: tokens.$foam;
+
+      font-family: tokens.$font-display, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0;
+
+      color: tokens.$mist;
+
+      font-size: 14px;
+      line-height: 1.65;
+    }
+  }
+}
+
+.use-case-section--reverse {
+  .use-case-points article {
+    background-color: tokens.$panel;
+  }
+}
+
+/* Sections that still require project copy */
+
+.use-case-section--client-input {
+  .use-case-main {
+    padding: 38px;
+
+    background: radial-gradient(circle at 90% 15%, tokens.$cyan-soft, transparent 42%), tokens.$deep;
+
+    border: 1px dashed tokens.$line-strong;
+    border-radius: tokens.$radius-default;
+  }
+
+  &.use-case-section--reverse {
+    .use-case-main {
+      background: radial-gradient(circle at 90% 15%, tokens.$cyan-soft, transparent 42%), tokens.$panel;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .use-case-section {
+    padding: 92px 0;
+  }
+
+  .use-case-inner {
+    grid-template-columns: 110px minmax(0, 1fr);
+
+    gap: 38px;
+  }
+
+  .use-case-points {
+    grid-template-columns: 1fr;
+  }
+
+  .use-case-points article {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .use-case-section {
+    padding: 76px 0;
+  }
+
+  .use-case-inner {
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+  }
+
+  .use-case-number {
+    span {
+      font-size: 4.5rem;
+    }
+  }
+
+  .use-case-section--client-input {
+    .use-case-main {
+      padding: 26px 24px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .use-case-points article {
+    transition: none;
+  }
+
+  .use-case-points article:hover {
+    transform: none;
+  }
+}

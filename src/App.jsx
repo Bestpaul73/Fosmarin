@@ -7,6 +7,7 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Challenge from './pages/Challenge';
+import UseCases from './pages/UseCases';
 import Technology from './pages/Technology';
 import ContentPage from './pages/ContentPage';
 
@@ -14,11 +15,11 @@ const aboutPage = navigation.find((page) => page.path === '/about');
 
 const challengePage = navigation.find((page) => page.path === '/challenge');
 
+const useCasesPage = navigation.find((page) => page.path === '/use-cases');
+
 const technologyPage = navigation.find((page) => page.path === '/technology');
 
-// Эти страницы уже получили собственные React-компоненты.
-// Остальные пока продолжают использовать универсальный ContentPage.
-const customPagePaths = new Set(['/about', '/challenge', '/technology']);
+const customPagePaths = new Set(['/about', '/challenge', '/use-cases', '/technology']);
 
 const genericPages = navigation.filter((page) => !customPagePaths.has(page.path));
 
@@ -32,6 +33,8 @@ function App() {
           <Route path='/about' element={<About page={aboutPage} />} />
 
           <Route path='/challenge' element={<Challenge page={challengePage} />} />
+
+          <Route path='/use-cases' element={<UseCases page={useCasesPage} />} />
 
           <Route path='/technology' element={<Technology page={technologyPage} />} />
 
