@@ -1,9 +1,9 @@
 import Reveal from './Reveal';
 import '../styles/simple-words.scss';
 
-function SimpleWords() {
+function SimpleWords({ id }) {
   return (
-    <section className='simple-words'>
+    <section className='simple-words' id={id}>
       <div className='simple-words-inner'>
         <Reveal className='simple-words-panel'>
           <div className='simple-words-copy'>
