@@ -2,33 +2,35 @@
 
 .scroll-to-top {
   position: fixed;
+  z-index: 90;
+
   right: 28px;
   bottom: 28px;
-  z-index: 300;
-
-  width: 52px;
-  height: 52px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: tokens.$foam;
-  background-color: tokens.$panel;
+  width: 52px;
+  height: 52px;
+  padding: 0;
 
-  border: 1px solid tokens.$line-strong;
+  color: tokens.$cyan;
+
+  background-color: tokens.$panel2;
+
+  border: 1px solid rgba(tokens.$cyan, 0.55);
   border-radius: 50%;
 
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.28),
-    0 4px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: none;
+
+  cursor: pointer;
 
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 
-  transform: scale(0.82);
-
-  cursor: pointer;
+  transform: scale(0.86);
 
   transition:
     opacity 0.25s ease,
@@ -52,35 +54,55 @@
   &.is-visible {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 
     transform: scale(1);
+
+    box-shadow:
+      0 0 0 4px tokens.$cyan-soft,
+      0 10px 28px rgba(0, 0, 0, 0.34);
+
+    animation: scroll-to-top-arrive 0.4s ease-out;
   }
 
   &:hover {
     color: tokens.$abyss;
+
     background-color: tokens.$cyan;
     border-color: tokens.$cyan;
 
-    transform: scale(1.08);
-
     box-shadow:
-      0 16px 34px rgba(0, 0, 0, 0.32),
-      0 6px 14px rgba(0, 0, 0, 0.2);
+      0 0 0 5px tokens.$cyan-soft,
+      0 12px 32px rgba(0, 0, 0, 0.38);
   }
 
   &:focus-visible {
-    outline: 2px solid tokens.$cyan;
+    outline: 2px solid tokens.$foam;
     outline-offset: 4px;
+  }
+}
+
+@keyframes scroll-to-top-arrive {
+  0% {
+    transform: scale(0.78);
+  }
+
+  70% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 
 @media (max-width: 700px) {
   .scroll-to-top {
-    right: 18px;
-    bottom: 18px;
+    right: 20px;
+    bottom: 20px;
 
-    width: 46px;
-    height: 46px;
+    width: 48px;
+    height: 48px;
 
     svg {
       width: 20px;
@@ -91,12 +113,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-to-top {
-    transition:
-      opacity 0.01ms,
-      visibility 0.01ms;
-  }
+    transition: none;
 
-  .scroll-to-top:hover {
-    transform: scale(1);
+    &.is-visible {
+      animation: none;
+    }
   }
 }

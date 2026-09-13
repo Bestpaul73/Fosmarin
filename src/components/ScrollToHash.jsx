@@ -12,9 +12,16 @@ function ScrollToHash() {
     const id = location.hash.slice(1);
     const element = document.getElementById(id);
 
-    if (element) {
-      element.scrollIntoView();
+    if (!element) {
+      return;
     }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    element.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
   }, [location]);
 
   return null;

@@ -1,0 +1,451 @@
+@use './tokens' as tokens;
+
+.consortium-glance {
+  padding: 120px 0;
+
+  color: tokens.$foam;
+
+  background-color: tokens.$abyss;
+
+  border-bottom: 1px solid tokens.$line;
+}
+
+.consortium-glance-inner {
+  width: 100%;
+  max-width: tokens.$container-max-width;
+
+  margin: 0 auto;
+  padding: 0 tokens.$container-padding;
+}
+
+.consortium-glance-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+
+  gap: 72px;
+
+  align-items: end;
+
+  margin-bottom: 56px;
+}
+
+.consortium-glance-heading {
+  max-width: 820px;
+
+  h2 {
+    margin: 0 0 20px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+}
+
+.consortium-glance-eyebrow {
+  margin: 0 0 16px;
+
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.consortium-glance-intro {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: tokens.$mist;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.consortium-glance-stats {
+  display: flex;
+
+  gap: 14px;
+
+  > div {
+    min-width: 118px;
+
+    padding: 18px 20px;
+
+    background-color: tokens.$deep;
+
+    border: 1px solid tokens.$line;
+    border-radius: tokens.$radius-default;
+  }
+
+  strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  span {
+    color: tokens.$mist;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+.consortium-glance-content {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+
+  gap: 20px;
+}
+
+.consortium-glance-coordinator {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding: 32px;
+
+  background: radial-gradient(circle at 80% 20%, tokens.$cyan-soft, transparent 48%), tokens.$panel;
+
+  border: 1px solid tokens.$line-strong;
+  border-radius: tokens.$radius-default;
+
+  h3 {
+    margin: 24px 0 12px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    max-width: 320px;
+
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+.consortium-glance-label {
+  width: fit-content;
+
+  padding: 6px 9px;
+
+  color: tokens.$cyan;
+
+  background-color: tokens.$cyan-soft;
+
+  border-radius: tokens.$radius-small;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.consortium-glance-coordinator-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 120px;
+
+  margin-top: 34px;
+  padding: 24px;
+
+  background-color: #ffffff;
+
+  border-radius: tokens.$radius-small;
+
+  img {
+    display: block;
+
+    width: auto;
+    max-width: 240px;
+    max-height: 72px;
+
+    object-fit: contain;
+  }
+}
+
+.consortium-glance-country {
+  margin-top: auto;
+  padding-top: 30px;
+
+  color: tokens.$mist-dim;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.consortium-glance-partners {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.consortium-glance-partner {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding: 12px;
+
+  background-color: tokens.$deep;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-small;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+
+  &:hover {
+    transform: scale(1.015);
+
+    background-color: tokens.$panel;
+    border-color: tokens.$line-strong;
+  }
+}
+
+.consortium-glance-partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 88px;
+
+  padding: 14px;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border-radius: 7px;
+
+  img {
+    display: block;
+
+    width: auto;
+    max-width: 100%;
+    max-height: 58px;
+
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+/*
+  У некоторых официальных логотипов сильно отличаются
+  пропорции и внутренние поля изображения.
+  Эти модификаторы визуально выравнивают их в общей сетке.
+*/
+
+.consortium-glance-logo--melcano {
+  max-width: 76%;
+  max-height: 48px;
+}
+
+.consortium-glance-logo--kemea {
+  max-width: 112%;
+  max-height: 74px;
+
+  transform: scale(1.12);
+}
+
+.consortium-glance-logo--lares {
+  max-width: 100%;
+  max-height: 72px;
+
+  transform: scale(1.18);
+}
+
+.consortium-glance-partner-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 12px;
+  padding: 0 4px 2px;
+
+  span {
+    min-width: 0;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  small {
+    flex: 0 0 auto;
+
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+  }
+}
+
+.consortium-glance-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 28px;
+
+  margin-top: 32px;
+  padding-top: 28px;
+
+  border-top: 1px solid tokens.$line;
+
+  > p {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+.consortium-glance-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex: 0 0 auto;
+
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+
+  transition:
+    gap 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    gap: 14px;
+
+    color: tokens.$foam;
+  }
+}
+
+@media (max-width: 980px) {
+  .consortium-glance {
+    padding: 96px 0;
+  }
+
+  .consortium-glance-header {
+    grid-template-columns: 1fr;
+
+    gap: 34px;
+  }
+
+  .consortium-glance-stats {
+    justify-content: flex-start;
+  }
+
+  .consortium-glance-content {
+    grid-template-columns: 1fr;
+  }
+
+  .consortium-glance-partners {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .consortium-glance {
+    padding: 80px 0;
+  }
+
+  .consortium-glance-header {
+    margin-bottom: 38px;
+  }
+
+  .consortium-glance-stats {
+    > div {
+      flex: 1;
+
+      min-width: 0;
+    }
+  }
+
+  .consortium-glance-partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .consortium-glance-coordinator {
+    padding: 26px 24px;
+  }
+
+  .consortium-glance-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 430px) {
+  .consortium-glance-partners {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consortium-glance-partner,
+  .consortium-glance-link {
+    transition: none;
+  }
+
+  .consortium-glance-partner:hover {
+    transform: none;
+  }
+}
