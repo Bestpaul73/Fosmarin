@@ -1,0 +1,90 @@
+@use './tokens' as tokens;
+
+.under-construction-notice {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+
+  gap: 32px;
+
+  align-items: center;
+
+  margin-top: 36px;
+  padding: 28px;
+
+  background: radial-gradient(circle at 90% 15%, rgba(tokens.$amber, 0.08), transparent 45%), tokens.$panel;
+
+  border: 1px dashed tokens.$line-strong;
+  border-radius: tokens.$radius-default;
+}
+
+.under-construction-notice-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+
+  border-radius: tokens.$radius-small;
+
+  img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+  }
+}
+
+.under-construction-notice-content {
+  min-width: 0;
+
+  h3 {
+    margin: 10px 0 10px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  p {
+    max-width: 620px;
+
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+.under-construction-notice-label {
+  color: tokens.$amber;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .under-construction-notice {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+
+    padding: 24px;
+  }
+
+  .under-construction-notice-image {
+    max-width: 220px;
+  }
+}

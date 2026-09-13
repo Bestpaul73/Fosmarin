@@ -3,20 +3,20 @@ import '../styles/why-it-matters.scss';
 
 const impactStats = [
   {
-    value: 'Data',
-    text: 'Subsea telecommunication infrastructure supports essential information flows and public services.',
+    value: '1.4M km',
+    text: 'of subsea cable in service worldwide, carrying almost all intercontinental data traffic',
   },
   {
-    value: 'Energy',
-    text: 'Subsea power infrastructure is critical to maintaining reliable energy connections.',
+    value: '150+',
+    text: 'reported cable faults every year, from anchors, trawling and natural hazards',
   },
   {
-    value: 'Pipelines',
-    text: 'Subsea pipelines are another class of critical infrastructure exposed to maritime and natural threats.',
+    value: 'Minutes',
+    text: 'is how long it can take a dragging anchor to sever a cable once contact is made',
   },
   {
-    value: 'Continuous',
-    text: 'Reliable, permanent and seamless monitoring is essential for maintaining continuity of service.',
+    value: '1 fibre',
+    text: 'already in the ground is all FOSMARIN needs — no new subsea hardware required',
   },
 ];
 
@@ -27,12 +27,14 @@ function WhyItMatters({ id }) {
         <Reveal as='header' className='why-it-matters-header'>
           <p className='why-it-matters-eyebrow'>Global context</p>
 
-          <h2 id='why-it-matters-title'>Subsea infrastructure carries services that cannot simply stop.</h2>
+          <h2 id='why-it-matters-title'>
+            Europe&apos;s digital and energy lifelines run along the seabed — almost unwatched.
+          </h2>
 
           <p className='why-it-matters-intro'>
-            Data cables, power links and pipelines form part of the infrastructure on which modern economies and public
-            services depend. Damage can interrupt these services, while much of the infrastructure remains difficult to
-            observe continuously using conventional maritime surveillance alone.
+            More than 95% of intercontinental data, and a growing share of Europe&apos;s offshore power, travels through
+            subsea cables. They cross thousands of kilometres of ocean floor that no one can watch continuously — until
+            now.
           </p>
         </Reveal>
 
