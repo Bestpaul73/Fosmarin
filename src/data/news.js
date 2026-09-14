@@ -9,6 +9,20 @@ export const newsItems = [
     excerpt:
       'The official FOSMARIN project start announcement is scheduled to take place at Atlantic Convergence 2026 in Lisbon, Portugal.',
     location: 'Lisbon · Portugal',
-    href: '/about#news-and-press',
+    href: '/news#latest-news',
+  },
+];
+
+export const eventItems = [
+  {
+    id: 'atlantic-convergence-2026',
+    type: 'Project event',
+    status: 'Upcoming',
+    date: '2026-10-01',
+    dateLabel: '01 Oct 2026',
+    title: 'Atlantic Convergence 2026',
+    text:
+      'FOSMARIN is scheduled to announce the official start of the project at Atlantic Convergence 2026.',
+    location: 'Lisbon · Portugal',
   },
 ];

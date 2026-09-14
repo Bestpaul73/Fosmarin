@@ -10,6 +10,7 @@ import Challenge from './pages/Challenge';
 import UseCases from './pages/UseCases';
 import Technology from './pages/Technology';
 import Consortium from './pages/Consortium';
+import News from './pages/News';
 import Resources from './pages/Resources';
 import ContentPage from './pages/ContentPage';
 import Contact from './pages/Contact';
@@ -24,6 +25,8 @@ const technologyPage = navigation.find((page) => page.path === '/technology');
 
 const consortiumPage = navigation.find((page) => page.path === '/consortium');
 
+const newsPage = navigation.find((page) => page.path === '/news');
+
 const resourcesPage = navigation.find((page) => page.path === '/resources');
 
 const contactPage = navigation.find((page) => page.path === '/contact');
@@ -34,6 +37,7 @@ const customPagePaths = new Set([
   '/use-cases',
   '/technology',
   '/consortium',
+  '/news',
   '/resources',
   '/contact',
 ]);
@@ -56,6 +60,8 @@ function App() {
           <Route path='/technology' element={<Technology page={technologyPage} />} />
 
           <Route path='/consortium' element={<Consortium page={consortiumPage} />} />
+
+          <Route path='/news' element={<News page={newsPage} />} />
 
           <Route path='/resources' element={<Resources page={resourcesPage} />} />
 

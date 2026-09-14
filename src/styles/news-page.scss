@@ -1,0 +1,144 @@
+@use './tokens' as tokens;
+@use './page-sections' as page;
+
+.news-section {
+  @include page.section-shell;
+
+  background-color: tokens.$abyss;
+}
+
+.news-events {
+  background-color: tokens.$deep;
+}
+
+.news-inner {
+  @include page.section-inner;
+}
+
+.news-section-header {
+  @include page.section-header;
+}
+
+.news-eyebrow {
+  @include page.section-eyebrow;
+}
+
+.news-section-intro {
+  @include page.section-intro(740px);
+}
+
+/* Events */
+
+.news-event-card {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1.35fr);
+
+  gap: 34px;
+
+  align-items: center;
+
+  padding: 30px 32px;
+
+  background:
+    radial-gradient(
+      circle at 86% 10%,
+      tokens.$cyan-soft,
+      transparent 36%
+    ),
+    tokens.$abyss;
+
+  border: 1px solid tokens.$line-strong;
+  border-radius: tokens.$radius-default;
+}
+
+.news-event-meta {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  time {
+    margin-top: 5px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+.news-event-status {
+  width: fit-content;
+
+  padding: 6px 9px;
+
+  color: tokens.$cyan;
+
+  background-color: tokens.$cyan-soft;
+
+  border-radius: tokens.$radius-small;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.news-event-type {
+  color: tokens.$mist-dim;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.news-event-content {
+  min-width: 0;
+
+  h3 {
+    margin: 0 0 10px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    max-width: 700px;
+
+    margin: 0 0 14px;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+.news-event-location {
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .news-event-card {
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+
+    padding: 26px 24px;
+  }
+}
