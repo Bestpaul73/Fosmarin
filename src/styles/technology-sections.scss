@@ -1,11 +1,8 @@
 @use './tokens' as tokens;
+@use './page-sections' as pageSections;
 
 .technology-section {
-  padding: 120px 0;
-
-  color: tokens.$foam;
-
-  border-bottom: 1px solid tokens.$line;
+  @include pageSections.section-shell;
 }
 
 .technology-dark-fibre,
@@ -21,53 +18,19 @@
 }
 
 .technology-inner {
-  width: 100%;
-  max-width: tokens.$container-max-width;
-
-  margin: 0 auto;
-  padding: 0 tokens.$container-padding;
+  @include pageSections.section-inner;
 }
 
 .technology-section-header {
-  max-width: 850px;
-
-  margin-bottom: 56px;
-
-  h2 {
-    margin: 0 0 20px;
-
-    color: tokens.$foam;
-
-    font-family: tokens.$font-display, sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-  }
+  @include pageSections.section-header(850px, 56px);
 }
 
 .technology-eyebrow {
-  margin: 0 0 16px;
-
-  color: tokens.$cyan;
-
-  font-family: tokens.$font-mono, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  @include pageSections.section-eyebrow;
 }
 
 .technology-section-intro {
-  max-width: 740px;
-
-  margin: 0;
-
-  color: tokens.$mist;
-
-  font-size: 17px;
-  line-height: 1.7;
+  @include pageSections.section-intro(740px);
 }
 
 .technology-label {
@@ -747,10 +710,6 @@
 }
 
 @media (max-width: 980px) {
-  .technology-section {
-    padding: 96px 0;
-  }
-
   .technology-card-grid--3,
   .architecture-flow,
   .processing-grid {
@@ -830,14 +789,6 @@
 }
 
 @media (max-width: 700px) {
-  .technology-section {
-    padding: 80px 0;
-  }
-
-  .technology-section-header {
-    margin-bottom: 38px;
-  }
-
   .technology-card-grid--3,
   .signal-layers,
   .analytics-timeline,

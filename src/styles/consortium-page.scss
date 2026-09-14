@@ -1,11 +1,8 @@
 @use './tokens' as tokens;
+@use './page-sections' as page;
 
 .consortium-section {
-  padding: 120px 0;
-
-  color: tokens.$foam;
-
-  border-bottom: 1px solid tokens.$line;
+  @include page.section-shell;
 }
 
 .consortium-partners,
@@ -20,61 +17,26 @@
 }
 
 .consortium-page-inner {
-  width: 100%;
-  max-width: tokens.$container-max-width;
-
-  margin: 0 auto;
-  padding: 0 tokens.$container-padding;
+  @include page.section-inner;
 }
 
 .consortium-section-header {
-  max-width: 850px;
-
-  margin-bottom: 56px;
-
-  h2 {
-    margin: 0 0 20px;
-
-    color: tokens.$foam;
-
-    font-family: tokens.$font-display, sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-  }
+  @include page.section-header($max-width: 850px, $margin-bottom: 56px);
 }
 
 .consortium-page-eyebrow {
-  margin: 0 0 16px;
-
-  color: tokens.$cyan;
-
-  font-family: tokens.$font-mono, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  @include page.section-eyebrow;
 }
 
 .consortium-section-intro {
-  max-width: 740px;
-
-  margin: 0;
-
-  color: tokens.$mist;
-
-  font-size: 17px;
-  line-height: 1.7;
+  @include page.section-intro($max-width: 740px);
 }
 
 /* Partners */
 
 .partner-grid {
   display: grid;
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 18px;
 }
@@ -101,8 +63,7 @@
 
     border-color: tokens.$line-strong;
 
-    box-shadow:
-      0 14px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -123,8 +84,7 @@
 
   background-color: tokens.$abyss;
 
-  border: 1px solid
-    rgba(tokens.$cyan, 0.3);
+  border: 1px solid rgba(tokens.$cyan, 0.3);
   border-radius: tokens.$radius-small;
 
   font-family: tokens.$font-mono, monospace;
@@ -205,8 +165,7 @@
 
     color: tokens.$foam;
 
-    font-family: tokens.$font-display,
-      sans-serif;
+    font-family: tokens.$font-display, sans-serif;
     font-size: 19px;
     font-weight: 600;
   }
@@ -216,8 +175,7 @@
 
     color: tokens.$cyan;
 
-    font-family: tokens.$font-mono,
-      monospace;
+    font-family: tokens.$font-mono, monospace;
     font-size: 10px;
   }
 }
@@ -260,13 +218,7 @@
 
   padding: 26px;
 
-  background:
-    radial-gradient(
-      circle at 52% 52%,
-      rgba(tokens.$cyan, 0.08),
-      transparent 48%
-    ),
-    tokens.$abyss;
+  background: radial-gradient(circle at 52% 52%, rgba(tokens.$cyan, 0.08), transparent 48%), tokens.$abyss;
 
   border: 1px solid tokens.$line-strong;
   border-radius: tokens.$radius-default;
@@ -320,8 +272,7 @@
 
     color: tokens.$foam;
 
-    font-family: tokens.$font-mono,
-      monospace;
+    font-family: tokens.$font-mono, monospace;
     font-size: 11px;
     font-weight: 600;
     line-height: 1.2;
@@ -347,16 +298,12 @@
 
   margin: 0 auto;
 
-  background-color:
-    rgba(tokens.$cyan, 0.08);
+  background-color: rgba(tokens.$cyan, 0.08);
 
-  border: 1px solid
-    rgba(tokens.$cyan, 0.55);
+  border: 1px solid rgba(tokens.$cyan, 0.55);
   border-radius: 50%;
 
-  box-shadow:
-    0 0 18px
-    rgba(tokens.$cyan, 0.18);
+  box-shadow: 0 0 18px rgba(tokens.$cyan, 0.18);
 }
 
 .partner-map-marker-dot {
@@ -370,9 +317,7 @@
   border: 2px solid tokens.$abyss;
   border-radius: 50%;
 
-  box-shadow:
-    0 0 8px
-    rgba(tokens.$cyan, 0.85);
+  box-shadow: 0 0 8px rgba(tokens.$cyan, 0.85);
 }
 
 .partner-country-list {
@@ -403,8 +348,7 @@
       span {
         color: tokens.$cyan;
 
-        font-family: tokens.$font-mono,
-          monospace;
+        font-family: tokens.$font-mono, monospace;
         font-size: 10px;
       }
     }
@@ -424,8 +368,7 @@
 
 .consortium-role-grid {
   display: grid;
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 18px;
 }
@@ -443,8 +386,7 @@
   > span {
     color: tokens.$cyan;
 
-    font-family: tokens.$font-mono,
-      monospace;
+    font-family: tokens.$font-mono, monospace;
     font-size: 10px;
   }
 
@@ -453,8 +395,7 @@
 
     color: tokens.$foam;
 
-    font-family: tokens.$font-display,
-      sans-serif;
+    font-family: tokens.$font-display, sans-serif;
     font-size: 21px;
     font-weight: 600;
   }
@@ -496,8 +437,7 @@
 
 .stakeholder-grid {
   display: grid;
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 18px;
 }
@@ -515,8 +455,7 @@
   > span {
     color: tokens.$cyan;
 
-    font-family: tokens.$font-mono,
-      monospace;
+    font-family: tokens.$font-mono, monospace;
     font-size: 10px;
     line-height: 1.4;
     letter-spacing: 0.08em;
@@ -546,8 +485,7 @@
 
     border-top: 1px solid tokens.$line;
 
-    font-family: tokens.$font-mono,
-      monospace;
+    font-family: tokens.$font-mono, monospace;
     font-size: 10px;
   }
 }
@@ -589,8 +527,7 @@
     strong {
       color: tokens.$foam;
 
-      font-family: tokens.$font-display,
-        sans-serif;
+      font-family: tokens.$font-display, sans-serif;
       font-size: 16px;
     }
 
@@ -614,13 +551,8 @@
 /* Tablet */
 
 @media (max-width: 980px) {
-  .consortium-section {
-    padding: 96px 0;
-  }
-
   .partner-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .partner-map-layout {
@@ -645,14 +577,6 @@
 /* Mobile */
 
 @media (max-width: 700px) {
-  .consortium-section {
-    padding: 80px 0;
-  }
-
-  .consortium-section-header {
-    margin-bottom: 38px;
-  }
-
   .partner-grid,
   .consortium-role-grid {
     grid-template-columns: 1fr;
