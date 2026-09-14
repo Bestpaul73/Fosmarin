@@ -12,6 +12,7 @@ import Technology from './pages/Technology';
 import Consortium from './pages/Consortium';
 import Resources from './pages/Resources';
 import ContentPage from './pages/ContentPage';
+import Contact from './pages/Contact';
 
 const aboutPage = navigation.find((page) => page.path === '/about');
 
@@ -25,7 +26,17 @@ const consortiumPage = navigation.find((page) => page.path === '/consortium');
 
 const resourcesPage = navigation.find((page) => page.path === '/resources');
 
-const customPagePaths = new Set(['/about', '/challenge', '/use-cases', '/technology', '/consortium', '/resources']);
+const contactPage = navigation.find((page) => page.path === '/contact');
+
+const customPagePaths = new Set([
+  '/about',
+  '/challenge',
+  '/use-cases',
+  '/technology',
+  '/consortium',
+  '/resources',
+  '/contact',
+]);
 
 const genericPages = navigation.filter((page) => !customPagePaths.has(page.path));
 
@@ -47,6 +58,8 @@ function App() {
           <Route path='/consortium' element={<Consortium page={consortiumPage} />} />
 
           <Route path='/resources' element={<Resources page={resourcesPage} />} />
+
+          <Route path='/contact' element={<Contact page={contactPage} />} />
 
           {genericPages.map((page) => (
             <Route key={page.path} path={page.path} element={<ContentPage page={page} />} />
