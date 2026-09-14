@@ -1,39 +1,41 @@
 import Reveal from './Reveal';
 
+import europeMap from '../assets/europe-map.svg';
+
 import { consortiumCountries, partners } from '../data/partners';
 
-const mapPoints = {
+const mapPositions = {
   FO: {
-    x: 165,
-    y: 72,
+    x: 27.16,
+    y: 25,
   },
   UK: {
-    x: 205,
-    y: 235,
+    x: 34.33,
+    y: 43.75,
   },
   DK: {
-    x: 350,
-    y: 190,
+    x: 52.24,
+    y: 40,
   },
   AT: {
-    x: 380,
-    y: 330,
+    x: 58.36,
+    y: 61,
   },
   IT: {
-    x: 410,
-    y: 390,
+    x: 55.97,
+    y: 73,
   },
   ES: {
-    x: 230,
-    y: 425,
+    x: 31.79,
+    y: 79,
   },
   EL: {
-    x: 515,
-    y: 425,
+    x: 70.15,
+    y: 82.25,
   },
   CY: {
-    x: 610,
-    y: 455,
+    x: 87.16,
+    y: 92.25,
   },
 };
 
@@ -53,219 +55,41 @@ function PartnerMap({ id }) {
         </Reveal>
 
         <Reveal className='partner-map-layout'>
-          <div className='partner-map-visual'>
-            <svg
-              className='partner-map-svg'
-              viewBox='0 0 760 560'
-              role='img'
-              aria-labelledby='partner-map-svg-title partner-map-svg-desc'
-            >
-              <title id='partner-map-svg-title'>FOSMARIN partner countries in Europe</title>
+          <div className='partner-map-visual' aria-hidden='true'>
+            <div className='partner-map-canvas'>
+              <img className='partner-map-image' src={europeMap} alt='' />
 
-              <desc id='partner-map-svg-desc'>
-                Schematic map of Europe showing FOSMARIN partners in the Faroe Islands, United Kingdom, Denmark,
-                Austria, Italy, Spain, Greece and Cyprus.
-              </desc>
-
-              {/* Decorative map grid */}
-              <defs>
-                <pattern id='partner-map-grid' width='52' height='52' patternUnits='userSpaceOnUse'>
-                  <path d='M 52 0 L 0 0 0 52' className='partner-map-grid-line' />
-                </pattern>
-
-                <radialGradient id='partner-map-glow' cx='50%' cy='50%' r='50%'>
-                  <stop offset='0%' stopColor='var(--map-cyan)' stopOpacity='0.14' />
-
-                  <stop offset='100%' stopColor='var(--map-cyan)' stopOpacity='0' />
-                </radialGradient>
-              </defs>
-
-              <rect width='760' height='560' fill='url(#partner-map-grid)' />
-
-              <ellipse cx='390' cy='310' rx='300' ry='230' fill='url(#partner-map-glow)' />
-
-              {/* Mainland Europe — deliberately schematic */}
-              <path
-                className='partner-map-land'
-                d='
-                  M170 418
-                  L145 392
-                  L148 354
-                  L170 332
-                  L194 313
-                  L204 281
-                  L230 263
-                  L250 236
-                  L280 227
-                  L304 205
-                  L332 202
-                  L352 216
-                  L380 211
-                  L409 223
-                  L441 221
-                  L470 236
-                  L500 238
-                  L529 259
-                  L565 267
-                  L586 292
-                  L610 304
-                  L619 327
-                  L599 343
-                  L575 342
-                  L557 361
-                  L535 363
-                  L516 382
-                  L498 390
-                  L486 416
-                  L461 422
-                  L442 405
-                  L420 407
-                  L405 388
-                  L388 373
-                  L367 370
-                  L350 387
-                  L326 388
-                  L310 408
-                  L281 414
-                  L260 433
-                  L224 437
-                  L198 430
-                  Z
-                '
-              />
-
-              {/* Scandinavia */}
-              <path
-                className='partner-map-land'
-                d='
-                  M338 197
-                  L326 168
-                  L338 137
-                  L360 111
-                  L370 76
-                  L392 53
-                  L411 66
-                  L413 99
-                  L401 128
-                  L407 159
-                  L389 184
-                  L370 209
-                  Z
-                '
-              />
-
-              {/* United Kingdom */}
-              <path
-                className='partner-map-land'
-                d='
-                  M201 270
-                  L188 248
-                  L192 222
-                  L181 201
-                  L190 176
-                  L205 182
-                  L211 205
-                  L225 220
-                  L219 247
-                  Z
-                '
-              />
-
-              {/* Ireland */}
-              <path
-                className='partner-map-land partner-map-land--muted'
-                d='
-                  M166 254
-                  L153 237
-                  L157 214
-                  L171 201
-                  L181 217
-                  L177 243
-                  Z
-                '
-              />
-
-              {/* Italy */}
-              <path
-                className='partner-map-land'
-                d='
-                  M392 364
-                  L407 378
-                  L414 402
-                  L432 418
-                  L434 438
-                  L450 449
-                  L441 458
-                  L425 446
-                  L416 430
-                  L404 421
-                  L399 399
-                  L384 382
-                  Z
-                '
-              />
-
-              {/* Greece */}
-              <path
-                className='partner-map-land'
-                d='
-                  M489 398
-                  L507 407
-                  L521 425
-                  L515 444
-                  L498 438
-                  L486 422
-                  Z
-                '
-              />
-
-              {/* Cyprus */}
-              <path
-                className='partner-map-land'
-                d='
-                  M594 447
-                  L619 444
-                  L631 451
-                  L616 458
-                  L596 456
-                  Z
-                '
-              />
-
-              {/* Faroe Islands */}
-              <g className='partner-map-islands'>
-                <circle cx='159' cy='68' r='4' />
-                <circle cx='168' cy='76' r='3' />
-                <circle cx='176' cy='67' r='2.5' />
-              </g>
-
-              {/* Partner locations */}
               {consortiumCountries.map((country) => {
-                const point = mapPoints[country.code];
+                const position = mapPositions[country.code];
 
                 const count = partners.filter((partner) => partner.countryCode === country.code).length;
 
-                if (!point) {
+                if (!position) {
                   return null;
                 }
 
                 return (
-                  <g className='partner-map-marker' key={country.code} transform={`translate(${point.x} ${point.y})`}>
-                    <circle className='partner-map-marker-ring' r='13' />
+                  <div
+                    className='partner-map-marker'
+                    key={country.code}
+                    style={{
+                      '--point-x': `${position.x}%`,
+                      '--point-y': `${position.y}%`,
+                    }}
+                  >
+                    <span className='partner-map-marker-ring'>
+                      <span className='partner-map-marker-dot' />
+                    </span>
 
-                    <circle className='partner-map-marker-dot' r='5' />
+                    <strong>{country.code}</strong>
 
-                    <text className='partner-map-marker-code' x='0' y='28' textAnchor='middle'>
-                      {country.code}
-                    </text>
-
-                    <text className='partner-map-marker-count' x='0' y='42' textAnchor='middle'>
+                    <small>
                       {count} {count === 1 ? 'partner' : 'partners'}
-                    </text>
-                  </g>
+                    </small>
+                  </div>
                 );
               })}
-            </svg>
+            </div>
           </div>
 
           <div className='partner-country-list'>
