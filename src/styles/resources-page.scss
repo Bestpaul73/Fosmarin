@@ -1,13 +1,10 @@
 @use './tokens' as tokens;
+@use './page-sections' as page;
 
 .resources-section {
-  padding: 120px 0;
-
-  color: tokens.$foam;
+  @include page.section-shell;
 
   background-color: tokens.$abyss;
-
-  border-bottom: 1px solid tokens.$line;
 }
 
 .resources-presentations {
@@ -15,53 +12,19 @@
 }
 
 .resources-inner {
-  width: 100%;
-  max-width: tokens.$container-max-width;
-
-  margin: 0 auto;
-  padding: 0 tokens.$container-padding;
+  @include page.section-inner;
 }
 
 .resources-section-header {
-  max-width: 840px;
-
-  margin-bottom: 54px;
-
-  h2 {
-    margin: 0 0 20px;
-
-    color: tokens.$foam;
-
-    font-family: tokens.$font-display, sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-  }
+  @include page.section-header;
 }
 
 .resources-eyebrow {
-  margin: 0 0 16px;
-
-  color: tokens.$cyan;
-
-  font-family: tokens.$font-mono, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  @include page.section-eyebrow;
 }
 
 .resources-section-intro {
-  max-width: 720px;
-
-  margin: 0;
-
-  color: tokens.$mist;
-
-  font-size: 17px;
-  line-height: 1.7;
+  @include page.section-intro;
 }
 
 /* Presentations */
@@ -206,25 +169,7 @@
   }
 }
 
-/* Tablet */
-
-@media (max-width: 980px) {
-  .resources-section {
-    padding: 96px 0;
-  }
-}
-
-/* Mobile */
-
 @media (max-width: 700px) {
-  .resources-section {
-    padding: 80px 0;
-  }
-
-  .resources-section-header {
-    margin-bottom: 38px;
-  }
-
   .presentation-grid {
     grid-template-columns: 1fr;
   }
@@ -235,8 +180,6 @@
     gap: 10px;
   }
 }
-
-/* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
   .presentation-card {
