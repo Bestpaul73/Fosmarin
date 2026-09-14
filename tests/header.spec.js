@@ -94,7 +94,7 @@ test('keyboard: ArrowDown and ArrowUp cycle through submenu', async ({ page }) =
   });
 
   const lastSubmenuLink = nav.getByRole('link', {
-    name: 'News & Press',
+    name: 'Consortium at a Glance',
   });
 
   await aboutLink.focus();

@@ -5,7 +5,6 @@ import ProjectObjectives from '../components/ProjectObjectives';
 import ProjectImpact from '../components/ProjectImpact';
 import EUFunding from '../components/EUFunding';
 import ConsortiumGlance from '../components/ConsortiumGlance';
-import NewsPressPreview from '../components/NewsPressPreview';
 
 function About({ page }) {
   return (
@@ -36,16 +35,8 @@ function About({ page }) {
           case 'consortium-at-a-glance':
             return <ConsortiumGlance id={section.id} key={section.id} />;
 
-          case 'news-and-press':
-            return <NewsPressPreview id={section.id} key={section.id} />;
-
           default:
-            return (
-              <section key={section.id} id={section.id}>
-                <h2>{section.title}</h2>
-                <p>Content coming soon.</p>
-              </section>
-            );
+            return null;
         }
       })}
     </>

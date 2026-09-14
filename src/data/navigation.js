@@ -27,10 +27,6 @@ export const navigation = [
         title: 'Consortium at a Glance',
         id: 'consortium-at-a-glance',
       },
-      {
-        title: 'News & Press',
-        id: 'news-and-press',
-      },
     ],
   },
 
