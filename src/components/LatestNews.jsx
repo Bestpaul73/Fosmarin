@@ -5,7 +5,7 @@ import { newsItems } from '../data/news';
 
 import '../styles/latest-news.scss';
 
-function LatestNews() {
+function LatestNews({ id, showLink = true }) {
   const latestNews = newsItems[0];
 
   if (!latestNews) {
@@ -13,7 +13,7 @@ function LatestNews() {
   }
 
   return (
-    <section className='latest-news' aria-labelledby='latest-news-title'>
+    <section className='latest-news' id={id} aria-labelledby='latest-news-title'>
       <div className='latest-news-inner'>
         <Reveal as='header' className='latest-news-header'>
           <p className='latest-news-eyebrow'>Latest news</p>
@@ -38,10 +38,12 @@ function LatestNews() {
             <span className='latest-news-location'>{latestNews.location}</span>
           </div>
 
-          <Link className='latest-news-link' to={latestNews.href}>
-            Read update
-            <span aria-hidden='true'>→</span>
-          </Link>
+          {showLink && (
+            <Link className='latest-news-link' to={latestNews.href}>
+              Read update
+              <span aria-hidden='true'>→</span>
+            </Link>
+          )}
         </Reveal>
       </div>
     </section>
@@ -49,4 +51,3 @@ function LatestNews() {
 }
 
 export default LatestNews;
-    
