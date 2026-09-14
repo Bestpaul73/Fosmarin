@@ -1,0 +1,249 @@
+@use './tokens' as tokens;
+
+.resources-section {
+  padding: 120px 0;
+
+  color: tokens.$foam;
+
+  background-color: tokens.$abyss;
+
+  border-bottom: 1px solid tokens.$line;
+}
+
+.resources-presentations {
+  background-color: tokens.$deep;
+}
+
+.resources-inner {
+  width: 100%;
+  max-width: tokens.$container-max-width;
+
+  margin: 0 auto;
+  padding: 0 tokens.$container-padding;
+}
+
+.resources-section-header {
+  max-width: 840px;
+
+  margin-bottom: 54px;
+
+  h2 {
+    margin: 0 0 20px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+}
+
+.resources-eyebrow {
+  margin: 0 0 16px;
+
+  color: tokens.$cyan;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.resources-section-intro {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: tokens.$mist;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* Presentations */
+
+.presentation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.presentation-card {
+  min-width: 0;
+
+  padding: 30px;
+
+  background-color: tokens.$panel;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    transform: scale(1.015);
+
+    border-color: tokens.$line-strong;
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  h3 {
+    max-width: 520px;
+
+    margin: 34px 0 14px;
+
+    color: tokens.$foam;
+
+    font-family: tokens.$font-display, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  > p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+.presentation-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  > span:first-child {
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+.presentation-file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  color: tokens.$cyan;
+
+  background-color: tokens.$cyan-soft;
+
+  border: 1px solid rgba(tokens.$cyan, 0.25);
+  border-radius: 50%;
+
+  font-size: 16px;
+}
+
+.presentation-card-status {
+  margin-top: 28px;
+  padding-top: 18px;
+
+  color: tokens.$amber;
+
+  border-top: 1px solid tokens.$line;
+
+  font-family: tokens.$font-mono, monospace;
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.resources-publication-note {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+
+  gap: 28px;
+
+  margin-top: 28px;
+  padding: 26px 28px;
+
+  background-color: tokens.$abyss;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+
+  > span {
+    color: tokens.$cyan;
+
+    font-family: tokens.$font-mono, monospace;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+
+    color: tokens.$mist;
+
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 980px) {
+  .resources-section {
+    padding: 96px 0;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .resources-section {
+    padding: 80px 0;
+  }
+
+  .resources-section-header {
+    margin-bottom: 38px;
+  }
+
+  .presentation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resources-publication-note {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .presentation-card {
+    transition: none;
+  }
+
+  .presentation-card:hover {
+    transform: none;
+  }
+}
