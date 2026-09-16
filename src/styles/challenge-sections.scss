@@ -22,6 +22,12 @@
 
 .challenge-section-header {
   @include pageSections.section-header(840px, 56px);
+
+  min-width: 0;
+
+  h2 {
+    min-width: 0;
+  }
 }
 
 .challenge-eyebrow {
@@ -57,7 +63,6 @@
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 
-
   &:hover {
     background-color: tokens.$panel;
     border-color: tokens.$line-strong;
@@ -65,8 +70,8 @@
     transform: translateY(-6px);
 
     box-shadow:
-          0 22px 52px rgba(0, 0, 0, 0.34),
-          0 8px 20px rgba(0, 0, 0, 0.22);
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -512,7 +517,6 @@
     line-height: 1.05;
   }
 
-
   &:hover {
     background-color: tokens.$panel;
     border-color: tokens.$line-strong;
@@ -520,8 +524,8 @@
     transform: translateY(-6px);
 
     box-shadow:
-          0 22px 52px rgba(0, 0, 0, 0.34),
-          0 8px 20px rgba(0, 0, 0, 0.22);
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -625,7 +629,6 @@
     line-height: 1.7;
   }
 
-
   &:hover {
     background-color: tokens.$panel2;
     border-color: tokens.$line-strong;
@@ -633,8 +636,8 @@
     transform: translateY(-6px);
 
     box-shadow:
-          0 22px 52px rgba(0, 0, 0, 0.34),
-          0 8px 20px rgba(0, 0, 0, 0.22);
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -704,6 +707,23 @@
 }
 
 @media (max-width: 700px) {
+  .challenge-section-header {
+    max-width: 100%;
+
+    h2 {
+      max-width: 100%;
+
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+  }
+
+  .challenge-section-intro {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+  }
+
   .threat-group-header,
   .cost-card {
     padding: 26px 24px;

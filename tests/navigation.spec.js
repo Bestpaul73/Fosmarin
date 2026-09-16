@@ -839,3 +839,217 @@ test('SEO: robots.txt allows crawling and references sitemap', async ({ request 
 
   expect(robots).toContain('Sitemap: https://fosmarin.vercel.app/sitemap.xml');
 });
+
+//
+// MOBILE HORIZONTAL OVERFLOW
+//
+
+const mobileViewports = [
+  {
+    name: 'iPhone SE',
+    width: 375,
+    height: 667,
+  },
+  {
+    name: 'iPhone 14',
+    width: 390,
+    height: 844,
+  },
+  {
+    name: 'Samsung Galaxy',
+    width: 412,
+    height: 915,
+  },
+];
+
+const mobilePages = [
+  '/',
+  '/about',
+  '/challenge',
+  '/use-cases',
+  '/technology',
+  '/consortium',
+  '/news',
+  '/resources',
+  '/contact',
+
+  '/de',
+  '/de/about',
+  '/de/challenge',
+  '/de/use-cases',
+  '/de/technology',
+  '/de/consortium',
+  '/de/news',
+  '/de/resources',
+  '/de/contact',
+
+  '/es',
+  '/es/about',
+  '/es/challenge',
+  '/es/use-cases',
+  '/es/technology',
+  '/es/consortium',
+  '/es/news',
+  '/es/resources',
+  '/es/contact',
+];
+
+for (const viewport of mobileViewports) {
+  test.describe(`mobile overflow: ${viewport.name}`, () => {
+    test.use({
+      viewport: {
+        width: viewport.width,
+        height: viewport.height,
+      },
+    });
+
+    for (const path of mobilePages) {
+      test(`${path} has no horizontal overflow`, async ({ page }) => {
+        await page.goto(path);
+
+        await page.waitForLoadState('networkidle');
+
+        const result = await page.evaluate(() => {
+          const viewportWidth =
+            window.innerWidth;
+
+          const root =
+            document.documentElement;
+
+          const body =
+            document.body;
+
+          const elements = [
+            root,
+            body,
+            ...document.querySelectorAll(
+              'body *'
+            ),
+          ];
+
+          const overflowingElements =
+            elements
+              .map((element) => {
+                const rect =
+                  element.getBoundingClientRect();
+
+                const styles =
+                  window.getComputedStyle(
+                    element
+                  );
+
+                return {
+                  tag:
+                    element.tagName.toLowerCase(),
+
+                  id:
+                    element.id || '',
+
+                  className:
+                    typeof element.className ===
+                    'string'
+                      ? element.className
+                      : '',
+
+                  text:
+                    element.textContent
+                      ?.trim()
+                      .replace(/\s+/g, ' ')
+                      .slice(0, 120) || '',
+
+                  left:
+                    Math.round(
+                      rect.left
+                    ),
+
+                  right:
+                    Math.round(
+                      rect.right
+                    ),
+
+                  width:
+                    Math.round(
+                      rect.width
+                    ),
+
+                  scrollWidth:
+                    element.scrollWidth,
+
+                  clientWidth:
+                    element.clientWidth,
+
+                  whiteSpace:
+                    styles.whiteSpace,
+
+                  overflowX:
+                    styles.overflowX,
+
+                  minWidth:
+                    styles.minWidth,
+
+                  widthCss:
+                    styles.width,
+                };
+              })
+              .filter((item) => {
+                const exceedsRight =
+                  item.right >
+                  viewportWidth + 1;
+
+                const exceedsLeft =
+                  item.left < -1;
+
+                const hasInternalOverflow =
+                  item.scrollWidth >
+                  item.clientWidth + 1;
+
+                return (
+                  exceedsRight ||
+                  exceedsLeft ||
+                  hasInternalOverflow
+                );
+              })
+              .slice(0, 30);
+
+          return {
+            viewportWidth,
+
+            documentScrollWidth:
+              root.scrollWidth,
+
+            bodyScrollWidth:
+              body.scrollWidth,
+
+            overflowingElements,
+          };
+        });
+
+        const debugInfo =
+          JSON.stringify(
+            {
+              path,
+              viewport:
+                viewport.name,
+              ...result,
+            },
+            null,
+            2
+          );
+
+        expect(
+          result.documentScrollWidth,
+          debugInfo
+        ).toBeLessThanOrEqual(
+          result.viewportWidth
+        );
+
+        expect(
+          result.bodyScrollWidth,
+          debugInfo
+        ).toBeLessThanOrEqual(
+          result.viewportWidth
+        );
+      });
+    }
+  });
+}

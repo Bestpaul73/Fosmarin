@@ -26,17 +26,8 @@
   color: tokens.$foam;
 
   background:
-    radial-gradient(
-      ellipse 900px 500px at 18% -10%,
-      rgba(47, 230, 196, 0.1),
-      transparent 60%
-    ),
-    linear-gradient(
-      180deg,
-      #071a2b 0%,
-      tokens.$abyss 55%,
-      tokens.$footer 100%
-    );
+    radial-gradient(ellipse 900px 500px at 18% -10%, rgba(47, 230, 196, 0.1), transparent 60%),
+    linear-gradient(180deg, #071a2b 0%, tokens.$abyss 55%, tokens.$footer 100%);
 }
 
 .hero-inner {
@@ -54,6 +45,8 @@
 .hero-copy {
   position: relative;
   z-index: 2;
+
+  min-width: 0;
 }
 
 .hero-eyebrow {
@@ -345,6 +338,95 @@
   .hero-visual {
     width: min(100%, 720px);
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-inner {
+    gap: 36px;
+
+    padding-top: 52px;
+    padding-bottom: 28px;
+  }
+
+  .hero-eyebrow {
+    max-width: 100%;
+    margin-bottom: 18px;
+
+    font-size: 10px;
+    line-height: 1.55;
+    letter-spacing: 0.11em;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-title {
+    max-width: 100%;
+    margin-bottom: 20px;
+
+    font-size: clamp(2.15rem, 10.8vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+
+    overflow-wrap: break-word;
+  }
+
+  .hero-lead {
+    max-width: 100%;
+    margin-bottom: 28px;
+
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 36px;
+  }
+
+  .hero-button {
+    width: 100%;
+
+    min-height: 48px;
+    padding: 0 18px;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px 18px;
+
+    max-width: 100%;
+    padding-top: 20px;
+  }
+
+  .hero-stat {
+    min-width: 0;
+
+    strong {
+      font-size: 21px;
+    }
+
+    span {
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  .hero-visual {
+    width: 100%;
+  }
+
+  .hero-readout {
+    top: 4px;
+    right: 4px;
+
+    font-size: 9px;
   }
 }
 
