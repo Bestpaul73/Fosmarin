@@ -1,55 +1,68 @@
 import Reveal from './Reveal';
+
 import euFundedImage from '../assets/eu-funded.png';
+
+import {
+  useLanguage,
+} from '../i18n/LanguageContext';
+
 import '../styles/eu-funding.scss';
 
 function EUFunding({ id }) {
+  const {
+    translations,
+  } = useLanguage();
+
+  const funding =
+    translations.about.euFunding;
+
   return (
-    <section className='eu-funding' id={id} aria-labelledby='eu-funding-title'>
+    <section
+      className='eu-funding'
+      id={id}
+      aria-labelledby='eu-funding-title'
+    >
       <div className='eu-funding-inner'>
         <Reveal className='eu-funding-main'>
           <div className='eu-funding-content'>
-            <p className='eu-funding-eyebrow'>EU Funding</p>
+            <p className='eu-funding-eyebrow'>
+              {funding.eyebrow}
+            </p>
 
-            <h2 id='eu-funding-title'>Funded by the European Union.</h2>
+            <h2 id='eu-funding-title'>
+              {funding.title}
+            </h2>
 
             <p className='eu-funding-intro'>
-              FOSMARIN is funded by the European Union under Grant Agreement No. 101309039 as part of
-              HORIZON-CL3-2025-01.
+              {funding.intro}
             </p>
 
             <dl className='eu-funding-facts'>
-              <div>
-                <dt>Grant agreement</dt>
-                <dd>101309039 — FOSMARIN</dd>
-              </div>
+              {funding.facts.map((fact) => (
+                <div key={fact.label}>
+                  <dt>
+                    {fact.label}
+                  </dt>
 
-              <div>
-                <dt>Programme</dt>
-                <dd>HORIZON-CL3-2025-01</dd>
-              </div>
-
-              <div>
-                <dt>Grant form</dt>
-                <dd>Budget-based</dd>
-              </div>
-
-              <div>
-                <dt>Grant mode</dt>
-                <dd>Action grant</dd>
-              </div>
+                  <dd>
+                    {fact.value}
+                  </dd>
+                </div>
+              ))}
             </dl>
           </div>
 
           <div className='eu-funding-visual'>
-            <img src={euFundedImage} alt='Funded by the European Union' />
+            <img
+              src={euFundedImage}
+              alt={funding.logoAlt}
+            />
           </div>
         </Reveal>
 
         <Reveal className='eu-funding-disclaimer'>
           <p>
-            Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of
-            the European Union or European Research Executive Agency. Neither the European Union nor the European
-            Research Executive Agency can be held responsible for them.
+            {funding.disclaimer}
           </p>
         </Reveal>
       </div>

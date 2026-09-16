@@ -44,19 +44,23 @@
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
 
+  transform: translateY(0);
+
   transition:
+    background-color 0.3s ease,
     transform 0.3s ease,
     box-shadow 0.3s ease,
     border-color 0.3s ease;
 
   &:hover {
-    transform: scale(1.015);
-
+    background-color: tokens.$panel2;
     border-color: tokens.$line-strong;
 
+    transform: translateY(-6px);
+
     box-shadow:
-      0 16px 36px rgba(0, 0, 0, 0.24),
-      0 6px 14px rgba(0, 0, 0, 0.16);
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 
   h3 {
@@ -158,9 +162,9 @@
 @media (prefers-reduced-motion: reduce) {
   .project-objective {
     transition: none;
-  }
 
-  .project-objective:hover {
-    transform: none;
+    &:hover {
+      transform: none;
+    }
   }
 }

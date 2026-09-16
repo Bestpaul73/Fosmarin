@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 //
-// DESKTOP
+// HEADER — DESKTOP
 //
 
 test('desktop: hover opens submenu', async ({ page }) => {
@@ -51,7 +51,7 @@ test('desktop: mouse leave closes submenu', async ({ page }) => {
 });
 
 //
-// KEYBOARD
+// HEADER — KEYBOARD
 //
 
 test('keyboard: ArrowDown opens submenu and focuses first link', async ({ page }) => {
@@ -71,6 +71,7 @@ test('keyboard: ArrowDown opens submenu and focuses first link', async ({ page }
   });
 
   await aboutLink.focus();
+
   await page.keyboard.press('ArrowDown');
 
   await expect(firstSubmenuLink).toBeVisible();
@@ -98,6 +99,7 @@ test('keyboard: ArrowDown and ArrowUp cycle through submenu', async ({ page }) =
   });
 
   await aboutLink.focus();
+
   await page.keyboard.press('ArrowDown');
 
   await expect(firstSubmenuLink).toBeFocused();
@@ -128,6 +130,7 @@ test('keyboard: ArrowRight opens next submenu', async ({ page }) => {
   });
 
   await challengeLink.focus();
+
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('ArrowRight');
 
@@ -152,6 +155,7 @@ test('keyboard: Escape closes submenu and returns focus', async ({ page }) => {
   });
 
   await challengeLink.focus();
+
   await page.keyboard.press('ArrowDown');
 
   await expect(firstSubmenuLink).toBeFocused();
@@ -179,6 +183,7 @@ test('keyboard: click outside closes submenu', async ({ page }) => {
   });
 
   await challengeLink.focus();
+
   await page.keyboard.press('ArrowDown');
 
   await expect(firstSubmenuLink).toBeVisible();
@@ -190,7 +195,7 @@ test('keyboard: click outside closes submenu', async ({ page }) => {
 });
 
 //
-// MOBILE / BREAKPOINT
+// HEADER — MOBILE / BREAKPOINT
 //
 
 test('1200px: burger is visible', async ({ page }) => {
@@ -206,6 +211,7 @@ test('1200px: burger is visible', async ({ page }) => {
   });
 
   await expect(burger).toBeVisible();
+
   await expect(burger).toHaveAttribute('aria-controls', 'primary-navigation');
 });
 
@@ -250,6 +256,7 @@ test('mobile: burger opens navigation', async ({ page }) => {
   await burger.click();
 
   await expect(aboutLink).toBeVisible();
+
   await expect(burger).toHaveAttribute('aria-expanded', 'true');
 });
 
@@ -284,6 +291,7 @@ test('mobile: submenu toggle opens submenu', async ({ page }) => {
   await submenuButton.click();
 
   await expect(firstSubmenuLink).toBeVisible();
+
   await expect(submenuButton).toHaveAttribute('aria-expanded', 'true');
 });
 
@@ -332,7 +340,7 @@ test('mobile: opening another submenu closes previous one', async ({ page }) => 
 });
 
 //
-// WIDE TOUCH
+// HEADER — WIDE TOUCH
 //
 
 test.describe('wide touch', () => {
@@ -360,11 +368,13 @@ test.describe('wide touch', () => {
     });
 
     await expect(submenuButton).toBeVisible();
+
     await expect(submenuButton).toHaveAttribute('aria-controls', 'submenu-technology');
 
     await submenuButton.tap();
 
     await expect(firstSubmenuLink).toBeVisible();
+
     await expect(submenuButton).toHaveAttribute('aria-expanded', 'true');
   });
 
@@ -387,7 +397,11 @@ test.describe('wide touch', () => {
 
     await expect(firstSubmenuLink).toBeVisible();
 
-    await page.getByRole('heading', { level: 1 }).tap();
+    await page
+      .getByRole('heading', {
+        level: 1,
+      })
+      .tap();
 
     await expect(firstSubmenuLink).not.toBeVisible();
   });
@@ -410,6 +424,314 @@ test.describe('touch compact header', () => {
     });
 
     await expect(burger).toBeVisible();
+
     await expect(burger).toHaveAttribute('aria-controls', 'primary-navigation');
   });
+});
+
+//
+// FOOTER
+//
+
+test('footer: renders all main columns', async ({ page }) => {
+  await page.goto('/');
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'About Fosmarin',
+    }),
+  ).toBeVisible();
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'Quick Links',
+    }),
+  ).toBeVisible();
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'Resources',
+    }),
+  ).toBeVisible();
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'Follow Us',
+    }),
+  ).toBeVisible();
+
+  await expect(
+    page.getByRole('heading', {
+      name: 'Contact',
+    }),
+  ).toBeVisible();
+});
+
+test('footer: About section link opens correct hash', async ({ page }) => {
+  await page.goto('/');
+
+  await page
+    .getByRole('navigation', {
+      name: 'About Fosmarin footer navigation',
+    })
+    .getByRole('link', {
+      name: 'Mission & Vision',
+    })
+    .click();
+
+  await expect(page).toHaveURL(/\/about#mission-and-vision$/);
+});
+
+test('footer: website link returns to home page', async ({ page }) => {
+  await page.goto('/technology');
+
+  await page
+    .getByRole('link', {
+      name: 'www.fosmarin.eu',
+    })
+    .click();
+
+  await expect(page).toHaveURL('/');
+});
+
+//
+// STICKY HEADER
+//
+test('logo: returns current home page to top', async ({ page }) => {
+  await page.goto('/de');
+
+  await page.evaluate(() => {
+    window.scrollTo(0, 1200);
+  });
+
+  await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY))).toBeGreaterThan(0);
+
+  await page
+    .getByRole('link', {
+      name: 'FOSMARIN',
+      exact: true,
+    })
+    .click();
+
+  await expect(page).toHaveURL(/\/de$/);
+
+  await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY))).toBe(0);
+});
+
+test('sticky header: stays at top after page scroll', async ({ page }) => {
+  await page.goto('/technology');
+
+  const header = page.locator('.header');
+
+  await expect(header).toBeVisible();
+
+  await page.evaluate(() => {
+    window.scrollTo(0, 1200);
+  });
+
+  await expect
+    .poll(async () => {
+      const box = await header.boundingBox();
+
+      if (!box) {
+        return null;
+      }
+
+      return Math.round(box.y);
+    })
+    .toBe(0);
+});
+
+test('sticky header: hash target is not hidden behind header', async ({ page }) => {
+  await page.goto('/technology#predictive-analytics-and-ai');
+
+  const header = page.locator('.header');
+
+  const target = page.locator('#predictive-analytics-and-ai');
+
+  await expect(target).toBeVisible();
+
+  await expect
+    .poll(async () => {
+      const headerBox = await header.boundingBox();
+
+      const targetBox = await target.boundingBox();
+
+      if (!headerBox || !targetBox) {
+        return false;
+      }
+
+      const headerBottom = headerBox.y + headerBox.height;
+
+      return targetBox.y >= headerBottom;
+    })
+    .toBe(true);
+});
+
+//
+// PAGE SCROLL
+//
+
+test('navigation: changing page resets scroll position to top', async ({ page }) => {
+  await page.goto('/de/about');
+
+  await page.evaluate(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+
+  await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY))).toBeGreaterThan(0);
+
+  const nav = page.getByRole('navigation', {
+    name: 'Hauptnavigation',
+  });
+
+  await nav
+    .getByRole('link', {
+      name: 'Die Herausforderung',
+      exact: true,
+    })
+    .click();
+
+  await expect(page).toHaveURL(/\/de\/challenge$/);
+
+  await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY))).toBe(0);
+});
+
+//
+// LANGUAGE SELECTOR
+//
+
+test('language: English to German keeps current page', async ({ page }) => {
+  await page.goto('/technology');
+
+  await page
+    .getByRole('button', {
+      name: 'Select language',
+    })
+    .click();
+
+  await page
+    .getByRole('menuitemradio', {
+      name: /Deutsch/,
+    })
+    .click();
+
+  await expect(page).toHaveURL(/\/de\/technology$/);
+
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+});
+
+test('language: German to Spanish keeps page and hash', async ({ page }) => {
+  await page.goto('/de/technology#predictive-analytics-and-ai');
+
+  await page.locator('.language-trigger').click();
+
+  await page
+    .getByRole('menuitemradio', {
+      name: /Español/,
+    })
+    .click();
+
+  await expect(page).toHaveURL(/\/es\/technology#predictive-analytics-and-ai$/);
+
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+});
+
+test('language: direct localized URLs set correct document language', async ({ page }) => {
+  await page.goto('/de/about');
+
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+  await page.goto('/es/about');
+
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+
+  await page.goto('/about');
+
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+});
+
+test('language: keyboard opens menu, moves focus and selects language', async ({ page }) => {
+  await page.goto('/technology');
+
+  const languageButton = page.getByRole('button', {
+    name: 'Select language',
+  });
+
+  await languageButton.focus();
+
+  await page.keyboard.press('ArrowDown');
+
+  const germanOption = page.getByRole('menuitemradio', {
+    name: /Deutsch/,
+  });
+
+  await expect(germanOption).toBeVisible();
+  await expect(germanOption).toBeFocused();
+
+  await page.keyboard.press('Enter');
+
+  await expect(page).toHaveURL(/\/de\/technology$/);
+
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+});
+
+//
+// LANGUAGE AUTO-DETECTION
+//
+
+async function mockBrowserLanguages(page, languages) {
+  await page.addInitScript((browserLanguages) => {
+    Object.defineProperty(window.navigator, 'language', {
+      configurable: true,
+      get: () => browserLanguages[0],
+    });
+
+    Object.defineProperty(window.navigator, 'languages', {
+      configurable: true,
+      get: () => browserLanguages,
+    });
+  }, languages);
+}
+
+test('language: root auto-detects German browser and redirects to /de', async ({ page }) => {
+  await mockBrowserLanguages(page, ['de-DE', 'de']);
+
+  await page.goto('/');
+
+  await expect(page).toHaveURL(/\/de$/);
+});
+
+test('language: root auto-detects Spanish browser and redirects to /es', async ({ page }) => {
+  await mockBrowserLanguages(page, ['es-ES', 'es']);
+
+  await page.goto('/');
+
+  await expect(page).toHaveURL(/\/es$/);
+});
+
+test('language: manual selection is saved and overrides browser language on root', async ({ page }) => {
+  await mockBrowserLanguages(page, ['es-ES', 'es']);
+
+  await page.goto('/');
+
+  await expect(page).toHaveURL(/\/es$/);
+
+  await page
+    .getByRole('button', {
+      name: 'Select language',
+    })
+    .click();
+
+  await page
+    .getByRole('menuitemradio', {
+      name: 'Deutsch',
+    })
+    .click();
+
+  await expect(page).toHaveURL(/\/de$/);
+
+  await page.goto('/');
+
+  await expect(page).toHaveURL(/\/de$/);
 });

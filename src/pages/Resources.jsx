@@ -2,17 +2,21 @@ import PageHero from '../components/PageHero';
 import ResourceSection from '../components/ResourceSection';
 import PresentationsSection from '../components/PresentationsSection';
 
-import { resourceContent } from '../data/resources';
+import { useLanguage } from '../i18n/LanguageContext';
 
 import '../styles/resources-page.scss';
 
 function Resources({ page }) {
+  const { translations } = useLanguage();
+  const resources = translations.resourcesPage;
+  const navSections = translations.navigation['/resources'].sections;
+
   return (
     <>
       <PageHero
-        eyebrow='Resources'
-        title='Project knowledge, outputs and public material.'
-        intro='Access FOSMARIN publications, deliverables, reports, presentations and communication material as they become available throughout the project.'
+        eyebrow={resources.hero.eyebrow}
+        title={resources.hero.title}
+        intro={resources.hero.intro}
       />
 
       {page.sections.map((section) => {
@@ -20,14 +24,12 @@ function Resources({ page }) {
           return <PresentationsSection id={section.id} key={section.id} />;
         }
 
-        const content = resourceContent[section.id];
-
         return (
           <ResourceSection
             id={section.id}
             key={section.id}
-            title={section.title}
-            intro={content?.intro}
+            title={navSections[section.id]}
+            intro={resources.sections[section.id]?.intro}
             underConstruction
           />
         );

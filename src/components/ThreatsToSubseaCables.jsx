@@ -1,65 +1,12 @@
 import Reveal from './Reveal';
+import { useLanguage } from '../i18n/LanguageContext';
 import '../styles/challenge-sections.scss';
 
-const naturalThreats = [
-  {
-    title: 'Seismic activity',
-    risk: 'Medium',
-  },
-  {
-    title: 'Submarine landslide',
-    risk: 'Medium',
-  },
-  {
-    title: 'Submarine current drag',
-    risk: 'High',
-  },
-  {
-    title: 'Shark or other animal bite',
-    risk: 'Low',
-  },
-  {
-    title: 'Cable degradation',
-    risk: 'High',
-  },
-];
-
-const humanThreats = [
-  {
-    title: 'Anchor drop',
-    risk: 'High',
-  },
-  {
-    title: 'Trawling',
-    risk: 'High',
-  },
-  {
-    title: 'Divers at cable / sabotage',
-    risk: 'Low',
-  },
-  {
-    title: 'Seafloor works and dredging',
-    risk: 'Low',
-  },
-  {
-    title: 'Loitering near infrastructure',
-    risk: 'Medium',
-  },
-  {
-    title: 'Submarine explosives / sabotage',
-    risk: 'Medium',
-  },
-  {
-    title: 'Unmanned sub / ROV sabotage',
-    risk: 'Medium',
-  },
-];
-
-function ThreatGroup({ type, title, intro, threats }) {
+function ThreatGroup({ type, title, intro, threats, labels, riskLabels }) {
   return (
     <article className={`threat-group threat-group--${type}`}>
       <div className='threat-group-header'>
-        <span>{type === 'natural' ? 'Natural' : 'Human-related'}</span>
+        <span>{type === 'natural' ? labels.natural : labels.human}</span>
         <h3>{title}</h3>
         <p>{intro}</p>
       </div>
@@ -68,8 +15,9 @@ function ThreatGroup({ type, title, intro, threats }) {
         {threats.map((threat) => (
           <li key={threat.title}>
             <span className='threat-name'>{threat.title}</span>
-
-            <span className={`threat-risk threat-risk--${threat.risk.toLowerCase()}`}>{threat.risk}</span>
+            <span className={`threat-risk threat-risk--${threat.risk.toLowerCase()}`}>
+              {riskLabels[threat.risk]}
+            </span>
           </li>
         ))}
       </ul>
@@ -78,42 +26,41 @@ function ThreatGroup({ type, title, intro, threats }) {
 }
 
 function ThreatsToSubseaCables({ id }) {
+  const { translations } = useLanguage();
+  const copy = translations.challenge.threats;
+
   return (
     <section className='challenge-section challenge-threats' id={id} aria-labelledby='challenge-threats-title'>
       <div className='challenge-inner'>
         <Reveal as='header' className='challenge-section-header'>
-          <p className='challenge-eyebrow'>Threats to subsea cables</p>
-
-          <h2 id='challenge-threats-title'>
-            Critical infrastructure faces threats from both nature and human activity.
-          </h2>
-
-          <p className='challenge-section-intro'>
-            Subsea cables and related infrastructure can be affected by geological events, long-term degradation,
-            accidental maritime activity and deliberate interference. FOSMARIN considers a broad range of scenarios that
-            can damage infrastructure or indicate suspicious activity nearby.
-          </p>
+          <p className='challenge-eyebrow'>{copy.eyebrow}</p>
+          <h2 id='challenge-threats-title'>{copy.title}</h2>
+          <p className='challenge-section-intro'>{copy.intro}</p>
         </Reveal>
 
         <Reveal className='threat-groups'>
           <ThreatGroup
             type='natural'
-            title='Natural and environmental'
-            intro='Events and processes that can damage or degrade subsea infrastructure without direct human intervention.'
-            threats={naturalThreats}
+            title={copy.naturalTitle}
+            intro={copy.naturalIntro}
+            threats={copy.natural}
+            labels={{ natural: copy.naturalLabel, human: copy.humanLabel }}
+            riskLabels={copy.riskLabels}
           />
 
           <ThreatGroup
             type='human'
-            title='Maritime and human activity'
-            intro='Accidental activity and deliberate interference that may put cables and other subsea assets at risk.'
-            threats={humanThreats}
+            title={copy.humanTitle}
+            intro={copy.humanIntro}
+            threats={copy.human}
+            labels={{ natural: copy.naturalLabel, human: copy.humanLabel }}
+            riskLabels={copy.riskLabels}
           />
         </Reveal>
 
         <Reveal className='challenge-source-note'>
-          <span>Threat model</span>
-          <p>Risk levels shown here follow the threat assessment contained in the FOSMARIN proposal material.</p>
+          <span>{copy.sourceLabel}</span>
+          <p>{copy.sourceText}</p>
         </Reveal>
       </div>
     </section>
