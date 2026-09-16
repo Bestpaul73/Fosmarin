@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://fosmarin.vercel.app/</loc>
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://fosmarin.vercel.app/"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="de"
+      href="https://fosmarin.vercel.app/de"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="es"
+      href="https://fosmarin.vercel.app/es"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://fosmarin.vercel.app/"
+    />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de</loc>
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://fosmarin.vercel.app/"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="de"
+      href="https://fosmarin.vercel.app/de"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="es"
+      href="https://fosmarin.vercel.app/es"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://fosmarin.vercel.app/"
+    />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es</loc>
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://fosmarin.vercel.app/"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="de"
+      href="https://fosmarin.vercel.app/de"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="es"
+      href="https://fosmarin.vercel.app/es"
+    />
+
+    <xhtml:link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://fosmarin.vercel.app/"
+    />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/about</loc>
+
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/about" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/about</loc>
+
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/about" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/about</loc>
+
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/about" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/challenge</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/challenge" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/challenge" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/challenge" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/challenge" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/challenge</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/challenge" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/challenge" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/challenge" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/challenge" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/challenge</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/challenge" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/challenge" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/challenge" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/challenge" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/use-cases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/use-cases" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/use-cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/use-cases" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/use-cases" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/use-cases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/use-cases" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/use-cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/use-cases" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/use-cases" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/use-cases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/use-cases" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/use-cases" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/use-cases" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/use-cases" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/technology</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/technology" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/technology" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/technology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/technology" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/technology</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/technology" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/technology" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/technology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/technology" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/technology</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/technology" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/technology" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/technology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/technology" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/consortium</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/consortium" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/consortium" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/consortium" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/consortium" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/consortium</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/consortium" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/consortium" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/consortium" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/consortium" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/consortium</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/consortium" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/consortium" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/consortium" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/consortium" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/news" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/news" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/news" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/news" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/news" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/news" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/news" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/news" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/news" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/news" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/resources</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/resources" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/resources" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/resources" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/resources</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/resources" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/resources" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/resources" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/resources</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/resources" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/resources" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/resources" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/contact" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/de/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/contact" />
+  </url>
+
+  <url>
+    <loc>https://fosmarin.vercel.app/es/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fosmarin.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://fosmarin.vercel.app/de/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fosmarin.vercel.app/es/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fosmarin.vercel.app/contact" />
+  </url>
+</urlset>

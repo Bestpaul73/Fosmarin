@@ -735,3 +735,107 @@ test('language: manual selection is saved and overrides browser language on root
 
   await expect(page).toHaveURL(/\/de$/);
 });
+
+//
+// MULTILINGUAL SEO
+//
+
+test('SEO: German Technology page has localized title and description', async ({ page }) => {
+  await page.goto('/de/technology');
+
+  await expect(page).toHaveTitle('Technologie | Fibre Optic Acoustic Sensing | FOSMARIN');
+
+  const description = page.locator('meta[name="description"]');
+
+  await expect(description).toHaveAttribute('content', /FOSMARIN/);
+});
+
+test('SEO: canonical points to the current localized page without query or hash', async ({ page }) => {
+  await page.goto('/de/technology?source=test#predictive-analytics-and-ai');
+
+  const canonical = page.locator('link[rel="canonical"]');
+
+  await expect(canonical).toHaveCount(1);
+
+  const href = await canonical.getAttribute('href');
+
+  expect(new URL(href).pathname).toBe('/de/technology');
+
+  expect(new URL(href).search).toBe('');
+
+  expect(new URL(href).hash).toBe('');
+});
+
+test('SEO: page exposes EN DE ES and x-default hreflang links', async ({ page }) => {
+  await page.goto('/es/about');
+
+  const alternates = page.locator('link[rel="alternate"][hreflang]');
+
+  await expect(alternates).toHaveCount(4);
+
+  const hrefs = await page.evaluate(() => {
+    return Object.fromEntries(
+      Array.from(document.querySelectorAll('link[rel="alternate"][hreflang]')).map((link) => [
+        link.getAttribute('hreflang'),
+        link.getAttribute('href'),
+      ]),
+    );
+  });
+
+  expect(new URL(hrefs.en).pathname).toBe('/about');
+
+  expect(new URL(hrefs.de).pathname).toBe('/de/about');
+
+  expect(new URL(hrefs.es).pathname).toBe('/es/about');
+
+  expect(new URL(hrefs['x-default']).pathname).toBe('/about');
+});
+
+test('SEO: Open Graph metadata follows the current language and URL', async ({ page }) => {
+  await page.goto('/es/challenge');
+
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    'content',
+    'El desafío | Protección de cables submarinos | FOSMARIN',
+  );
+
+  await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'es_ES');
+
+  const ogUrl = await page.locator('meta[property="og:url"]').getAttribute('content');
+
+  expect(new URL(ogUrl).pathname).toBe('/es/challenge');
+});
+
+//
+// SEARCH ENGINE FILES
+//
+
+test('SEO: sitemap is publicly available', async ({ request }) => {
+  const response = await request.get('/sitemap.xml');
+
+  expect(response.ok()).toBeTruthy();
+
+  const sitemap = await response.text();
+
+  expect(sitemap).toContain('<loc>https://fosmarin.vercel.app/technology</loc>');
+
+  expect(sitemap).toContain('hreflang="de"');
+
+  expect(sitemap).toContain('hreflang="es"');
+
+  expect(sitemap).toContain('hreflang="x-default"');
+});
+
+test('SEO: robots.txt allows crawling and references sitemap', async ({ request }) => {
+  const response = await request.get('/robots.txt');
+
+  expect(response.ok()).toBeTruthy();
+
+  const robots = await response.text();
+
+  expect(robots).toContain('User-agent: *');
+
+  expect(robots).toContain('Allow: /');
+
+  expect(robots).toContain('Sitemap: https://fosmarin.vercel.app/sitemap.xml');
+});
