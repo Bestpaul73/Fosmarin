@@ -108,6 +108,27 @@
   border: 1px solid tokens.$line-strong;
   border-radius: tokens.$radius-default;
 
+  transform: translateY(0);
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    background:
+      radial-gradient(circle at 80% 20%, rgba(tokens.$cyan, 0.12), transparent 52%),
+      tokens.$panel2;
+    border-color: tokens.$line-strong;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
+  }
+
   h3 {
     margin: 24px 0 12px;
 
@@ -214,10 +235,14 @@
     background-color 0.25s ease;
 
   &:hover {
-    transform: scale(1.015);
+    transform: translateY(-6px);
 
     background-color: tokens.$panel;
     border-color: tokens.$line-strong;
+
+    box-shadow:
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 

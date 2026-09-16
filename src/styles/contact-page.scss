@@ -182,7 +182,7 @@
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: scale(1.015);
+    transform: translateY(-6px);
 
     box-shadow: 0 10px 24px rgba(tokens.$cyan, 0.18);
   }
@@ -228,16 +228,20 @@
   border-radius: tokens.$radius-default;
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
-    transform: scale(1.015);
+    background-color: tokens.$panel2;
+    transform: translateY(-6px);
 
     border-color: tokens.$line-strong;
 
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 
   > span {

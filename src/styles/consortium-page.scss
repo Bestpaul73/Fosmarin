@@ -54,16 +54,20 @@
   border-radius: tokens.$radius-default;
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
-    transform: scale(1.015);
+    background-color: tokens.$panel;
+    transform: translateY(-6px);
 
     border-color: tokens.$line-strong;
 
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -383,6 +387,14 @@
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
 
+  transform: translateY(0);
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
   > span {
     color: tokens.$cyan;
 
@@ -431,6 +443,18 @@
       text-align: right;
     }
   }
+
+
+  &:hover {
+    background-color: tokens.$panel;
+    border-color: tokens.$line-strong;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+          0 22px 52px rgba(0, 0, 0, 0.34),
+          0 8px 20px rgba(0, 0, 0, 0.22);
+  }
 }
 
 /* Authorities & stakeholders */
@@ -451,6 +475,14 @@
 
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
+
+  transform: translateY(0);
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   > span {
     color: tokens.$cyan;
@@ -487,6 +519,18 @@
 
     font-family: tokens.$font-mono, monospace;
     font-size: 10px;
+  }
+
+
+  &:hover {
+    background-color: tokens.$panel2;
+    border-color: tokens.$line-strong;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+          0 22px 52px rgba(0, 0, 0, 0.34),
+          0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -637,11 +681,15 @@
 /* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
-  .partner-card {
+  .partner-card,
+  .consortium-role-card,
+  .stakeholder-card {
     transition: none;
   }
 
-  .partner-card:hover {
+  .partner-card:hover,
+  .consortium-role-card:hover,
+  .stakeholder-card:hover {
     transform: none;
   }
 }

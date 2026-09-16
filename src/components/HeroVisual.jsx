@@ -1,28 +1,31 @@
 import { useEffect, useState } from 'react';
+
 import Reveal from './Reveal';
 
-const readoutMessages = [
-  'SIGNAL · NOMINAL',
-  'VESSEL DETECTED · 4.2km',
-  'ANCHOR DRAG · FLAGGED',
-  'SEISMIC EVENT · LOGGED',
-  'SIGNAL · NOMINAL',
-];
+import { useLanguage } from '../i18n/LanguageContext';
 
 function HeroVisual() {
+  const { translations } = useLanguage();
+
+  const visual = translations.home.heroVisual;
+
+  const readoutMessages = visual.readoutMessages;
+
   const [messageIndex, setMessageIndex] = useState(0);
 
   useEffect(() => {
+    setMessageIndex(0);
+  }, [readoutMessages]);
+
+  useEffect(() => {
     const intervalId = window.setInterval(() => {
-      setMessageIndex(
-        (currentIndex) => (currentIndex + 1) % readoutMessages.length
-      );
+      setMessageIndex((currentIndex) => (currentIndex + 1) % readoutMessages.length);
     }, 2800);
 
     return () => {
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [readoutMessages]);
 
   return (
     <Reveal className='hero-visual'>
@@ -30,43 +33,30 @@ function HeroVisual() {
         {readoutMessages[messageIndex]}
       </span>
 
-      <svg
-        viewBox='0 0 640 560'
-        role='img'
-        aria-labelledby='hero-visual-title hero-visual-description'
-      >
-        <title id='hero-visual-title'>
-          FOSMARIN subsea fibre monitoring
-        </title>
+      <svg viewBox='0 0 640 560' role='img' aria-labelledby='hero-visual-title hero-visual-description'>
+        <title id='hero-visual-title'>{visual.title}</title>
 
-        <desc id='hero-visual-description'>
-          Illustration of a subsea fibre-optic cable detecting a vessel, a
-          dragging anchor and seismic activity.
-        </desc>
+        <desc id='hero-visual-description'>{visual.description}</desc>
 
         <defs>
           <linearGradient id='hero-sea' x1='0' y1='0' x2='0' y2='1'>
             <stop offset='0%' stopColor='var(--hero-sea-top)' />
+
             <stop offset='55%' stopColor='var(--hero-deep)' />
+
             <stop offset='100%' stopColor='var(--hero-abyss)' />
           </linearGradient>
 
           <linearGradient id='hero-floor' x1='0' y1='0' x2='0' y2='1'>
             <stop offset='0%' stopColor='var(--hero-floor-top)' />
+
             <stop offset='100%' stopColor='var(--hero-floor-bottom)' />
           </linearGradient>
 
           <radialGradient id='hero-pulse-glow' cx='50%' cy='50%' r='50%'>
-            <stop
-              offset='0%'
-              stopColor='var(--hero-cyan)'
-              stopOpacity='0.95'
-            />
-            <stop
-              offset='100%'
-              stopColor='var(--hero-cyan)'
-              stopOpacity='0'
-            />
+            <stop offset='0%' stopColor='var(--hero-cyan)' stopOpacity='0.95' />
+
+            <stop offset='100%' stopColor='var(--hero-cyan)' stopOpacity='0' />
           </radialGradient>
         </defs>
 
@@ -100,14 +90,7 @@ function HeroVisual() {
             strokeWidth='1.2'
           />
 
-          <line
-            x1='6'
-            y1='-2'
-            x2='6'
-            y2='-22'
-            stroke='var(--hero-mist)'
-            strokeWidth='1.4'
-          />
+          <line x1='6' y1='-2' x2='6' y2='-22' stroke='var(--hero-mist)' strokeWidth='1.4' />
         </g>
 
         {/* Vessel detection line */}
@@ -145,24 +128,9 @@ function HeroVisual() {
             strokeLinecap='round'
           />
 
-          <line
-            x1='-8'
-            y1='-10'
-            x2='8'
-            y2='-10'
-            stroke='var(--hero-coral)'
-            strokeWidth='2.4'
-            strokeLinecap='round'
-          />
+          <line x1='-8' y1='-10' x2='8' y2='-10' stroke='var(--hero-coral)' strokeWidth='2.4' strokeLinecap='round' />
 
-          <circle
-            cx='0'
-            cy='-18'
-            r='3'
-            fill='none'
-            stroke='var(--hero-coral)'
-            strokeWidth='2'
-          />
+          <circle cx='0' cy='-18' r='3' fill='none' stroke='var(--hero-coral)' strokeWidth='2' />
 
           <path
             d='M0,-16 C-30,-4 -46,10 -66,6'
@@ -205,40 +173,20 @@ function HeroVisual() {
         />
 
         {/* Light pulses travelling through the fibre */}
-        <circle
-          className='hero-pulse'
-          r='7'
-          fill='url(#hero-pulse-glow)'
-        >
+        <circle className='hero-pulse' r='7' fill='url(#hero-pulse-glow)'>
           <animateMotion dur='3.2s' repeatCount='indefinite'>
             <mpath href='#hero-cable-path' />
           </animateMotion>
         </circle>
 
-        <circle
-          className='hero-pulse'
-          r='7'
-          fill='url(#hero-pulse-glow)'
-        >
-          <animateMotion
-            dur='3.2s'
-            begin='1.05s'
-            repeatCount='indefinite'
-          >
+        <circle className='hero-pulse' r='7' fill='url(#hero-pulse-glow)'>
+          <animateMotion dur='3.2s' begin='1.05s' repeatCount='indefinite'>
             <mpath href='#hero-cable-path' />
           </animateMotion>
         </circle>
 
-        <circle
-          className='hero-pulse'
-          r='7'
-          fill='url(#hero-pulse-glow)'
-        >
-          <animateMotion
-            dur='3.2s'
-            begin='2.1s'
-            repeatCount='indefinite'
-          >
+        <circle className='hero-pulse' r='7' fill='url(#hero-pulse-glow)'>
+          <animateMotion dur='3.2s' begin='2.1s' repeatCount='indefinite'>
             <mpath href='#hero-cable-path' />
           </animateMotion>
         </circle>
@@ -246,25 +194,18 @@ function HeroVisual() {
         {/* FOAS sensing points */}
         <g className='hero-sensors'>
           <circle cx='70' cy='429' r='2.4' />
+
           <circle cx='150' cy='438' r='2.4' />
+
           <circle cx='230' cy='431' r='2.4' />
+
           <circle cx='310' cy='415' r='2.4' />
 
-          <circle
-            className='hero-sensor hero-sensor--alert'
-            cx='390'
-            cy='429'
-            r='2.8'
-          />
+          <circle className='hero-sensor hero-sensor--alert' cx='390' cy='429' r='2.8' />
 
           <circle cx='450' cy='420' r='2.4' />
 
-          <circle
-            className='hero-sensor hero-sensor--warning'
-            cx='530'
-            cy='410'
-            r='2.8'
-          />
+          <circle className='hero-sensor hero-sensor--warning' cx='530' cy='410' r='2.8' />
 
           <circle cx='600' cy='415' r='2.4' />
         </g>

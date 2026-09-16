@@ -3,55 +3,30 @@ import Reveal from './Reveal';
 import europeMap from '../assets/europe-map.svg';
 
 import { consortiumCountries, partners } from '../data/partners';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const mapPositions = {
-  FO: {
-    x: 27.16,
-    y: 25,
-  },
-  UK: {
-    x: 34.33,
-    y: 43.75,
-  },
-  DK: {
-    x: 52.24,
-    y: 40,
-  },
-  AT: {
-    x: 58.36,
-    y: 61,
-  },
-  IT: {
-    x: 55.97,
-    y: 73,
-  },
-  ES: {
-    x: 31.79,
-    y: 79,
-  },
-  EL: {
-    x: 70.15,
-    y: 82.25,
-  },
-  CY: {
-    x: 87.16,
-    y: 92.25,
-  },
+  FO: { x: 27.16, y: 25 },
+  UK: { x: 34.33, y: 43.75 },
+  DK: { x: 52.24, y: 40 },
+  AT: { x: 58.36, y: 61 },
+  IT: { x: 55.97, y: 73 },
+  ES: { x: 31.79, y: 79 },
+  EL: { x: 70.15, y: 82.25 },
+  CY: { x: 87.16, y: 92.25 },
 };
 
 function PartnerMap({ id }) {
+  const { translations } = useLanguage();
+  const copy = translations.consortium;
+
   return (
     <section className='consortium-section consortium-map' id={id} aria-labelledby='partner-map-title'>
       <div className='consortium-page-inner'>
         <Reveal as='header' className='consortium-section-header'>
-          <p className='consortium-page-eyebrow'>Partner map</p>
-
-          <h2 id='partner-map-title'>A European consortium spanning eight countries.</h2>
-
-          <p className='consortium-section-intro'>
-            Research organisations, technology providers, operators and authorities across Europe contribute to the
-            development and validation of FOSMARIN.
-          </p>
+          <p className='consortium-page-eyebrow'>{copy.partnerMap.eyebrow}</p>
+          <h2 id='partner-map-title'>{copy.partnerMap.title}</h2>
+          <p className='consortium-section-intro'>{copy.partnerMap.intro}</p>
         </Reveal>
 
         <Reveal className='partner-map-layout'>
@@ -61,7 +36,6 @@ function PartnerMap({ id }) {
 
               {consortiumCountries.map((country) => {
                 const position = mapPositions[country.code];
-
                 const count = partners.filter((partner) => partner.countryCode === country.code).length;
 
                 if (!position) {
@@ -84,7 +58,7 @@ function PartnerMap({ id }) {
                     <strong>{country.code}</strong>
 
                     <small>
-                      {count} {count === 1 ? 'partner' : 'partners'}
+                      {count} {count === 1 ? copy.partnerMap.partner : copy.partnerMap.partners}
                     </small>
                   </div>
                 );
@@ -99,8 +73,7 @@ function PartnerMap({ id }) {
               return (
                 <article key={country.code}>
                   <div>
-                    <strong>{country.name}</strong>
-
+                    <strong>{copy.countries[country.name] || country.name}</strong>
                     <span>{country.code}</span>
                   </div>
 

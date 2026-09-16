@@ -1,47 +1,37 @@
 import Reveal from './Reveal';
-
-import { presentations } from '../data/resources';
+import { useLanguage } from '../i18n/LanguageContext';
 
 function PresentationsSection({ id }) {
+  const { translations } = useLanguage();
+  const copy = translations.resourcesPage.presentations;
+
   return (
     <section className='resources-section resources-presentations' id={id} aria-labelledby='presentations-title'>
       <div className='resources-inner'>
         <Reveal as='header' className='resources-section-header'>
-          <p className='resources-eyebrow'>Presentations</p>
-
-          <h2 id='presentations-title'>Project presentations and technical material.</h2>
-
-          <p className='resources-section-intro'>
-            FOSMARIN presentation material is being prepared for publication as the project develops.
-          </p>
+          <p className='resources-eyebrow'>{copy.eyebrow}</p>
+          <h2 id='presentations-title'>{copy.title}</h2>
+          <p className='resources-section-intro'>{copy.intro}</p>
         </Reveal>
 
         <Reveal className='presentation-grid'>
-          {presentations.map((presentation) => (
+          {copy.items.map((presentation) => (
             <article className='presentation-card' key={presentation.id}>
               <div className='presentation-card-top'>
                 <span>{presentation.type}</span>
-
-                <span className='presentation-file-icon' aria-hidden='true'>
-                  ↗
-                </span>
+                <span className='presentation-file-icon' aria-hidden='true'>↗</span>
               </div>
 
               <h3>{presentation.title}</h3>
-
               <p>{presentation.description}</p>
-
-              <div className='presentation-card-status'>Public download to be confirmed</div>
+              <div className='presentation-card-status'>{copy.status}</div>
             </article>
           ))}
         </Reveal>
 
         <Reveal className='resources-publication-note'>
-          <span>Publication</span>
-
-          <p>
-            Public download links will be added once the relevant project material has been approved for publication.
-          </p>
+          <span>{copy.publication}</span>
+          <p>{copy.publicationText}</p>
         </Reveal>
       </div>
     </section>

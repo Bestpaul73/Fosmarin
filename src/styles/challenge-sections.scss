@@ -48,6 +48,26 @@
 
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
+
+  transform: translateY(0);
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+
+  &:hover {
+    background-color: tokens.$panel;
+    border-color: tokens.$line-strong;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+          0 22px 52px rgba(0, 0, 0, 0.34),
+          0 8px 20px rgba(0, 0, 0, 0.22);
+  }
 }
 
 .threat-group-header {
@@ -227,9 +247,10 @@
   border-radius: tokens.$radius-default;
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:nth-child(4),
   &:nth-child(5) {
@@ -237,11 +258,14 @@
   }
 
   &:hover {
-    transform: scale(1.015);
+    background-color: tokens.$panel2;
+    transform: translateY(-6px);
 
     border-color: tokens.$line-strong;
 
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 22px 52px rgba(0, 0, 0, 0.34),
+      0 8px 20px rgba(0, 0, 0, 0.22);
   }
 
   h3 {
@@ -432,6 +456,14 @@
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
 
+  transform: translateY(0);
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
   h3 {
     margin: 0 0 30px;
 
@@ -478,6 +510,18 @@
     font-size: clamp(1.7rem, 3vw, 2.4rem);
     font-weight: 600;
     line-height: 1.05;
+  }
+
+
+  &:hover {
+    background-color: tokens.$panel;
+    border-color: tokens.$line-strong;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+          0 22px 52px rgba(0, 0, 0, 0.34),
+          0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -553,6 +597,14 @@
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
 
+  transform: translateY(0);
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
   h3 {
     margin: 12px 0 12px;
 
@@ -571,6 +623,18 @@
 
     font-size: 14px;
     line-height: 1.7;
+  }
+
+
+  &:hover {
+    background-color: tokens.$panel2;
+    border-color: tokens.$line-strong;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+          0 22px 52px rgba(0, 0, 0, 0.34),
+          0 8px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -720,11 +784,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .surveillance-gap-card {
+  .threat-group,
+  .surveillance-gap-card,
+  .cost-card,
+  .policy-content {
     transition: none;
   }
 
-  .surveillance-gap-card:hover {
+  .threat-group:hover,
+  .surveillance-gap-card:hover,
+  .cost-card:hover,
+  .policy-content:hover {
     transform: none;
   }
 }

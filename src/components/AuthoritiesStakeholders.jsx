@@ -1,26 +1,14 @@
+import { Fragment } from 'react';
+
 import Reveal from './Reveal';
 
 import { partners } from '../data/partners';
-
-const stakeholderGroups = [
-  {
-    label: 'Authority',
-    roles: ['Authority'],
-    text: 'Public-authority expertise helps connect project results with security, civil-protection and operational requirements.',
-  },
-  {
-    label: 'Operators',
-    roles: ['Operator', 'Operator, Research Partner'],
-    text: 'Infrastructure operators contribute operational environments, real-world requirements and practical validation.',
-  },
-  {
-    label: 'Training',
-    roles: ['Training'],
-    text: 'Training expertise supports the transfer of project knowledge into practical procedures and end-user capability.',
-  },
-];
+import { useLanguage } from '../i18n/LanguageContext';
 
 function AuthoritiesStakeholders({ id }) {
+  const { translations } = useLanguage();
+  const copy = translations.consortium.stakeholders;
+
   return (
     <section
       className='consortium-section consortium-stakeholders'
@@ -29,26 +17,18 @@ function AuthoritiesStakeholders({ id }) {
     >
       <div className='consortium-page-inner'>
         <Reveal as='header' className='consortium-section-header'>
-          <p className='consortium-page-eyebrow'>Authorities & stakeholders</p>
-
-          <h2 id='authorities-stakeholders-title'>
-            Technology is developed around the organisations that ultimately need to use it.
-          </h2>
-
-          <p className='consortium-section-intro'>
-            FOSMARIN is intended to support infrastructure operators and relevant security authorities, with project
-            results contributing to operational procedures, information sharing and post-incident investigation.
-          </p>
+          <p className='consortium-page-eyebrow'>{copy.eyebrow}</p>
+          <h2 id='authorities-stakeholders-title'>{copy.title}</h2>
+          <p className='consortium-section-intro'>{copy.intro}</p>
         </Reveal>
 
         <Reveal className='stakeholder-grid'>
-          {stakeholderGroups.map((group) => {
+          {copy.groups.map((group) => {
             const groupPartners = partners.filter((partner) => group.roles.includes(partner.role));
 
             return (
               <article className='stakeholder-card' key={group.label}>
                 <span>{group.label}</span>
-
                 <p>{group.text}</p>
 
                 <ul>
@@ -62,24 +42,16 @@ function AuthoritiesStakeholders({ id }) {
         </Reveal>
 
         <Reveal className='stakeholder-flow'>
-          <div>
-            <strong>FOAS data</strong>
-            <span>Detection & evidence</span>
-          </div>
+          {copy.flow.map((item, index) => (
+            <Fragment key={item.strong}>
+              <div>
+                <strong>{item.strong}</strong>
+                <span>{item.text}</span>
+              </div>
 
-          <i aria-hidden='true'>→</i>
-
-          <div>
-            <strong>FOSMARIN</strong>
-            <span>Analysis & decision support</span>
-          </div>
-
-          <i aria-hidden='true'>→</i>
-
-          <div>
-            <strong>Operators & authorities</strong>
-            <span>SOP · CISE · Investigation</span>
-          </div>
+              {index < copy.flow.length - 1 && <i aria-hidden='true'>→</i>}
+            </Fragment>
+          ))}
         </Reveal>
       </div>
     </section>

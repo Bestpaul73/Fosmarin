@@ -1,39 +1,34 @@
+import { Link } from 'react-router-dom';
+
 import Reveal from './Reveal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 function GetInTouchSection({ id }) {
+  const { translations, getLocalizedPath } = useLanguage();
+  const copy = translations.contact.details;
+
   return (
     <section className='contact-section contact-details-section' id={id} aria-labelledby='get-in-touch-title'>
       <div className='contact-inner'>
         <Reveal as='header' className='contact-section-header'>
-          <p className='contact-eyebrow'>Get in touch</p>
-
-          <h2 id='get-in-touch-title'>Contact the project directly.</h2>
-
-          <p className='contact-section-intro'>
-            For general project enquiries, collaboration opportunities or media-related questions, contact the FOSMARIN
-            consortium by email.
-          </p>
+          <p className='contact-eyebrow'>{copy.eyebrow}</p>
+          <h2 id='get-in-touch-title'>{copy.title}</h2>
+          <p className='contact-section-intro'>{copy.intro}</p>
         </Reveal>
 
         <Reveal className='contact-details-grid'>
           <article className='contact-detail-card'>
-            <span>Email</span>
-
-            <h3>General enquiries</h3>
-
+            <span>{copy.emailLabel}</span>
+            <h3>{copy.emailTitle}</h3>
             <a href='mailto:info@fosmarin.eu'>info@fosmarin.eu</a>
-
-            <p>General project, collaboration and communication enquiries.</p>
+            <p>{copy.emailText}</p>
           </article>
 
           <article className='contact-detail-card'>
-            <span>Website</span>
-
-            <h3>FOSMARIN online</h3>
-
-            <a href='/'>www.fosmarin.eu</a>
-
-            <p>Project information, updates, resources and public outputs.</p>
+            <span>{copy.websiteLabel}</span>
+            <h3>{copy.websiteTitle}</h3>
+            <Link to={getLocalizedPath('/')}>www.fosmarin.eu</Link>
+            <p>{copy.websiteText}</p>
           </article>
         </Reveal>
       </div>

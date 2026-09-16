@@ -1,22 +1,18 @@
 import Reveal from './Reveal';
-
 import { partners } from '../data/partners';
+import { useLanguage } from '../i18n/LanguageContext';
 
 function PartnersSection({ id }) {
+  const { translations } = useLanguage();
+  const copy = translations.consortium;
+
   return (
     <section className='consortium-section consortium-partners' id={id} aria-labelledby='consortium-partners-title'>
       <div className='consortium-page-inner'>
         <Reveal as='header' className='consortium-section-header'>
-          <p className='consortium-page-eyebrow'>Partners</p>
-
-          <h2 id='consortium-partners-title'>
-            13 organisations bringing together technology, research, infrastructure and public authorities.
-          </h2>
-
-          <p className='consortium-section-intro'>
-            FOSMARIN combines the expertise required to develop, test and validate a practical subsea monitoring system
-            — from fibre-optic sensing and data science to infrastructure operation, integration and training.
-          </p>
+          <p className='consortium-page-eyebrow'>{copy.partners.eyebrow}</p>
+          <h2 id='consortium-partners-title'>{copy.partners.title}</h2>
+          <p className='consortium-section-intro'>{copy.partners.intro}</p>
         </Reveal>
 
         <Reveal className='partner-grid'>
@@ -25,7 +21,9 @@ function PartnersSection({ id }) {
               className={`partner-card ${partner.coordinator ? 'partner-card--coordinator' : ''}`}
               key={partner.name}
             >
-              {partner.coordinator && <span className='partner-coordinator-badge'>Coordinator</span>}
+              {partner.coordinator && (
+                <span className='partner-coordinator-badge'>{copy.partners.coordinator}</span>
+              )}
 
               <div className='partner-card-logo'>
                 <img className={partner.logoClass || ''} src={partner.logo} alt='' />
@@ -34,15 +32,12 @@ function PartnersSection({ id }) {
               <div className='partner-card-content'>
                 <div className='partner-card-heading'>
                   <h3>{partner.name}</h3>
-
                   <span>{partner.countryCode}</span>
                 </div>
 
-                <p className='partner-card-role'>{partner.role}</p>
-
+                <p className='partner-card-role'>{copy.partnerRoles[partner.role] || partner.role}</p>
                 <p className='partner-card-legal'>{partner.legalName}</p>
-
-                <small>{partner.country}</small>
+                <small>{copy.countries[partner.country] || partner.country}</small>
               </div>
             </article>
           ))}

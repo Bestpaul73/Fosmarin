@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { navigation } from './data/navigation';
 
+import { LanguageProvider } from './i18n/LanguageContext';
+
 import MainLayout from './layouts/MainLayout';
 
 import Home from './pages/Home';
@@ -44,34 +46,104 @@ const customPagePaths = new Set([
 
 const genericPages = navigation.filter((page) => !customPagePaths.has(page.path));
 
+const languagePrefixes = ['', '/de', '/es'];
+
+function createPath(prefix, path) {
+  if (path === '/') {
+    return prefix || '/';
+  }
+
+  return `${prefix}${path}`;
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route element={<MainLayout />}>
+        {languagePrefixes.map((prefix) => (
+          <Route key={prefix || 'en'} path={createPath(prefix, '/')} element={<Home />} />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-about`}
+            path={createPath(prefix, '/about')}
+            element={<About page={aboutPage} />}
+          />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-challenge`}
+            path={createPath(prefix, '/challenge')}
+            element={<Challenge page={challengePage} />}
+          />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-use-cases`}
+            path={createPath(prefix, '/use-cases')}
+            element={<UseCases page={useCasesPage} />}
+          />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-technology`}
+            path={createPath(prefix, '/technology')}
+            element={<Technology page={technologyPage} />}
+          />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-consortium`}
+            path={createPath(prefix, '/consortium')}
+            element={<Consortium page={consortiumPage} />}
+          />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route key={`${prefix || 'en'}-news`} path={createPath(prefix, '/news')} element={<News page={newsPage} />} />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-resources`}
+            path={createPath(prefix, '/resources')}
+            element={<Resources page={resourcesPage} />}
+          />
+        ))}
+
+        {languagePrefixes.map((prefix) => (
+          <Route
+            key={`${prefix || 'en'}-contact`}
+            path={createPath(prefix, '/contact')}
+            element={<Contact page={contactPage} />}
+          />
+        ))}
+
+        {genericPages.flatMap((page) =>
+          languagePrefixes.map((prefix) => (
+            <Route
+              key={`${prefix || 'en'}-${page.path}`}
+              path={createPath(prefix, page.path)}
+              element={<ContentPage page={page} />}
+            />
+          )),
+        )}
+      </Route>
+    </Routes>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path='/' element={<Home />} />
-
-          <Route path='/about' element={<About page={aboutPage} />} />
-
-          <Route path='/challenge' element={<Challenge page={challengePage} />} />
-
-          <Route path='/use-cases' element={<UseCases page={useCasesPage} />} />
-
-          <Route path='/technology' element={<Technology page={technologyPage} />} />
-
-          <Route path='/consortium' element={<Consortium page={consortiumPage} />} />
-
-          <Route path='/news' element={<News page={newsPage} />} />
-
-          <Route path='/resources' element={<Resources page={resourcesPage} />} />
-
-          <Route path='/contact' element={<Contact page={contactPage} />} />
-
-          {genericPages.map((page) => (
-            <Route key={page.path} path={page.path} element={<ContentPage page={page} />} />
-          ))}
-        </Route>
-      </Routes>
+      <LanguageProvider>
+        <AppRoutes />
+      </LanguageProvider>
     </BrowserRouter>
   );
 }

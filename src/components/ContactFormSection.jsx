@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Reveal from './Reveal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const initialFormData = {
   name: '',
@@ -11,6 +12,9 @@ const initialFormData = {
 };
 
 function ContactFormSection({ id }) {
+  const { translations } = useLanguage();
+  const copy = translations.contact.form;
+
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -35,21 +39,21 @@ function ContactFormSection({ id }) {
     const nextErrors = {};
 
     if (!formData.name.trim()) {
-      nextErrors.name = 'Please enter your name.';
+      nextErrors.name = copy.errors.name;
     }
 
     if (!formData.email.trim()) {
-      nextErrors.email = 'Please enter your email address.';
+      nextErrors.email = copy.errors.email;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nextErrors.email = 'Please enter a valid email address.';
+      nextErrors.email = copy.errors.emailInvalid;
     }
 
     if (!formData.subject.trim()) {
-      nextErrors.subject = 'Please enter a subject.';
+      nextErrors.subject = copy.errors.subject;
     }
 
     if (!formData.message.trim()) {
-      nextErrors.message = 'Please enter your message.';
+      nextErrors.message = copy.errors.message;
     }
 
     return nextErrors;
@@ -74,13 +78,9 @@ function ContactFormSection({ id }) {
     <section className='contact-section contact-form-section' id={id} aria-labelledby='contact-form-title'>
       <div className='contact-inner'>
         <Reveal as='header' className='contact-section-header'>
-          <p className='contact-eyebrow'>Contact form</p>
-
-          <h2 id='contact-form-title'>Send us a message.</h2>
-
-          <p className='contact-section-intro'>
-            Use the form below to contact the FOSMARIN consortium. Required fields are marked with an asterisk.
-          </p>
+          <p className='contact-eyebrow'>{copy.eyebrow}</p>
+          <h2 id='contact-form-title'>{copy.title}</h2>
+          <p className='contact-section-intro'>{copy.intro}</p>
         </Reveal>
 
         <Reveal>
@@ -88,9 +88,8 @@ function ContactFormSection({ id }) {
             <div className='contact-form-grid'>
               <div className='contact-field'>
                 <label htmlFor='contact-name'>
-                  Name <span aria-hidden='true'>*</span>
+                  {copy.labels.name} <span aria-hidden='true'>*</span>
                 </label>
-
                 <input
                   id='contact-name'
                   name='name'
@@ -101,19 +100,13 @@ function ContactFormSection({ id }) {
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? 'contact-name-error' : undefined}
                 />
-
-                {errors.name && (
-                  <p className='contact-field-error' id='contact-name-error'>
-                    {errors.name}
-                  </p>
-                )}
+                {errors.name && <p className='contact-field-error' id='contact-name-error'>{errors.name}</p>}
               </div>
 
               <div className='contact-field'>
                 <label htmlFor='contact-email'>
-                  Email <span aria-hidden='true'>*</span>
+                  {copy.labels.email} <span aria-hidden='true'>*</span>
                 </label>
-
                 <input
                   id='contact-email'
                   name='email'
@@ -124,17 +117,11 @@ function ContactFormSection({ id }) {
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'contact-email-error' : undefined}
                 />
-
-                {errors.email && (
-                  <p className='contact-field-error' id='contact-email-error'>
-                    {errors.email}
-                  </p>
-                )}
+                {errors.email && <p className='contact-field-error' id='contact-email-error'>{errors.email}</p>}
               </div>
 
               <div className='contact-field'>
-                <label htmlFor='contact-organisation'>Organisation</label>
-
+                <label htmlFor='contact-organisation'>{copy.labels.organisation}</label>
                 <input
                   id='contact-organisation'
                   name='organisation'
@@ -147,9 +134,8 @@ function ContactFormSection({ id }) {
 
               <div className='contact-field'>
                 <label htmlFor='contact-subject'>
-                  Subject <span aria-hidden='true'>*</span>
+                  {copy.labels.subject} <span aria-hidden='true'>*</span>
                 </label>
-
                 <input
                   id='contact-subject'
                   name='subject'
@@ -159,20 +145,14 @@ function ContactFormSection({ id }) {
                   aria-invalid={Boolean(errors.subject)}
                   aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
                 />
-
-                {errors.subject && (
-                  <p className='contact-field-error' id='contact-subject-error'>
-                    {errors.subject}
-                  </p>
-                )}
+                {errors.subject && <p className='contact-field-error' id='contact-subject-error'>{errors.subject}</p>}
               </div>
             </div>
 
             <div className='contact-field contact-field--message'>
               <label htmlFor='contact-message'>
-                Message <span aria-hidden='true'>*</span>
+                {copy.labels.message} <span aria-hidden='true'>*</span>
               </label>
-
               <textarea
                 id='contact-message'
                 name='message'
@@ -182,27 +162,17 @@ function ContactFormSection({ id }) {
                 aria-invalid={Boolean(errors.message)}
                 aria-describedby={errors.message ? 'contact-message-error' : undefined}
               />
-
-              {errors.message && (
-                <p className='contact-field-error' id='contact-message-error'>
-                  {errors.message}
-                </p>
-              )}
+              {errors.message && <p className='contact-field-error' id='contact-message-error'>{errors.message}</p>}
             </div>
 
             <div className='contact-form-footer'>
-              <p className='contact-form-note'>
-                Form submission will be connected to the project&apos;s selected email or backend service before launch.
-              </p>
-
-              <button className='contact-submit' type='submit'>
-                Send message
-              </button>
+              <p className='contact-form-note'>{copy.note}</p>
+              <button className='contact-submit' type='submit'>{copy.button}</button>
             </div>
 
             {submitted && (
               <div className='contact-form-status' role='status'>
-                The form is validated correctly. Final message delivery will be enabled before launch.
+                {copy.success}
               </div>
             )}
           </form>

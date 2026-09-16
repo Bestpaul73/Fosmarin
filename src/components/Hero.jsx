@@ -1,57 +1,87 @@
 import { Link } from 'react-router-dom';
+
 import HeroVisual from './HeroVisual';
 import Reveal from './Reveal';
+
+import {
+  useLanguage,
+} from '../i18n/LanguageContext';
+
 import '../styles/hero.scss';
 
-const heroStats = [
-  { value: '≈1 m', label: 'Sensing resolution' },
-  { value: '<1 s', label: 'Detection latency' },
-  { value: '0', label: 'New subsea hardware' },
-];
-
 function Hero() {
+  const {
+    translations,
+    getLocalizedPath,
+  } = useLanguage();
+
+  const hero =
+    translations.home.hero;
+
   return (
-    <section className='hero' aria-labelledby='hero-title'>
+    <section
+      className='hero'
+      aria-labelledby='hero-title'
+    >
       <div className='hero-inner'>
         <Reveal className='hero-copy'>
           <p className='hero-eyebrow'>
-            EU-funded · Subsea infrastructure resilience
+            {hero.eyebrow}
           </p>
 
-          <h1 className='hero-title' id='hero-title'>
-            A glass thread on the seabed can now <em>hear</em> everything above
-            it.
+          <h1
+            className='hero-title'
+            id='hero-title'
+          >
+            {hero.titleBefore}
+
+            <em>
+              {hero.titleEmphasis}
+            </em>
+
+            {hero.titleAfter}
           </h1>
 
           <p className='hero-lead'>
-            FOSMARIN turns existing subsea fibre-optic cables into thousands of
-            virtual underwater listening points — using Fibre Optic Acoustic
-            Sensing (FOAS) and predictive analytics to detect vessel movements,
-            anchor threats, seismic activity and other critical events along the
-            cable route.
+            {hero.lead}
           </p>
 
           <div className='hero-actions'>
             <Link
               className='hero-button hero-button--primary'
-              to='/technology#how-it-works'
+              to={getLocalizedPath(
+                '/technology#how-it-works'
+              )}
             >
-              See how it works
+              {hero.primaryAction}
             </Link>
 
             <Link
               className='hero-button hero-button--secondary'
-              to='/about#mission-and-vision'
+              to={getLocalizedPath(
+                '/about#mission-and-vision'
+              )}
             >
-              Project mission
+              {hero.secondaryAction}
             </Link>
           </div>
 
-          <ul className='hero-stats' aria-label='Key project figures'>
-            {heroStats.map((stat) => (
-              <li className='hero-stat' key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
+          <ul
+            className='hero-stats'
+            aria-label={hero.statsLabel}
+          >
+            {hero.stats.map((stat) => (
+              <li
+                className='hero-stat'
+                key={stat.label}
+              >
+                <strong>
+                  {stat.value}
+                </strong>
+
+                <span>
+                  {stat.label}
+                </span>
               </li>
             ))}
           </ul>

@@ -1,10 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
+
 import { Link, NavLink } from 'react-router-dom';
+
 import { navigation } from '../data/navigation';
+
+import { languages } from '../i18n/languages';
+
+import { useLanguage } from '../i18n/LanguageContext';
+
 import '../styles/header.scss';
+
 import tokens from '../tokens/tokens.json';
 
 const BREAKPOINT_TABLET = tokens.breakpoints.tablet;
+
 const BREAKPOINT_WIDE_TOUCH_HEADER = tokens.breakpoints.wideTouchHeader;
 
 function canUseHover() {
@@ -28,26 +37,52 @@ function usesDesktopNavigation() {
 }
 
 function Header() {
+  const { language, translations, getLocalizedPath, switchLanguage } = useLanguage();
+
   const [openMenu, setOpenMenu] = useState(null);
+
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Показываем keyboard-focus только при работе клавиатурой.
+  const [languageOpen, setLanguageOpen] = useState(false);
+
+  // Показываем keyboard-focus только
+  // при работе клавиатурой.
   const [keyboardMode, setKeyboardMode] = useState(false);
 
-  // Сам Header — чтобы определять клики за его пределами.
+  // Сам Header — чтобы определять
+  // клики за его пределами.
   const headerRef = useRef(null);
 
-  // Первые ссылки каждого submenu — для переноса focus после ArrowDown.
+  // Весь блок переключателя языка.
+  const languageSelectorRef = useRef(null);
+
+  // Кнопка, открывающая список языков.
+  const languageButtonRef = useRef(null);
+
+  // Кнопки языков внутри dropdown.
+  const languageOptionRefs = useRef({});
+
+  // Какой язык нужно сфокусировать
+  // после открытия dropdown.
+  const languageToFocusRef = useRef(null);
+
+  // Первые ссылки каждого submenu —
+  // для переноса focus после ArrowDown.
   const firstSubmenuLinkRefs = useRef({});
 
-  // Submenu, куда нужно поставить focus после его открытия.
+  // Submenu, куда нужно поставить focus
+  // после его открытия.
   const submenuToFocusRef = useRef(null);
 
-  // Основные ссылки меню — для возврата focus после Escape.
+  // Основные ссылки меню —
+  // для возврата focus после Escape.
   const mainMenuLinkRefs = useRef({});
 
-  // Показывает, что текущее submenu открыто с клавиатуры.
+  // Показывает, что текущее submenu
+  // открыто с клавиатуры.
   const menuOpenedByKeyboardRef = useRef(false);
+
+  const currentLanguage = languages.find((item) => item.code === language) ?? languages[0];
 
   useEffect(() => {
     const path = submenuToFocusRef.current;
@@ -62,8 +97,23 @@ function Header() {
   }, [openMenu]);
 
   useEffect(() => {
+    if (!languageOpen) {
+      return;
+    }
+
+    const languageCode = languageToFocusRef.current;
+
+    if (!languageCode) {
+      return;
+    }
+
+    languageOptionRefs.current[languageCode]?.focus();
+
+    languageToFocusRef.current = null;
+  }, [languageOpen]);
+
+  useEffect(() => {
     function handleKeyDown(event) {
-      // Keyboard-mode включаем только при навигации клавиатурой.
       if (
         event.key === 'Tab' ||
         event.key === 'ArrowUp' ||
@@ -73,17 +123,16 @@ function Header() {
       ) {
         setKeyboardMode(true);
 
-        // Tab закрывает hover-submenu, но не мешает
-        // Tab-навигации внутри keyboard-submenu.
         if (event.key === 'Tab' && !event.target.closest?.('.submenu')) {
           setOpenMenu(null);
+
           menuOpenedByKeyboardRef.current = false;
         }
       }
 
-      // Escape закрывает любое открытое submenu.
       if (event.key === 'Escape') {
         setOpenMenu(null);
+
         menuOpenedByKeyboardRef.current = false;
       }
     }
@@ -91,18 +140,24 @@ function Header() {
     function handlePointerDown(event) {
       setKeyboardMode(false);
 
-      // Если нажали вне Header — закрываем открытое submenu.
       if (!headerRef.current?.contains(event.target)) {
         setOpenMenu(null);
+
         menuOpenedByKeyboardRef.current = false;
+      }
+
+      if (!languageSelectorRef.current?.contains(event.target)) {
+        setLanguageOpen(false);
       }
     }
 
     window.addEventListener('keydown', handleKeyDown);
+
     window.addEventListener('pointerdown', handlePointerDown);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+
       window.removeEventListener('pointerdown', handlePointerDown);
     };
   }, []);
@@ -110,21 +165,116 @@ function Header() {
   function closeMobileMenu() {
     setMobileOpen(false);
     setOpenMenu(null);
+    setLanguageOpen(false);
+  }
+
+  function handleLogoClick() {
+    closeMobileMenu();
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
+  }
+
+  function handleLanguageChange(nextLanguage) {
+    setLanguageOpen(false);
+    setMobileOpen(false);
+
+    switchLanguage(nextLanguage);
+  }
+
+  function openLanguageMenu(languageCode = language) {
+    languageToFocusRef.current = languageCode;
+
+    setLanguageOpen(true);
+  }
+
+  function handleLanguageButtonKeyDown(event) {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+      return;
+    }
+
+    event.preventDefault();
+
+    const currentIndex = languages.findIndex((item) => item.code === language);
+
+    if (event.key === 'ArrowDown') {
+      const nextIndex = (currentIndex + 1) % languages.length;
+
+      openLanguageMenu(languages[nextIndex].code);
+
+      return;
+    }
+
+    const previousIndex = (currentIndex - 1 + languages.length) % languages.length;
+
+    openLanguageMenu(languages[previousIndex].code);
+  }
+
+  function handleLanguageMenuKeyDown(event) {
+    const currentIndex = languages.findIndex((item) => item.code === event.target.dataset.language);
+
+    switch (event.key) {
+      case 'Escape':
+        event.preventDefault();
+
+        setLanguageOpen(false);
+
+        languageButtonRef.current?.focus();
+
+        break;
+
+      case 'ArrowDown': {
+        event.preventDefault();
+
+        const nextIndex = (currentIndex + 1) % languages.length;
+
+        languageOptionRefs.current[languages[nextIndex].code]?.focus();
+
+        break;
+      }
+
+      case 'ArrowUp': {
+        event.preventDefault();
+
+        const previousIndex = (currentIndex - 1 + languages.length) % languages.length;
+
+        languageOptionRefs.current[languages[previousIndex].code]?.focus();
+
+        break;
+      }
+
+      case 'Home':
+        event.preventDefault();
+
+        languageOptionRefs.current[languages[0].code]?.focus();
+
+        break;
+
+      case 'End':
+        event.preventDefault();
+
+        languageOptionRefs.current[languages[languages.length - 1].code]?.focus();
+
+        break;
+
+      default:
+        break;
+    }
   }
 
   function openDesktopMenu(path) {
     if (usesDesktopNavigation() && canUseHover()) {
-      // Если мышь попала в уже открытое keyboard-menu —
-      // режим не меняем.
       if (menuOpenedByKeyboardRef.current && openMenu === path) {
         return;
       }
 
-      // Наведение на другой пункт переключает управление
-      // обратно на мышь.
       menuOpenedByKeyboardRef.current = false;
-      setKeyboardMode(false);
 
+      setKeyboardMode(false);
       setOpenMenu(path);
     }
   }
@@ -140,14 +290,13 @@ function Header() {
       return;
     }
 
-    // Не закрываем меню при переходе стрелками
-    // в соседнее submenu.
     if (submenuToFocusRef.current) {
       return;
     }
 
     if (!event.currentTarget.contains(event.relatedTarget)) {
       setOpenMenu(null);
+
       menuOpenedByKeyboardRef.current = false;
     }
   }
@@ -159,24 +308,18 @@ function Header() {
 
     event.preventDefault();
 
-    // Дальше меню управляется клавиатурой.
     menuOpenedByKeyboardRef.current = true;
 
-    // Если submenu уже открыто —
-    // можно сразу перевести focus внутрь.
     if (openMenu === path) {
       firstSubmenuLinkRefs.current[path]?.focus();
     } else {
-      // Иначе запоминаем цель focus
-      // и сначала открываем submenu.
       submenuToFocusRef.current = path;
+
       setOpenMenu(path);
     }
   }
 
   function handleSubmenuKeyDown(event, path) {
-    // Keyboard-навигация submenu нужна
-    // только в desktop-режиме.
     if (!usesDesktopNavigation()) {
       return;
     }
@@ -189,7 +332,6 @@ function Header() {
 
         menuOpenedByKeyboardRef.current = false;
 
-        // Возвращаем focus на основной пункт текущего submenu.
         mainMenuLinkRefs.current[path]?.focus();
 
         break;
@@ -197,13 +339,10 @@ function Header() {
       case 'ArrowDown': {
         event.preventDefault();
 
-        // Все ссылки текущего submenu.
         const submenuLinks = Array.from(event.currentTarget.querySelectorAll('a'));
 
         const currentIndex = submenuLinks.indexOf(event.target);
 
-        // Следующий пункт; после последнего
-        // возвращаемся к первому.
         const nextIndex = (currentIndex + 1) % submenuLinks.length;
 
         submenuLinks[nextIndex]?.focus();
@@ -218,7 +357,6 @@ function Header() {
 
         const currentIndex = submenuLinks.indexOf(event.target);
 
-        // Предыдущий пункт; с первого переходим на последний.
         const previousIndex = (currentIndex - 1 + submenuLinks.length) % submenuLinks.length;
 
         submenuLinks[previousIndex]?.focus();
@@ -236,6 +374,7 @@ function Header() {
         const nextPath = navigation[nextPageIndex].path;
 
         submenuToFocusRef.current = nextPath;
+
         setOpenMenu(nextPath);
 
         break;
@@ -246,13 +385,12 @@ function Header() {
 
         const currentPageIndex = navigation.findIndex((page) => page.path === path);
 
-        // Предыдущая страница;
-        // с первой переходим к последней.
         const previousPageIndex = (currentPageIndex - 1 + navigation.length) % navigation.length;
 
         const previousPath = navigation[previousPageIndex].path;
 
         submenuToFocusRef.current = previousPath;
+
         setOpenMenu(previousPath);
 
         break;
@@ -266,14 +404,14 @@ function Header() {
   return (
     <header ref={headerRef} className={`header ${keyboardMode ? 'keyboard-mode' : ''}`}>
       <div className='header-inner'>
-        <Link className='logo' to='/' onClick={closeMobileMenu}>
+        <Link className='logo' to={getLocalizedPath('/')} onClick={handleLogoClick}>
           FOSMARIN
         </Link>
 
         <button
           className={`menu-toggle ${mobileOpen ? 'open' : ''}`}
           type='button'
-          aria-label='Toggle navigation'
+          aria-label={translations.header.toggleNavigation}
           aria-expanded={mobileOpen}
           aria-controls='primary-navigation'
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -286,64 +424,122 @@ function Header() {
         <nav
           id='primary-navigation'
           className={`main-nav ${mobileOpen ? 'mobile-open' : ''}`}
-          aria-label='Primary navigation'
+          aria-label={translations.header.primaryNavigation}
         >
-          {navigation.map((page) => (
-            <div
-              className={`nav-item ${openMenu === page.path ? 'open' : ''}`}
-              key={page.path}
-              onMouseEnter={() => openDesktopMenu(page.path)}
-              onMouseLeave={closeDesktopMenu}
-              onBlur={closeDesktopMenuByKeyboard}
-            >
-              <NavLink
-                ref={(element) => {
-                  mainMenuLinkRefs.current[page.path] = element;
-                }}
-                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-                to={page.path}
-                onClick={closeMobileMenu}
-                onKeyDown={(event) => handleMainLinkKeyDown(event, page.path)}
-              >
-                {page.title}
-              </NavLink>
+          {navigation.map((page) => {
+            const translatedPage = translations.navigation[page.path];
 
-              <button
-                className={`submenu-toggle ${openMenu === page.path ? 'open' : ''}`}
-                type='button'
-                aria-label={`${page.title} sections`}
-                aria-expanded={openMenu === page.path}
-                aria-controls={`submenu-${page.path.slice(1)}`}
-                onClick={() => setOpenMenu(openMenu === page.path ? null : page.path)}
-              >
-                <span className='submenu-arrow'></span>
-              </button>
+            const pageTitle = translatedPage?.title ?? page.title;
 
+            return (
               <div
-                id={`submenu-${page.path.slice(1)}`}
-                className='submenu'
-                onKeyDown={(event) => handleSubmenuKeyDown(event, page.path)}
+                className={`nav-item ${openMenu === page.path ? 'open' : ''}`}
+                key={page.path}
+                onMouseEnter={() => openDesktopMenu(page.path)}
+                onMouseLeave={closeDesktopMenu}
+                onBlur={closeDesktopMenuByKeyboard}
               >
-                {page.sections.map((section, index) => (
-                  <Link
-                    key={section.id}
-                    ref={
-                      index === 0
-                        ? (element) => {
-                            firstSubmenuLinkRefs.current[page.path] = element;
-                          }
-                        : null
-                    }
-                    to={`${page.path}#${section.id}`}
-                    onClick={closeMobileMenu}
-                  >
-                    {section.title}
-                  </Link>
-                ))}
+                <NavLink
+                  ref={(element) => {
+                    mainMenuLinkRefs.current[page.path] = element;
+                  }}
+                  className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                  to={getLocalizedPath(page.path)}
+                  onClick={closeMobileMenu}
+                  onKeyDown={(event) => handleMainLinkKeyDown(event, page.path)}
+                >
+                  {pageTitle}
+                </NavLink>
+
+                <button
+                  className={`submenu-toggle ${openMenu === page.path ? 'open' : ''}`}
+                  type='button'
+                  aria-label={`${pageTitle} ${translations.header.sections}`}
+                  aria-expanded={openMenu === page.path}
+                  aria-controls={`submenu-${page.path.slice(1)}`}
+                  onClick={() => setOpenMenu(openMenu === page.path ? null : page.path)}
+                >
+                  <span className='submenu-arrow'></span>
+                </button>
+
+                <div
+                  id={`submenu-${page.path.slice(1)}`}
+                  className='submenu'
+                  onKeyDown={(event) => handleSubmenuKeyDown(event, page.path)}
+                >
+                  {page.sections.map((section, index) => {
+                    const sectionTitle = translatedPage?.sections?.[section.id] ?? section.title;
+
+                    return (
+                      <Link
+                        key={section.id}
+                        ref={
+                          index === 0
+                            ? (element) => {
+                                firstSubmenuLinkRefs.current[page.path] = element;
+                              }
+                            : null
+                        }
+                        to={getLocalizedPath(`${page.path}#${section.id}`)}
+                        onClick={closeMobileMenu}
+                      >
+                        {sectionTitle}
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </nav>
+
+        <div ref={languageSelectorRef} className='language-selector'>
+          <button
+            ref={languageButtonRef}
+            className={`language-trigger ${languageOpen ? 'open' : ''}`}
+            type='button'
+            aria-label={translations.header.selectLanguage}
+            aria-haspopup='menu'
+            aria-expanded={languageOpen}
+            aria-controls='language-menu'
+            onClick={() => setLanguageOpen(!languageOpen)}
+            onKeyDown={handleLanguageButtonKeyDown}
+          >
+            <span>{currentLanguage.label}</span>
+
+            <span className='language-arrow' aria-hidden='true'></span>
+          </button>
+
+          {languageOpen && (
+            <div
+              id='language-menu'
+              className='language-menu'
+              role='menu'
+              aria-label={translations.header.languageMenu}
+              onKeyDown={handleLanguageMenuKeyDown}
+            >
+              {languages.map((languageOption) => (
+                <button
+                  key={languageOption.code}
+                  ref={(element) => {
+                    languageOptionRefs.current[languageOption.code] = element;
+                  }}
+                  className={`language-option ${language === languageOption.code ? 'active' : ''}`}
+                  type='button'
+                  role='menuitemradio'
+                  aria-checked={language === languageOption.code}
+                  aria-label={`${translations.header.switchLanguageTo} ${languageOption.name}`}
+                  data-language={languageOption.code}
+                  onClick={() => handleLanguageChange(languageOption.code)}
+                >
+                  <span>{languageOption.name}</span>
+
+                  <span className='language-option-code'>{languageOption.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
