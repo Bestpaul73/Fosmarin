@@ -82,7 +82,7 @@ const es = {
         'roles-and-contributions':
           'Funciones y contribuciones',
         'advisory-board':
-          'Consejo asesor',
+          'Consejo Asesor de Expertos',
         'authorities-and-stakeholders':
           'Autoridades y partes interesadas',
       },
@@ -1228,10 +1228,10 @@ const es = {
       ]
     },
     "advisory": {
-      "eyebrow": "Consejo asesor",
+      "eyebrow": "Consejo Asesor de Expertos",
       "title": "Experiencia externa que apoya al proyecto.",
-      "noticeTitle": "El contenido del Consejo asesor está en preparación",
-      "noticeText": "El Consejo asesor forma parte de la estructura aprobada del sitio web de FOSMARIN. La información sobre sus miembros se añadirá cuando sea proporcionada o confirmada por el cliente."
+      "noticeTitle": "El contenido del Consejo Asesor de Expertos está en preparación",
+      "noticeText": "El Consejo Asesor de Expertos forma parte de la estructura aprobada del sitio web de FOSMARIN. La información sobre sus miembros se añadirá cuando sea proporcionada o confirmada por el cliente."
     },
     "stakeholders": {
       "eyebrow": "Autoridades y partes interesadas",

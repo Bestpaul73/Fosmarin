@@ -64,7 +64,7 @@ const en = {
         partners: 'Partners',
         'partner-map': 'Partner Map',
         'roles-and-contributions': 'Roles & Contributions',
-        'advisory-board': 'Advisory Board',
+        'advisory-board': 'Expert Advisory Board',
         'authorities-and-stakeholders':
           'Authorities & Stakeholders',
       },
@@ -1172,10 +1172,10 @@ const en = {
       ]
     },
     "advisory": {
-      "eyebrow": "Advisory board",
+      "eyebrow": "Expert Advisory Board",
       "title": "External expertise supporting the project.",
-      "noticeTitle": "Advisory Board content is under construction",
-      "noticeText": "The Advisory Board is part of the approved FOSMARIN website structure. Member information will be added when it is provided or confirmed by the client."
+      "noticeTitle": "Expert Advisory Board content is under construction",
+      "noticeText": "The Expert Advisory Board is part of the approved FOSMARIN website structure. Member information will be added when it is provided or confirmed by the client."
     },
     "stakeholders": {
       "eyebrow": "Authorities & stakeholders",

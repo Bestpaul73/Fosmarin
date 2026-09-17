@@ -76,7 +76,7 @@ const de = {
         'partner-map': 'Partnerkarte',
         'roles-and-contributions':
           'Rollen & Beiträge',
-        'advisory-board': 'Beirat',
+        'advisory-board': 'Expertenbeirat',
         'authorities-and-stakeholders':
           'Behörden & Interessengruppen',
       },
@@ -1202,10 +1202,10 @@ const de = {
       ]
     },
     "advisory": {
-      "eyebrow": "Beirat",
+      "eyebrow": "Expertenbeirat",
       "title": "Externe Expertise zur Unterstützung des Projekts.",
-      "noticeTitle": "Inhalte zum Beirat sind in Vorbereitung",
-      "noticeText": "Der Beirat ist Bestandteil der freigegebenen FOSMARIN-Websitestruktur. Angaben zu den Mitgliedern werden ergänzt, sobald sie vom Auftraggeber bereitgestellt oder bestätigt wurden."
+      "noticeTitle": "Inhalte zum Expertenbeirat sind in Vorbereitung",
+      "noticeText": "Der Expertenbeirat ist Bestandteil der freigegebenen FOSMARIN-Websitestruktur. Angaben zu den Mitgliedern werden ergänzt, sobald sie vom Auftraggeber bereitgestellt oder bestätigt wurden."
     },
     "stakeholders": {
       "eyebrow": "Behörden & Stakeholder",
