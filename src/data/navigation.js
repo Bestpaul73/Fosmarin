@@ -152,7 +152,7 @@ export const navigation = [
         id: 'roles-and-contributions',
       },
       {
-        title: 'Advisory Board',
+        title: 'Expert Advisory Board',
         id: 'advisory-board',
       },
       {
