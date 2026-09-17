@@ -204,6 +204,7 @@
   position: relative;
 
   width: 100%;
+  min-width: 0;
 
   svg {
     display: block;
@@ -322,7 +323,43 @@
   }
 }
 
-@media (max-width: tokens.$breakpoint-tablet) {
+/*
+ * Tablet / narrow desktop
+ *
+ * Важно: Hero остаётся двухколоночным до 900px.
+ * Раньше здесь использовался tablet breakpoint, из-за чего
+ * при ширине около 1200px визуализация падала под текст.
+ */
+@media (max-width: 1100px) and (min-width: 901px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+
+    gap: 28px;
+
+    padding-top: 72px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 4.7vw, 3.25rem);
+  }
+
+  .hero-lead {
+    font-size: 17px;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .hero-visual {
+    width: 100%;
+  }
+}
+
+/*
+ * From 900px down the Hero switches to one column.
+ */
+@media (max-width: 900px) {
   .hero-inner {
     grid-template-columns: 1fr;
 
@@ -341,6 +378,9 @@
   }
 }
 
+/*
+ * Phones
+ */
 @media (max-width: 700px) {
   .hero-inner {
     gap: 36px;

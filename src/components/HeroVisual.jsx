@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react';
-
 import Reveal from './Reveal';
 
-import { useLanguage } from '../i18n/LanguageContext';
+const readoutMessages = [
+  'SIGNAL · NOMINAL',
+  'VESSEL DETECTED · 4.2km',
+  'ANCHOR DRAG · FLAGGED',
+  'SEISMIC EVENT · LOGGED',
+  'SIGNAL · NOMINAL',
+];
 
 function HeroVisual() {
-  const { translations } = useLanguage();
-
-  const visual = translations.home.heroVisual;
-
-  const readoutMessages = visual.readoutMessages;
-
   const [messageIndex, setMessageIndex] = useState(0);
-
-  useEffect(() => {
-    setMessageIndex(0);
-  }, [readoutMessages]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -25,7 +20,7 @@ function HeroVisual() {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [readoutMessages]);
+  }, []);
 
   return (
     <Reveal className='hero-visual'>
@@ -34,28 +29,26 @@ function HeroVisual() {
       </span>
 
       <svg viewBox='0 0 640 560' role='img' aria-labelledby='hero-visual-title hero-visual-description'>
-        <title id='hero-visual-title'>{visual.title}</title>
+        <title id='hero-visual-title'>FOSMARIN subsea fibre monitoring</title>
 
-        <desc id='hero-visual-description'>{visual.description}</desc>
+        <desc id='hero-visual-description'>
+          Illustration of a subsea fibre-optic cable detecting a vessel, a dragging anchor and seismic activity.
+        </desc>
 
         <defs>
           <linearGradient id='hero-sea' x1='0' y1='0' x2='0' y2='1'>
             <stop offset='0%' stopColor='var(--hero-sea-top)' />
-
             <stop offset='55%' stopColor='var(--hero-deep)' />
-
             <stop offset='100%' stopColor='var(--hero-abyss)' />
           </linearGradient>
 
           <linearGradient id='hero-floor' x1='0' y1='0' x2='0' y2='1'>
             <stop offset='0%' stopColor='var(--hero-floor-top)' />
-
             <stop offset='100%' stopColor='var(--hero-floor-bottom)' />
           </linearGradient>
 
           <radialGradient id='hero-pulse-glow' cx='50%' cy='50%' r='50%'>
             <stop offset='0%' stopColor='var(--hero-cyan)' stopOpacity='0.95' />
-
             <stop offset='100%' stopColor='var(--hero-cyan)' stopOpacity='0' />
           </radialGradient>
         </defs>
@@ -65,44 +58,137 @@ function HeroVisual() {
 
         {/* Surface */}
         <path
-          d='M0,40 Q40,25 80,40 T160,40 T240,40 T320,40 T400,40 T480,40 T560,40 T640,40'
+          d='M0,82 Q36,70 72,82 T144,82 T216,82 T288,82 T360,82 T432,82 T504,82 T576,82 T640,82'
           fill='none'
           stroke='var(--hero-surface-line)'
           strokeWidth='2'
         />
 
         {/* Ship */}
-        <g transform='translate(410,60)'>
+        <g transform='translate(150,16)'>
+          {/* Hull */}
           <path
-            d='M-34,20 L34,20 L24,36 L-24,36 Z'
+            d='M0,48
+               L226,48
+               L260,42
+               L248,66
+               L20,66
+               Z'
+            fill='var(--hero-panel2)'
+            stroke='var(--hero-cyan)'
+            strokeWidth='1.7'
+            strokeLinejoin='round'
+          />
+
+          {/* Deck line */}
+          <path
+            d='M14,48 L232,48'
+            fill='none'
+            stroke='var(--hero-cyan)'
+            strokeWidth='1.2'
+            opacity='0.9'
+          />
+
+          {/* Funnel */}
+          <path
+            d='M22,20 L36,20 L34,46 L20,46 Z'
+            fill='var(--hero-panel2)'
+            stroke='var(--hero-cyan)'
+            strokeWidth='1.3'
+            strokeLinejoin='round'
+          />
+
+          {/* Bridge */}
+          <path
+            d='M42,16 L82,16 L88,48 L36,48 Z'
             fill='var(--hero-panel2)'
             stroke='var(--hero-cyan)'
             strokeWidth='1.4'
+            strokeLinejoin='round'
           />
 
+          {/* Bridge windows */}
           <rect
-            x='-4'
-            y='-2'
-            width='20'
-            height='16'
+            x='50'
+            y='22'
+            width='9'
+            height='5'
+            rx='1'
+            fill='var(--hero-cyan)'
+            opacity='0.82'
+          />
+          <rect
+            x='63'
+            y='22'
+            width='9'
+            height='5'
+            rx='1'
+            fill='var(--hero-cyan)'
+            opacity='0.82'
+          />
+
+          {/* Mast */}
+          <line
+            x1='63'
+            y1='16'
+            x2='63'
+            y2='-2'
+            stroke='var(--hero-mist)'
+            strokeWidth='1.4'
+          />
+          <line
+            x1='57'
+            y1='6'
+            x2='70'
+            y2='6'
+            stroke='var(--hero-mist)'
+            strokeWidth='1'
+          />
+
+          {/* Container stack */}
+          <g
             fill='var(--hero-panel2)'
             stroke='var(--hero-cyan)'
-            strokeWidth='1.2'
-          />
+            strokeWidth='1.1'
+          >
+            <rect x='98' y='16' width='30' height='10' rx='1.5' />
+            <rect x='130' y='16' width='30' height='10' rx='1.5' />
+            <rect x='162' y='16' width='30' height='10' rx='1.5' />
+            <rect x='194' y='16' width='30' height='10' rx='1.5' />
 
-          <line x1='6' y1='-2' x2='6' y2='-22' stroke='var(--hero-mist)' strokeWidth='1.4' />
+            <rect x='98' y='28' width='30' height='10' rx='1.5' />
+            <rect x='130' y='28' width='30' height='10' rx='1.5' />
+            <rect x='162' y='28' width='30' height='10' rx='1.5' />
+            <rect x='194' y='28' width='30' height='10' rx='1.5' />
+
+            <rect x='98' y='40' width='30' height='8' rx='1.5' />
+            <rect x='130' y='40' width='30' height='8' rx='1.5' />
+            <rect x='162' y='40' width='30' height='8' rx='1.5' />
+            <rect x='194' y='40' width='30' height='8' rx='1.5' />
+          </g>
+
+          {/* Hawse hole */}
+          <circle
+            cx='242'
+            cy='55'
+            r='4'
+            fill='none'
+            stroke='var(--hero-cyan)'
+            strokeWidth='1.8'
+          />
         </g>
 
-        {/* Vessel detection line */}
-        <line
-          x1='410'
-          y1='96'
-          x2='390'
-          y2='425'
+        {/* Anchor chain: starts exactly at the bow hawse hole */}
+        <path
+          d='M392,71
+             C386,136 358,204 320,264
+             C282,323 229,366 184,380'
+          fill='none'
           stroke='var(--hero-coral)'
-          strokeWidth='1.2'
-          strokeDasharray='4 5'
-          opacity='0.55'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeDasharray='2.5 6'
+          opacity='0.9'
         />
 
         {/* Seabed */}
@@ -119,7 +205,7 @@ function HeroVisual() {
         />
 
         {/* Dragging anchor */}
-        <g transform='translate(180,398)'>
+        <g transform='translate(180,398) rotate(18)'>
           <path
             d='M0,-16 L0,10 M-11,10 a11,9 0 0 0 22,0'
             fill='none'
@@ -131,15 +217,6 @@ function HeroVisual() {
           <line x1='-8' y1='-10' x2='8' y2='-10' stroke='var(--hero-coral)' strokeWidth='2.4' strokeLinecap='round' />
 
           <circle cx='0' cy='-18' r='3' fill='none' stroke='var(--hero-coral)' strokeWidth='2' />
-
-          <path
-            d='M0,-16 C-30,-4 -46,10 -66,6'
-            fill='none'
-            stroke='var(--hero-coral)'
-            strokeWidth='1.6'
-            strokeDasharray='3 4'
-            opacity='0.7'
-          />
         </g>
 
         {/* Seismic activity */}
@@ -194,11 +271,8 @@ function HeroVisual() {
         {/* FOAS sensing points */}
         <g className='hero-sensors'>
           <circle cx='70' cy='429' r='2.4' />
-
           <circle cx='150' cy='438' r='2.4' />
-
           <circle cx='230' cy='431' r='2.4' />
-
           <circle cx='310' cy='415' r='2.4' />
 
           <circle className='hero-sensor hero-sensor--alert' cx='390' cy='429' r='2.8' />
