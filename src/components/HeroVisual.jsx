@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
+
+import { useLanguage } from '../i18n/LanguageContext';
+
 import Reveal from './Reveal';
 
-const readoutMessages = [
-  'SIGNAL · NOMINAL',
-  'VESSEL DETECTED · 4.2km',
-  'ANCHOR DRAG · FLAGGED',
-  'SEISMIC EVENT · LOGGED',
-  'SIGNAL · NOMINAL',
-];
-
 function HeroVisual() {
+  const { translations } = useLanguage();
+
+  const heroVisual = translations.home.heroVisual;
+  const readoutMessages = heroVisual.readoutMessages;
+
   const [messageIndex, setMessageIndex] = useState(0);
+
+  useEffect(() => {
+    setMessageIndex(0);
+  }, [readoutMessages]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -20,7 +24,7 @@ function HeroVisual() {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, []);
+  }, [readoutMessages]);
 
   return (
     <Reveal className='hero-visual'>
@@ -29,11 +33,9 @@ function HeroVisual() {
       </span>
 
       <svg viewBox='0 0 640 560' role='img' aria-labelledby='hero-visual-title hero-visual-description'>
-        <title id='hero-visual-title'>FOSMARIN subsea fibre monitoring</title>
+        <title id='hero-visual-title'>{heroVisual.title}</title>
 
-        <desc id='hero-visual-description'>
-          Illustration of a subsea fibre-optic cable detecting a vessel, a dragging anchor and seismic activity.
-        </desc>
+        <desc id='hero-visual-description'>{heroVisual.description}</desc>
 
         <defs>
           <linearGradient id='hero-sea' x1='0' y1='0' x2='0' y2='1'>
@@ -202,27 +204,16 @@ function HeroVisual() {
               {/* Containers */}
               <g fill='var(--hero-panel2)' stroke='var(--hero-cyan)' strokeWidth='1.1'>
                 <rect x='98' y='16' width='30' height='10' rx='1.5' />
-
                 <rect x='130' y='16' width='30' height='10' rx='1.5' />
-
                 <rect x='162' y='16' width='30' height='10' rx='1.5' />
-
                 <rect x='194' y='16' width='30' height='10' rx='1.5' />
-
                 <rect x='98' y='28' width='30' height='10' rx='1.5' />
-
                 <rect x='130' y='28' width='30' height='10' rx='1.5' />
-
                 <rect x='162' y='28' width='30' height='10' rx='1.5' />
-
                 <rect x='194' y='28' width='30' height='10' rx='1.5' />
-
                 <rect x='98' y='40' width='30' height='8' rx='1.5' />
-
                 <rect x='130' y='40' width='30' height='8' rx='1.5' />
-
                 <rect x='162' y='40' width='30' height='8' rx='1.5' />
-
                 <rect x='194' y='40' width='30' height='8' rx='1.5' />
               </g>
 
@@ -375,11 +366,8 @@ function HeroVisual() {
         {/* FOAS sensing points */}
         <g className='hero-sensors'>
           <circle cx='70' cy='429' r='2.4' />
-
           <circle cx='150' cy='438' r='2.4' />
-
           <circle cx='230' cy='431' r='2.4' />
-
           <circle cx='310' cy='415' r='2.4' />
 
           <circle className='hero-sensor hero-sensor--alert' cx='390' cy='429' r='2.8' />

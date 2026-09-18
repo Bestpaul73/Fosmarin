@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   defaultLanguage,
+  languages,
   getLanguageFromPath,
   getLanguagePrefix,
   localizePath,
@@ -22,16 +23,8 @@ function getBrowserLanguage() {
   for (const browserLanguage of browserLanguages) {
     const languageCode = browserLanguage?.toLowerCase().split('-')[0];
 
-    if (languageCode === 'de') {
-      return 'de';
-    }
-
-    if (languageCode === 'es') {
-      return 'es';
-    }
-
-    if (languageCode === 'en') {
-      return 'en';
+    if (languages.some((item) => item.code === languageCode)) {
+      return languageCode;
     }
   }
 
@@ -42,7 +35,7 @@ function getStoredLanguage() {
   try {
     const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
 
-    if (storedLanguage === 'en' || storedLanguage === 'de' || storedLanguage === 'es') {
+    if (languages.some((item) => item.code === storedLanguage)) {
       return storedLanguage;
     }
   } catch {
@@ -83,6 +76,10 @@ export function LanguageProvider({ children }) {
     // /about
     // /de/about
     // /es/about
+    // /da/about
+    // /sv/about
+    // /el/about
+    // /it/about
     //
     // URL имеет высший приоритет,
     // поэтому ничего не меняем.
