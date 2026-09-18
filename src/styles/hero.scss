@@ -45,15 +45,12 @@
 .hero-copy {
   position: relative;
   z-index: 2;
-
   min-width: 0;
 }
 
 .hero-eyebrow {
   margin: 0 0 22px;
-
   color: tokens.$cyan;
-
   font-family: tokens.$font-mono, monospace;
   font-size: 12px;
   font-weight: 500;
@@ -83,9 +80,7 @@
 .hero-lead {
   max-width: 590px;
   margin: 0 0 34px;
-
   color: tokens.$mist;
-
   font-size: 18px;
   line-height: 1.7;
 }
@@ -94,7 +89,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-
   margin-bottom: 44px;
 }
 
@@ -134,25 +128,20 @@
 
 .hero-button--primary {
   color: #04211c;
-
   background-color: tokens.$cyan;
   border-color: tokens.$cyan;
-
   font-weight: 600;
 
   &:hover {
     color: #04211c;
-
     background-color: #4ef2d1;
     border-color: #4ef2d1;
-
     box-shadow: 0 0 0 6px tokens.$cyan-soft;
   }
 }
 
 .hero-button--secondary {
   color: tokens.$foam;
-
   background-color: transparent;
 
   &:hover {
@@ -171,7 +160,6 @@
   padding: 22px 0 0;
 
   list-style: none;
-
   border-top: 1px solid tokens.$line;
 }
 
@@ -182,7 +170,6 @@
 
   strong {
     color: tokens.$foam;
-
     font-family: tokens.$font-display, sans-serif;
     font-size: 24px;
     font-weight: 600;
@@ -191,7 +178,6 @@
 
   span {
     color: tokens.$mist-dim;
-
     font-family: tokens.$font-mono, monospace;
     font-size: 11px;
     line-height: 1.45;
@@ -202,16 +188,13 @@
 
 .hero-visual {
   position: relative;
-
   width: 100%;
   min-width: 0;
 
   svg {
     display: block;
-
     width: 100%;
     height: auto;
-
     overflow: visible;
   }
 }
@@ -226,7 +209,6 @@
   padding: 6px 10px;
 
   color: tokens.$cyan;
-
   background-color: rgba(6, 21, 36, 0.6);
   border: 1px solid tokens.$line-strong;
   border-radius: 8px;
@@ -237,11 +219,13 @@
   letter-spacing: 0.04em;
 }
 
+/* Sensor points */
+
 .hero-sensors {
   fill: tokens.$cyan;
 
   circle {
-    animation: hero-sensor-pulse 2.4s ease-in-out infinite;
+    animation: hero-sensor-pulse 4.2s ease-in-out infinite;
   }
 
   circle:nth-child(2) {
@@ -273,6 +257,19 @@
   fill: tokens.$amber;
 }
 
+@keyframes hero-sensor-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Detection rings */
+
 .hero-alert-ring {
   transform-box: fill-box;
   transform-origin: center;
@@ -282,28 +279,6 @@
 
 .hero-alert-ring--amber {
   animation-delay: 0.5s;
-}
-
-.hero-wave {
-  display: block;
-
-  width: 100%;
-  height: auto;
-
-  margin-top: -2px;
-
-  color: tokens.$deep;
-}
-
-@keyframes hero-sensor-pulse {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-
-  50% {
-    opacity: 1;
-  }
 }
 
 @keyframes hero-alert-ring {
@@ -323,19 +298,51 @@
   }
 }
 
-/*
- * Tablet / narrow desktop
- *
- * Важно: Hero остаётся двухколоночным до 900px.
- * Раньше здесь использовался tablet breakpoint, из-за чего
- * при ширине около 1200px визуализация падала под текст.
- */
+/* Seismic marker */
+
+.hero-seismic-marker {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: hero-seismic-breathe 3s ease-in-out infinite;
+
+  filter: drop-shadow(0 0 2px rgba(246, 194, 68, 0.25));
+}
+
+@keyframes hero-seismic-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+
+    filter: drop-shadow(0 0 1px rgba(246, 194, 68, 0.2));
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+
+    filter: drop-shadow(0 0 5px rgba(246, 194, 68, 0.85)) drop-shadow(0 0 10px rgba(246, 194, 68, 0.35));
+  }
+}
+
+.hero-wave {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: -2px;
+  color: tokens.$deep;
+}
+
+/* Responsive */
+
 @media (max-width: 1100px) and (min-width: 901px) {
   .hero-inner {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    grid-template-columns:
+      minmax(0, 1.08fr)
+      minmax(0, 0.92fr);
 
     gap: 28px;
-
     padding-top: 72px;
   }
 
@@ -356,15 +363,10 @@
   }
 }
 
-/*
- * From 900px down the Hero switches to one column.
- */
 @media (max-width: 900px) {
   .hero-inner {
     grid-template-columns: 1fr;
-
     gap: 48px;
-
     padding-top: 72px;
   }
 
@@ -378,13 +380,9 @@
   }
 }
 
-/*
- * Phones
- */
 @media (max-width: 700px) {
   .hero-inner {
     gap: 36px;
-
     padding-top: 52px;
     padding-bottom: 28px;
   }
@@ -423,22 +421,18 @@
   .hero-actions {
     display: grid;
     grid-template-columns: 1fr;
-
     gap: 12px;
-
     margin-bottom: 36px;
   }
 
   .hero-button {
     width: 100%;
-
     min-height: 48px;
     padding: 0 18px;
   }
 
   .hero-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 20px 18px;
 
     max-width: 100%;
@@ -465,10 +459,11 @@
   .hero-readout {
     top: 4px;
     right: 4px;
-
     font-size: 9px;
   }
 }
+
+/* Reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
   .hero-button {
@@ -487,5 +482,11 @@
   .hero-alert-ring {
     opacity: 0.45;
     animation: none;
+  }
+
+  .hero-seismic-marker {
+    animation: none;
+    transform: none;
+    filter: none;
   }
 }
