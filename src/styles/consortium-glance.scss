@@ -101,12 +101,13 @@
 
   padding: 32px;
 
-  background:
-    radial-gradient(circle at 80% 20%, tokens.$cyan-soft, transparent 48%),
-    tokens.$panel;
+  background: radial-gradient(circle at 80% 20%, tokens.$cyan-soft, transparent 48%), tokens.$panel;
 
   border: 1px solid tokens.$line-strong;
   border-radius: tokens.$radius-default;
+
+  color: inherit;
+  text-decoration: none;
 
   transform: translateY(0);
 
@@ -117,9 +118,8 @@
     box-shadow 0.3s ease;
 
   &:hover {
-    background:
-      radial-gradient(circle at 80% 20%, rgba(tokens.$cyan, 0.12), transparent 52%),
-      tokens.$panel2;
+    background: radial-gradient(circle at 80% 20%, rgba(tokens.$cyan, 0.12), transparent 52%), tokens.$panel2;
+
     border-color: tokens.$line-strong;
 
     transform: translateY(-6px);
@@ -127,6 +127,11 @@
     box-shadow:
       0 22px 52px rgba(0, 0, 0, 0.34),
       0 8px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$cyan;
+    outline-offset: 4px;
   }
 
   h3 {
@@ -229,6 +234,9 @@
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-small;
 
+  color: inherit;
+  text-decoration: none;
+
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
@@ -243,6 +251,11 @@
     box-shadow:
       0 22px 52px rgba(0, 0, 0, 0.34),
       0 8px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$cyan;
+    outline-offset: 3px;
   }
 }
 
@@ -287,12 +300,14 @@
 .partner-logo--kemea {
   max-width: 112%;
   max-height: 74px;
+
   transform: scale(1.12);
 }
 
 .partner-logo--lares {
   max-width: 100%;
   max-height: 72px;
+
   transform: scale(1.18);
 }
 
