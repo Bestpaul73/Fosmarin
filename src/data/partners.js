@@ -20,6 +20,7 @@ export const partners = [
     country: 'Austria',
     countryCode: 'AT',
     logo: aitLogo,
+    website: 'https://www.ait.ac.at/',
     coordinator: true,
   },
   {
@@ -29,6 +30,7 @@ export const partners = [
     country: 'Austria',
     countryCode: 'AT',
     logo: melcanoLogo,
+    website: 'https://melcano.at/',
     logoClass: 'partner-logo--melcano',
   },
   {
@@ -38,6 +40,7 @@ export const partners = [
     country: 'United Kingdom',
     countryCode: 'UK',
     logo: sintelaLogo,
+    website: 'https://sintela.com/',
   },
   {
     name: 'ADDITESS',
@@ -46,6 +49,7 @@ export const partners = [
     country: 'Cyprus',
     countryCode: 'CY',
     logo: additessLogo,
+    website: 'https://additess.com/',
   },
   {
     name: 'FORTH',
@@ -54,6 +58,7 @@ export const partners = [
     country: 'Greece',
     countryCode: 'EL',
     logo: forthLogo,
+    website: 'https://www.forth.gr/',
   },
   {
     name: 'PLOCAN',
@@ -63,6 +68,7 @@ export const partners = [
     country: 'Spain',
     countryCode: 'ES',
     logo: plocanLogo,
+    website: 'https://plocan.eu/',
   },
   {
     name: 'NBG',
@@ -71,6 +77,7 @@ export const partners = [
     country: 'Austria',
     countryCode: 'AT',
     logo: nbgLogo,
+    website: 'https://www.nbg.tech/',
   },
   {
     name: 'KEMEA',
@@ -79,6 +86,7 @@ export const partners = [
     country: 'Greece',
     countryCode: 'EL',
     logo: kemeaLogo,
+    website: 'https://kemea.gr/',
     logoClass: 'partner-logo--kemea',
   },
   {
@@ -88,6 +96,7 @@ export const partners = [
     country: 'Spain',
     countryCode: 'ES',
     logo: canalinkLogo,
+    website: 'https://www.canalink.tel/',
   },
   {
     name: 'LARES ITALIA',
@@ -96,6 +105,7 @@ export const partners = [
     country: 'Italy',
     countryCode: 'IT',
     logo: laresLogo,
+    website: 'https://www.uniprotezionecivile.it/',
     logoClass: 'partner-logo--lares',
   },
   {
@@ -105,6 +115,7 @@ export const partners = [
     country: 'Denmark',
     countryCode: 'DK',
     logo: globalConnectLogo,
+    website: 'https://globalconnectgroup.com/our-network/',
   },
   {
     name: 'GRNET',
@@ -113,6 +124,7 @@ export const partners = [
     country: 'Greece',
     countryCode: 'EL',
     logo: grnetLogo,
+    website: 'https://grnet.gr/',
   },
   {
     name: 'SHEFA',
@@ -121,6 +133,7 @@ export const partners = [
     country: 'Faroe Islands',
     countryCode: 'FO',
     logo: shefaLogo,
+    website: 'https://www.shefa.fo/',
   },
 ];
 
