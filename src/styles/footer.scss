@@ -1,10 +1,17 @@
 @use './tokens' as tokens;
 
 .footer {
+  position: relative;
+
   width: 100%;
-  background-color: tokens.$footer;
+
+  background-color: rgba(4, 16, 28, 0.62);
   color: tokens.$foam;
-  border-top: 1px solid tokens.$line;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .footer-inner {
@@ -19,6 +26,7 @@
   gap: 40px;
 
   padding-bottom: 48px;
+
   border-bottom: 1px solid tokens.$line;
 }
 
@@ -41,8 +49,10 @@
 
     &:focus-visible {
       color: tokens.$cyan;
+
       outline: 2px solid tokens.$cyan;
       outline-offset: 4px;
+
       border-radius: 2px;
     }
   }
@@ -51,14 +61,14 @@
 .footer-heading {
   margin: 0 0 8px;
 
+  color: tokens.$mist-dim;
+
   font-family: tokens.$font-mono, monospace;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-
-  color: tokens.$mist-dim;
 }
 
 .footer-socials {
@@ -84,8 +94,10 @@
 
   img {
     display: block;
+
     width: 220px;
     height: auto;
+
     border-radius: tokens.$radius-small;
   }
 }
@@ -97,6 +109,7 @@
     margin: 0;
 
     color: tokens.$mist-dim;
+
     font-size: 13px;
     line-height: 1.6;
 
@@ -123,6 +136,7 @@
     margin: 0;
 
     color: tokens.$mist-dim;
+
     font-family: tokens.$font-mono, monospace;
     font-size: 12px;
     line-height: 1.5;

@@ -38,30 +38,34 @@ function HeroVisual() {
         <defs>
           <linearGradient id='hero-sea' x1='0' y1='0' x2='0' y2='1'>
             <stop offset='0%' stopColor='var(--hero-sea-top)' />
+
             <stop offset='55%' stopColor='var(--hero-deep)' />
+
             <stop offset='100%' stopColor='var(--hero-abyss)' />
           </linearGradient>
 
           <linearGradient id='hero-floor' x1='0' y1='0' x2='0' y2='1'>
             <stop offset='0%' stopColor='var(--hero-floor-top)' />
+
             <stop offset='100%' stopColor='var(--hero-floor-bottom)' />
           </linearGradient>
 
           <radialGradient id='hero-pulse-glow' cx='50%' cy='50%' r='50%'>
             <stop offset='0%' stopColor='var(--hero-cyan)' stopOpacity='0.95' />
+
             <stop offset='100%' stopColor='var(--hero-cyan)' stopOpacity='0' />
           </radialGradient>
 
           <clipPath id='hero-surface-clip'>
-            <rect x='0' y='0' width='640' height='160' />
+            <rect x='0' y='0' width='640' height='210' />
           </clipPath>
         </defs>
 
         {/* Water */}
-        <rect width='640' height='560' fill='url(#hero-sea)' />
+        <rect width='640' height='560' fill='url(#hero-sea)' fillOpacity='0.84' />
 
-        {/* Animated surface */}
-        <g clipPath='url(#hero-surface-clip)' aria-hidden='true'>
+        {/* Animated surface — 50px below original position */}
+        <g transform='translate(0,50)' clipPath='url(#hero-surface-clip)' aria-hidden='true'>
           {/* Upper wave */}
           <g opacity='0.98'>
             <path
@@ -127,8 +131,8 @@ function HeroVisual() {
           </g>
         </g>
 
-        {/* Ship */}
-        <g transform='translate(280,76)'>
+        {/* Ship — 50px below original position */}
+        <g transform='translate(280,126)'>
           <g>
             <animateTransform
               attributeName='transform'
@@ -198,18 +202,27 @@ function HeroVisual() {
               {/* Containers */}
               <g fill='var(--hero-panel2)' stroke='var(--hero-cyan)' strokeWidth='1.1'>
                 <rect x='98' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='130' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='162' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='194' y='16' width='30' height='10' rx='1.5' />
 
                 <rect x='98' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='130' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='162' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='194' y='28' width='30' height='10' rx='1.5' />
 
                 <rect x='98' y='40' width='30' height='8' rx='1.5' />
+
                 <rect x='130' y='40' width='30' height='8' rx='1.5' />
+
                 <rect x='162' y='40' width='30' height='8' rx='1.5' />
+
                 <rect x='194' y='40' width='30' height='8' rx='1.5' />
               </g>
 
@@ -219,11 +232,10 @@ function HeroVisual() {
           </g>
         </g>
 
-        {/* Anchor chain */}
+        {/* Anchor chain — smooth curve, attached to hawse hole */}
         <path
-          d='M391.94,72.31
-             C385,140 355,207 320,264
-             C282,323 238,370 195,384'
+          d='M391.94,122.31
+             C378,215 315,338 195,384'
           fill='none'
           stroke='var(--hero-coral)'
           strokeWidth='2'
@@ -234,17 +246,14 @@ function HeroVisual() {
           <animate
             attributeName='d'
             values='
-              M391.94,72.31
-              C385,140 355,207 320,264
-              C282,323 238,370 195,384;
+              M391.94,122.31
+              C378,215 315,338 195,384;
 
-              M391.86,81.69
-              C383,145 354,212 326,264
-              C294,325 255,375 201,388;
+              M391.86,131.69
+              C376,224 323,344 201,388;
 
-              M391.94,72.31
-              C385,140 355,207 320,264
-              C282,323 238,370 195,384
+              M391.94,122.31
+              C378,215 315,338 195,384
             '
             keyTimes='0; 0.5; 1'
             dur='4.2s'
@@ -264,6 +273,7 @@ function HeroVisual() {
              L0,560
              Z'
           fill='url(#hero-floor)'
+          fillOpacity='0.9'
         />
 
         <path
@@ -365,12 +375,19 @@ function HeroVisual() {
         {/* FOAS sensing points */}
         <g className='hero-sensors'>
           <circle cx='70' cy='429' r='2.4' />
+
           <circle cx='150' cy='438' r='2.4' />
+
           <circle cx='230' cy='431' r='2.4' />
+
           <circle cx='310' cy='415' r='2.4' />
+
           <circle className='hero-sensor hero-sensor--alert' cx='390' cy='429' r='2.8' />
+
           <circle cx='450' cy='420' r='2.4' />
+
           <circle className='hero-sensor hero-sensor--warning' cx='530' cy='410' r='2.8' />
+
           <circle cx='600' cy='415' r='2.4' />
         </g>
 

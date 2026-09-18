@@ -13,9 +13,30 @@ body {
 }
 
 body {
+  position: relative;
+
   background-color: tokens.$abyss;
+
   color: tokens.$foam;
   font-family: tokens.$font-body, sans-serif;
+}
+
+body::before {
+  content: '';
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 0;
+
+  background-image: url('./assets/sea-background.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  opacity: 0.65;
+
+  pointer-events: none;
 }
 
 h1,
@@ -26,6 +47,9 @@ h4 {
 }
 
 #root {
+  position: relative;
+  z-index: 1;
+
   min-height: 100vh;
 }
 
