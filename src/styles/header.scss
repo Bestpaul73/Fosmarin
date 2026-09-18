@@ -9,11 +9,11 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
   width: 100%;
 
-  background-color: rgba(6, 21, 36, 0.94);
-  border-bottom: 1px solid tokens.$line;
+  background-color: rgba(6, 21, 36, 0.58);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .header-inner {
@@ -152,10 +152,13 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
   padding: 8px 0;
 
-  background-color: tokens.$deep;
+  background-color: rgba(8, 30, 48, 0.92);
 
-  border: 1px solid tokens.$line-strong;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: tokens.$radius-small;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.28),
@@ -179,7 +182,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
     &:hover {
       color: tokens.$foam;
-      background-color: tokens.$panel;
+      background-color: rgba(18, 48, 74, 0.78);
     }
   }
 }
@@ -213,7 +216,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
   font-weight: 500;
   line-height: 1;
 
-  background-color: transparent;
+  background-color: rgba(8, 30, 48, 0.34);
 
   border: 1px solid tokens.$line-strong;
   border-radius: tokens.$radius-small;
@@ -228,7 +231,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
   &:hover,
   &.open {
     color: tokens.$foam;
-    background-color: tokens.$panel;
+    background-color: rgba(18, 48, 74, 0.68);
     border-color: tokens.$cyan;
   }
 
@@ -276,10 +279,13 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
   padding: 6px;
 
-  background-color: tokens.$deep;
+  background-color: rgba(8, 30, 48, 0.92);
 
-  border: 1px solid tokens.$line-strong;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: tokens.$radius-small;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.28),
@@ -316,7 +322,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
   &:hover,
   &:focus {
     color: tokens.$foam;
-    background-color: tokens.$panel;
+    background-color: rgba(18, 48, 74, 0.78);
   }
 
   &:focus-visible {
@@ -491,8 +497,11 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
     max-height: calc(100vh - 70px);
     overflow-y: auto;
 
-    background-color: tokens.$abyss;
+    background-color: rgba(6, 21, 36, 0.88);
     border-top: 1px solid tokens.$line;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
 
@@ -562,13 +571,15 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
     padding: 4px 0 10px;
 
-    background-color: tokens.$deep;
+    background-color: rgba(8, 30, 48, 0.88);
 
     border: none;
     border-top: 1px solid tokens.$line;
     border-radius: 0;
 
     box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 
     a {
       padding: 10px 40px;
@@ -579,7 +590,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
       &:hover {
         color: tokens.$foam;
-        background-color: tokens.$panel;
+        background-color: rgba(18, 48, 74, 0.78);
       }
     }
   }
