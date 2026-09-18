@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { navigation } from './data/navigation';
 
 import { LanguageProvider } from './i18n/LanguageContext';
+import { languages } from './i18n/languages';
 
 import MainLayout from './layouts/MainLayout';
 
@@ -46,7 +47,7 @@ const customPagePaths = new Set([
 
 const genericPages = navigation.filter((page) => !customPagePaths.has(page.path));
 
-const languagePrefixes = ['', '/de', '/es'];
+const languagePrefixes = languages.map((language) => language.prefix);
 
 function createPath(prefix, path) {
   if (path === '/') {

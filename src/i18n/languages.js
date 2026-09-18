@@ -17,6 +17,30 @@ export const languages = [
     name: 'Español',
     prefix: '/es',
   },
+  {
+    code: 'da',
+    label: 'DA',
+    name: 'Dansk',
+    prefix: '/da',
+  },
+  {
+    code: 'sv',
+    label: 'SV',
+    name: 'Svenska',
+    prefix: '/sv',
+  },
+  {
+    code: 'el',
+    label: 'EL',
+    name: 'Ελληνικά',
+    prefix: '/el',
+  },
+  {
+    code: 'it',
+    label: 'IT',
+    name: 'Italiano',
+    prefix: '/it',
+  },
 ];
 
 export const defaultLanguage = 'en';

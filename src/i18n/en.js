@@ -155,7 +155,7 @@ const en = {
       titleEmphasis: 'hear',
 
       titleAfter:
-        ' everything above it.',
+        ' everything around it.',
 
       lead:
         'FOSMARIN turns existing subsea fibre-optic cables into thousands of virtual underwater listening points — using Fibre Optic Acoustic Sensing (FOAS) and predictive analytics to detect vessel movements, anchor threats, seismic activity and other critical events along the cable route.',
@@ -1151,7 +1151,7 @@ const en = {
           "title": "System integration",
           "roles": [
             "System Integration",
-            "System Integrator"
+            "Systems Integrator"
           ]
         },
         {
@@ -1225,7 +1225,7 @@ const en = {
       "Technology Provider": "Technology Provider",
       "Industry Partner": "Industry Partner",
       "System Integration": "System Integration",
-      "System Integrator": "System Integrator",
+      "Systems Integrator": "Systems Integrator",
       "Research Partner": "Research Partner",
       "Operator, Research Partner": "Operator, Research Partner",
       "Operator": "Operator",

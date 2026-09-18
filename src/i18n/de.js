@@ -1181,7 +1181,7 @@ const de = {
           "title": "Systemintegration",
           "roles": [
             "System Integration",
-            "System Integrator"
+            "Systems Integrator"
           ]
         },
         {
@@ -1255,7 +1255,7 @@ const de = {
       "Technology Provider": "Technologieanbieter",
       "Industry Partner": "Industriepartner",
       "System Integration": "Systemintegration",
-      "System Integrator": "Systemintegrator",
+      "Systems Integrator": "Systemintegrator",
       "Research Partner": "Forschungspartner",
       "Operator, Research Partner": "Betreiber, Forschungspartner",
       "Operator": "Betreiber",

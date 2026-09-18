@@ -45,7 +45,7 @@ export const partners = [
   {
     name: 'ADDITESS',
     legalName: 'Additess Advanced Integrated Technology Solutions & Services Ltd.',
-    role: 'System Integrator',
+    role: 'Systems Integrator',
     country: 'Cyprus',
     countryCode: 'CY',
     logo: additessLogo,

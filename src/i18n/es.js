@@ -1207,7 +1207,7 @@ const es = {
           "title": "Integración de sistemas",
           "roles": [
             "System Integration",
-            "System Integrator"
+            "Systems Integrator"
           ]
         },
         {
@@ -1281,7 +1281,7 @@ const es = {
       "Technology Provider": "Proveedor tecnológico",
       "Industry Partner": "Socio industrial",
       "System Integration": "Integración de sistemas",
-      "System Integrator": "Integrador de sistemas",
+      "Systems Integrator": "Integrador de sistemas",
       "Research Partner": "Socio de investigación",
       "Operator, Research Partner": "Operador, socio de investigación",
       "Operator": "Operador",
