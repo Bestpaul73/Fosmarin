@@ -15,6 +15,7 @@
   --hero-floor-bottom: #081d2e;
 
   --hero-surface-line: rgba(238, 247, 246, 0.12);
+
   --hero-floor-line: rgba(148, 182, 204, 0.15);
 
   --hero-cable-outer: #12435f;
@@ -33,18 +34,26 @@
 .hero-inner {
   width: 100%;
   max-width: tokens.$container-max-width;
+
   margin: 0 auto;
+
   padding: 88px tokens.$container-padding 36px;
 
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+
+  grid-template-columns:
+    1.05fr
+    0.95fr;
+
   align-items: center;
+
   gap: 40px;
 }
 
 .hero-copy {
   position: relative;
   z-index: 2;
+
   min-width: 0;
 }
 
@@ -54,44 +63,56 @@
   color: tokens.$cyan;
 
   font-family: tokens.$font-mono, monospace;
+
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
+
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
 }
 
 .hero-title {
   max-width: 650px;
+
   margin: 0 0 22px;
 
   color: tokens.$foam;
 
   font-family: tokens.$font-display, sans-serif;
+
   font-size: clamp(2.6rem, 5vw, 3.6rem);
+
   font-weight: 600;
+
   line-height: 1.06;
+
   letter-spacing: -0.035em;
 
   em {
     color: tokens.$cyan;
+
     font-style: normal;
   }
 }
 
 .hero-lead {
   max-width: 590px;
+
   margin: 0 0 34px;
 
   color: tokens.$mist;
 
   font-size: 18px;
+
   line-height: 1.7;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+
   gap: 14px;
 
   margin-bottom: 44px;
@@ -99,19 +120,25 @@
 
 .hero-button {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
   min-height: 46px;
+
   padding: 0 20px;
 
   border: 1px solid tokens.$line-strong;
+
   border-radius: tokens.$radius-small;
 
   font-family: tokens.$font-mono, monospace;
+
   font-size: 13px;
   font-weight: 500;
+
   line-height: 1;
+
   text-decoration: none;
 
   transition:
@@ -127,6 +154,7 @@
 
   &:focus-visible {
     outline: 2px solid tokens.$cyan;
+
     outline-offset: 4px;
   }
 }
@@ -135,6 +163,7 @@
   color: #04211c;
 
   background-color: tokens.$cyan;
+
   border-color: tokens.$cyan;
 
   font-weight: 600;
@@ -143,6 +172,7 @@
     color: #04211c;
 
     background-color: #4ef2d1;
+
     border-color: #4ef2d1;
 
     box-shadow: 0 0 0 6px tokens.$cyan-soft;
@@ -151,21 +181,27 @@
 
 .hero-button--secondary {
   color: tokens.$foam;
+
   background-color: transparent;
 
   &:hover {
     color: tokens.$cyan;
+
     border-color: tokens.$cyan;
   }
 }
 
 .hero-stats {
   display: grid;
+
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+
   gap: 28px;
 
   max-width: 600px;
+
   margin: 0;
+
   padding: 22px 0 0;
 
   list-style: none;
@@ -175,15 +211,20 @@
 
 .hero-stat {
   display: flex;
+
   flex-direction: column;
+
   gap: 5px;
 
   strong {
     color: tokens.$foam;
 
     font-family: tokens.$font-display, sans-serif;
+
     font-size: 24px;
+
     font-weight: 600;
+
     line-height: 1.2;
   }
 
@@ -191,9 +232,13 @@
     color: tokens.$mist;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 11px;
+
     line-height: 1.45;
+
     letter-spacing: 0.06em;
+
     text-transform: uppercase;
   }
 }
@@ -215,6 +260,7 @@
   background: rgba(7, 26, 43, 0.16);
 
   border: 1px solid rgba(173, 216, 230, 0.1);
+
   border-radius: 20px;
 
   box-shadow:
@@ -222,6 +268,7 @@
     0 0 38px rgba(47, 230, 196, 0.025);
 
   backdrop-filter: blur(8px);
+
   -webkit-backdrop-filter: blur(8px);
 
   &::before {
@@ -279,14 +326,19 @@
   background-color: rgba(6, 21, 36, 0.62);
 
   border: 1px solid rgba(173, 216, 230, 0.14);
+
   border-radius: 8px;
 
   backdrop-filter: blur(6px);
+
   -webkit-backdrop-filter: blur(6px);
 
   font-family: tokens.$font-mono, monospace;
+
   font-size: 10px;
+
   line-height: 1.4;
+
   letter-spacing: 0.04em;
 }
 
@@ -345,27 +397,32 @@
   transform-box: fill-box;
   transform-origin: center;
 
-  animation: hero-alert-ring 2.4s ease-out infinite;
+  opacity: 0;
+
+  animation: hero-alert-ring 2.4s linear infinite;
+}
+
+.hero-alert-ring--coral {
+  filter: blur(0.7px) drop-shadow(0 0 8px rgba(255, 106, 92, 0.55)) drop-shadow(0 0 20px rgba(255, 106, 92, 0.22));
 }
 
 .hero-alert-ring--amber {
-  animation-delay: 0.5s;
+  filter: blur(0.7px) drop-shadow(0 0 8px rgba(246, 194, 68, 0.58)) drop-shadow(0 0 20px rgba(246, 194, 68, 0.24));
+
+  animation-delay: -1.2s;
 }
 
 @keyframes hero-alert-ring {
   0% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
+    opacity: 0.68;
 
-  70% {
-    opacity: 0;
-    transform: scale(4);
+    transform: scale(0.8);
   }
 
   100% {
     opacity: 0;
-    transform: scale(4);
+
+    transform: scale(6);
   }
 }
 
@@ -384,6 +441,7 @@
   0%,
   100% {
     opacity: 0.45;
+
     transform: scale(0.9);
 
     filter: drop-shadow(0 0 1px rgba(246, 194, 68, 0.2));
@@ -391,6 +449,7 @@
 
   50% {
     opacity: 1;
+
     transform: scale(1.12);
 
     filter: drop-shadow(0 0 5px rgba(246, 194, 68, 0.85)) drop-shadow(0 0 10px rgba(246, 194, 68, 0.35));
@@ -462,6 +521,7 @@
 
   .hero-visual {
     width: min(90%, 430px);
+
     max-width: 430px;
 
     margin: 0 auto;
@@ -478,22 +538,29 @@
 
   .hero-eyebrow {
     max-width: 100%;
+
     margin-bottom: 18px;
 
     font-size: 10px;
+
     line-height: 1.55;
+
     letter-spacing: 0.11em;
 
     white-space: normal;
+
     overflow-wrap: anywhere;
   }
 
   .hero-title {
     max-width: 100%;
+
     margin-bottom: 20px;
 
     font-size: clamp(2.15rem, 10.8vw, 3rem);
+
     line-height: 1.02;
+
     letter-spacing: -0.03em;
 
     overflow-wrap: break-word;
@@ -501,15 +568,19 @@
 
   .hero-lead {
     max-width: 100%;
+
     margin-bottom: 28px;
 
     font-size: 16px;
+
     line-height: 1.6;
   }
 
   .hero-actions {
     display: grid;
+
     grid-template-columns: 1fr;
+
     gap: 12px;
 
     margin-bottom: 36px;
@@ -519,14 +590,17 @@
     width: 100%;
 
     min-height: 48px;
+
     padding: 0 18px;
   }
 
   .hero-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+
     gap: 20px 18px;
 
     max-width: 100%;
+
     padding-top: 20px;
   }
 
@@ -539,15 +613,18 @@
 
     span {
       font-size: 10px;
+
       letter-spacing: 0.04em;
     }
   }
 
   .hero-visual {
     width: min(94%, 390px);
+
     max-width: 390px;
 
     margin: 0 auto;
+
     padding: 6px;
 
     border-radius: 18px;
@@ -582,17 +659,25 @@
 
   .hero-sensors circle {
     opacity: 0.8;
+
     animation: none;
   }
 
   .hero-alert-ring {
     opacity: 0.45;
+
     animation: none;
+
+    transform: none;
+
+    filter: none;
   }
 
   .hero-seismic-marker {
     animation: none;
+
     transform: none;
+
     filter: none;
   }
 }
