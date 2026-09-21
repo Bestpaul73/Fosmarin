@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import { useLanguage } from '../i18n/LanguageContext';
-
 import Reveal from './Reveal';
+
+import { useLanguage } from '../i18n/LanguageContext';
 
 function HeroVisual() {
   const { translations } = useLanguage();
 
   const heroVisual = translations.home.heroVisual;
+
   const readoutMessages = heroVisual.readoutMessages;
 
   const [messageIndex, setMessageIndex] = useState(0);
-
-  useEffect(() => {
-    setMessageIndex(0);
-  }, [readoutMessages]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -24,7 +21,7 @@ function HeroVisual() {
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [readoutMessages]);
+  }, [readoutMessages.length]);
 
   return (
     <Reveal className='hero-visual'>
@@ -66,7 +63,7 @@ function HeroVisual() {
         {/* Water */}
         <rect width='640' height='560' fill='url(#hero-sea)' fillOpacity='0.84' />
 
-        {/* Animated surface — 50px below original position */}
+        {/* Animated surface */}
         <g transform='translate(0,50)' clipPath='url(#hero-surface-clip)' aria-hidden='true'>
           {/* Upper wave */}
           <g opacity='0.98'>
@@ -133,7 +130,7 @@ function HeroVisual() {
           </g>
         </g>
 
-        {/* Ship — 50px below original position */}
+        {/* Ship */}
         <g transform='translate(280,126)'>
           <g>
             <animateTransform
@@ -204,16 +201,27 @@ function HeroVisual() {
               {/* Containers */}
               <g fill='var(--hero-panel2)' stroke='var(--hero-cyan)' strokeWidth='1.1'>
                 <rect x='98' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='130' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='162' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='194' y='16' width='30' height='10' rx='1.5' />
+
                 <rect x='98' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='130' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='162' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='194' y='28' width='30' height='10' rx='1.5' />
+
                 <rect x='98' y='40' width='30' height='8' rx='1.5' />
+
                 <rect x='130' y='40' width='30' height='8' rx='1.5' />
+
                 <rect x='162' y='40' width='30' height='8' rx='1.5' />
+
                 <rect x='194' y='40' width='30' height='8' rx='1.5' />
               </g>
 
@@ -223,7 +231,7 @@ function HeroVisual() {
           </g>
         </g>
 
-        {/* Anchor chain — smooth curve, attached to hawse hole */}
+        {/* Anchor chain */}
         <path
           d='M391.94,122.31
              C378,215 315,338 195,384'
@@ -309,20 +317,22 @@ function HeroVisual() {
         </g>
 
         {/* Seismic activity */}
-        <g transform='translate(500,432)'>
-          <g className='hero-seismic-marker'>
-            <path
-              d='M-20,10
-                 L-6,-8
-                 L4,4
-                 L14,-14
-                 L26,6'
-              fill='none'
-              stroke='var(--hero-amber)'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
+        <g transform='translate(500,386)'>
+          <g transform='scale(2.4)'>
+            <g className='hero-seismic-marker'>
+              <path
+                d='M-20,10
+                   L-6,-8
+                   L4,4
+                   L14,-14
+                   L26,6'
+                fill='none'
+                stroke='var(--hero-amber)'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </g>
           </g>
         </g>
 
@@ -366,8 +376,11 @@ function HeroVisual() {
         {/* FOAS sensing points */}
         <g className='hero-sensors'>
           <circle cx='70' cy='429' r='2.4' />
+
           <circle cx='150' cy='438' r='2.4' />
+
           <circle cx='230' cy='431' r='2.4' />
+
           <circle cx='310' cy='415' r='2.4' />
 
           <circle className='hero-sensor hero-sensor--alert' cx='390' cy='429' r='2.8' />
@@ -387,18 +400,18 @@ function HeroVisual() {
           r='7'
           fill='none'
           stroke='var(--hero-coral)'
-          strokeWidth='1.4'
+          strokeWidth='1.9'
         />
 
         {/* Seismic detection ring */}
         <circle
           className='hero-alert-ring hero-alert-ring--amber'
           cx='500'
-          cy='432'
+          cy='386'
           r='7'
           fill='none'
           stroke='var(--hero-amber)'
-          strokeWidth='1.4'
+          strokeWidth='1.9'
         />
       </svg>
     </Reveal>
