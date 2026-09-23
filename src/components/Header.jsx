@@ -8,7 +8,10 @@ import { languages } from '../i18n/languages';
 
 import { useLanguage } from '../i18n/LanguageContext';
 
+import SiteSearch from './SiteSearch';
+
 import '../styles/header.scss';
+import '../styles/site-search.scss';
 
 import tokens from '../tokens/tokens.json';
 
@@ -45,6 +48,8 @@ function Header() {
 
   const [languageOpen, setLanguageOpen] = useState(false);
 
+  const [searchOpen, setSearchOpen] = useState(false);
+
   // Показываем keyboard-focus только
   // при работе клавиатурой.
   const [keyboardMode, setKeyboardMode] = useState(false);
@@ -55,6 +60,9 @@ function Header() {
 
   // Весь блок переключателя языка.
   const languageSelectorRef = useRef(null);
+
+  // Кнопка, открывающая поиск.
+  const searchButtonRef = useRef(null);
 
   // Кнопка, открывающая список языков.
   const languageButtonRef = useRef(null);
@@ -132,6 +140,7 @@ function Header() {
 
       if (event.key === 'Escape') {
         setOpenMenu(null);
+        setSearchOpen(false);
 
         menuOpenedByKeyboardRef.current = false;
       }
@@ -166,6 +175,19 @@ function Header() {
     setMobileOpen(false);
     setOpenMenu(null);
     setLanguageOpen(false);
+    setSearchOpen(false);
+  }
+
+  function toggleSearch() {
+    setOpenMenu(null);
+    setMobileOpen(false);
+    setLanguageOpen(false);
+
+    setSearchOpen((currentValue) => !currentValue);
+  }
+
+  function closeSearch() {
+    setSearchOpen(false);
   }
 
   function handleLogoClick() {
@@ -182,6 +204,7 @@ function Header() {
   function handleLanguageChange(nextLanguage) {
     setLanguageOpen(false);
     setMobileOpen(false);
+    setSearchOpen(false);
 
     switchLanguage(nextLanguage);
   }
@@ -275,6 +298,7 @@ function Header() {
       menuOpenedByKeyboardRef.current = false;
 
       setKeyboardMode(false);
+
       setOpenMenu(path);
     }
   }
@@ -493,6 +517,24 @@ function Header() {
           })}
         </nav>
 
+        <div className='search-control'>
+          <button
+            ref={searchButtonRef}
+            className={`search-trigger ${searchOpen ? 'open' : ''}`}
+            type='button'
+            aria-label='Search FOSMARIN'
+            aria-expanded={searchOpen}
+            aria-controls='site-search-panel'
+            onClick={toggleSearch}
+          >
+            <svg viewBox='0 0 24 24' aria-hidden='true'>
+              <circle cx='11' cy='11' r='6.5'></circle>
+
+              <path d='M16 16L21 21'></path>
+            </svg>
+          </button>
+        </div>
+
         <div ref={languageSelectorRef} className='language-selector'>
           <button
             ref={languageButtonRef}
@@ -541,6 +583,8 @@ function Header() {
           )}
         </div>
       </div>
+
+      <SiteSearch open={searchOpen} onClose={closeSearch} triggerRef={searchButtonRef} />
     </header>
   );
 }
