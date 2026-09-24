@@ -766,12 +766,12 @@ test('SEO: canonical points to the current localized page without query or hash'
   expect(new URL(href).hash).toBe('');
 });
 
-test('SEO: page exposes EN DE ES and x-default hreflang links', async ({ page }) => {
+test('SEO: page exposes all language and x-default hreflang links', async ({ page }) => {
   await page.goto('/es/about');
 
   const alternates = page.locator('link[rel="alternate"][hreflang]');
 
-  await expect(alternates).toHaveCount(4);
+  await expect(alternates).toHaveCount(8);
 
   const hrefs = await page.evaluate(() => {
     return Object.fromEntries(
@@ -787,6 +787,14 @@ test('SEO: page exposes EN DE ES and x-default hreflang links', async ({ page })
   expect(new URL(hrefs.de).pathname).toBe('/de/about');
 
   expect(new URL(hrefs.es).pathname).toBe('/es/about');
+
+  expect(new URL(hrefs.da).pathname).toBe('/da/about');
+
+  expect(new URL(hrefs.sv).pathname).toBe('/sv/about');
+
+  expect(new URL(hrefs.el).pathname).toBe('/el/about');
+
+  expect(new URL(hrefs.it).pathname).toBe('/it/about');
 
   expect(new URL(hrefs['x-default']).pathname).toBe('/about');
 });
@@ -910,145 +918,83 @@ for (const viewport of mobileViewports) {
         await page.waitForLoadState('networkidle');
 
         const result = await page.evaluate(() => {
-          const viewportWidth =
-            window.innerWidth;
+          const viewportWidth = window.innerWidth;
 
-          const root =
-            document.documentElement;
+          const root = document.documentElement;
 
-          const body =
-            document.body;
+          const body = document.body;
 
-          const elements = [
-            root,
-            body,
-            ...document.querySelectorAll(
-              'body *'
-            ),
-          ];
+          const elements = [root, body, ...document.querySelectorAll('body *')];
 
-          const overflowingElements =
-            elements
-              .map((element) => {
-                const rect =
-                  element.getBoundingClientRect();
+          const overflowingElements = elements
+            .map((element) => {
+              const rect = element.getBoundingClientRect();
 
-                const styles =
-                  window.getComputedStyle(
-                    element
-                  );
+              const styles = window.getComputedStyle(element);
 
-                return {
-                  tag:
-                    element.tagName.toLowerCase(),
+              return {
+                tag: element.tagName.toLowerCase(),
 
-                  id:
-                    element.id || '',
+                id: element.id || '',
 
-                  className:
-                    typeof element.className ===
-                    'string'
-                      ? element.className
-                      : '',
+                className: typeof element.className === 'string' ? element.className : '',
 
-                  text:
-                    element.textContent
-                      ?.trim()
-                      .replace(/\s+/g, ' ')
-                      .slice(0, 120) || '',
+                text: element.textContent?.trim().replace(/\s+/g, ' ').slice(0, 120) || '',
 
-                  left:
-                    Math.round(
-                      rect.left
-                    ),
+                left: Math.round(rect.left),
 
-                  right:
-                    Math.round(
-                      rect.right
-                    ),
+                right: Math.round(rect.right),
 
-                  width:
-                    Math.round(
-                      rect.width
-                    ),
+                width: Math.round(rect.width),
 
-                  scrollWidth:
-                    element.scrollWidth,
+                scrollWidth: element.scrollWidth,
 
-                  clientWidth:
-                    element.clientWidth,
+                clientWidth: element.clientWidth,
 
-                  whiteSpace:
-                    styles.whiteSpace,
+                whiteSpace: styles.whiteSpace,
 
-                  overflowX:
-                    styles.overflowX,
+                overflowX: styles.overflowX,
 
-                  minWidth:
-                    styles.minWidth,
+                minWidth: styles.minWidth,
 
-                  widthCss:
-                    styles.width,
-                };
-              })
-              .filter((item) => {
-                const exceedsRight =
-                  item.right >
-                  viewportWidth + 1;
+                widthCss: styles.width,
+              };
+            })
+            .filter((item) => {
+              const exceedsRight = item.right > viewportWidth + 1;
 
-                const exceedsLeft =
-                  item.left < -1;
+              const exceedsLeft = item.left < -1;
 
-                const hasInternalOverflow =
-                  item.scrollWidth >
-                  item.clientWidth + 1;
+              const hasInternalOverflow = item.scrollWidth > item.clientWidth + 1;
 
-                return (
-                  exceedsRight ||
-                  exceedsLeft ||
-                  hasInternalOverflow
-                );
-              })
-              .slice(0, 30);
+              return exceedsRight || exceedsLeft || hasInternalOverflow;
+            })
+            .slice(0, 30);
 
           return {
             viewportWidth,
 
-            documentScrollWidth:
-              root.scrollWidth,
+            documentScrollWidth: root.scrollWidth,
 
-            bodyScrollWidth:
-              body.scrollWidth,
+            bodyScrollWidth: body.scrollWidth,
 
             overflowingElements,
           };
         });
 
-        const debugInfo =
-          JSON.stringify(
-            {
-              path,
-              viewport:
-                viewport.name,
-              ...result,
-            },
-            null,
-            2
-          );
-
-        expect(
-          result.documentScrollWidth,
-          debugInfo
-        ).toBeLessThanOrEqual(
-          result.viewportWidth
+        const debugInfo = JSON.stringify(
+          {
+            path,
+            viewport: viewport.name,
+            ...result,
+          },
+          null,
+          2,
         );
 
-        expect(
-          result.bodyScrollWidth,
-          debugInfo
-        ).toBeLessThanOrEqual(
-          result.viewportWidth
-        );
+        expect(result.documentScrollWidth, debugInfo).toBeLessThanOrEqual(result.viewportWidth);
+
+        expect(result.bodyScrollWidth, debugInfo).toBeLessThanOrEqual(result.viewportWidth);
       });
     }
   });
