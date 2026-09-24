@@ -20,7 +20,7 @@ function AdvisoryBoard({ id }) {
 
         <div className='consortium-role-grid'>
           {advisoryBoardMembers.map((member, memberIndex) => (
-            <Reveal as='article' className='consortium-role-card' key={member.name}>
+            <Reveal as='article' id={`advisory-${member.slug}`} className='consortium-role-card' key={member.name}>
               <span>{String(memberIndex + 1).padStart(2, '0')}</span>
 
               <h3>{member.name}</h3>
