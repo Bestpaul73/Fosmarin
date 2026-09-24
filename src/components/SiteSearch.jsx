@@ -162,7 +162,6 @@ function SiteSearch({ open, onClose, triggerRef }) {
 
     return searchItems
       .filter((item) => item.searchText.includes(normalizedQuery))
-
       .sort((firstItem, secondItem) => {
         const firstTitle = normalizeText(firstItem.title);
 
@@ -190,7 +189,6 @@ function SiteSearch({ open, onClose, triggerRef }) {
 
         return firstItem.title.localeCompare(secondItem.title, language);
       })
-
       .slice(0, 10);
   }, [language, normalizedQuery, searchItems]);
 
@@ -250,8 +248,65 @@ function SiteSearch({ open, onClose, triggerRef }) {
     });
   }
 
-  function handleResultClick() {
+  function getTargetUrl(path) {
+    return new URL(path, window.location.origin);
+  }
+
+  function isCurrentTarget(path) {
+    const targetUrl = getTargetUrl(path);
+
+    return (
+      targetUrl.pathname === window.location.pathname &&
+      targetUrl.search === window.location.search &&
+      targetUrl.hash === window.location.hash
+    );
+  }
+
+  function repeatHashNavigation(path) {
+    const targetUrl = getTargetUrl(path);
+
+    if (!targetUrl.hash) {
+      return;
+    }
+
+    window.dispatchEvent(
+      new CustomEvent('fosmarin:hash-navigation', {
+        detail: {
+          hash: targetUrl.hash,
+        },
+      }),
+    );
+  }
+
+  function navigateToResult(path) {
+    if (isCurrentTarget(path)) {
+      repeatHashNavigation(path);
+
+      return;
+    }
+
+    navigate(path);
+  }
+
+  function handleResultClick(event, result) {
     onClose();
+
+    /*
+     * Обычный переход оставляем Link.
+     *
+     * Но если пользователь уже находится
+     * на точно таком же pathname + hash,
+     * React Router не создаст новое изменение
+     * location.
+     *
+     * В этом случае отменяем обычный Link
+     * и просим ScrollToHash повторить переход.
+     */
+    if (isCurrentTarget(result.path)) {
+      event.preventDefault();
+
+      repeatHashNavigation(result.path);
+    }
   }
 
   function handleInputKeyDown(event) {
@@ -298,7 +353,7 @@ function SiteSearch({ open, onClose, triggerRef }) {
 
       onClose();
 
-      navigate(activeResult.path);
+      navigateToResult(activeResult.path);
     }
   }
 
@@ -359,7 +414,7 @@ function SiteSearch({ open, onClose, triggerRef }) {
                       id={`site-search-result-${resultIndex}`}
                       className={`site-search-result${isActive ? ' site-search-result--active' : ''}`}
                       to={result.path}
-                      onClick={handleResultClick}
+                      onClick={(event) => handleResultClick(event, result)}
                       onMouseEnter={() => setActiveIndex(resultIndex)}
                     >
                       <span className='site-search-result-type'>

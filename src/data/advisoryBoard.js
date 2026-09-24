@@ -1,6 +1,7 @@
 export const advisoryBoardMembers = [
   {
     name: 'Prof. Konstantinos Karantzalos',
+    slug: 'konstantinos-karantzalos',
     roles: [
       {
         jobTitle: 'Secretary General',
@@ -12,6 +13,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Aristofanis Stefatos',
+    slug: 'aristofanis-stefatos',
     roles: [
       {
         jobTitle: 'CEO',
@@ -23,6 +25,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Johanna Karvonen',
+    slug: 'johanna-karvonen',
     roles: [
       {
         jobTitle: 'Project Coordinator',
@@ -39,6 +42,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Valey Kamalov',
+    slug: 'valey-kamalov',
     roles: [
       {
         jobTitle: 'Consultant, Global fibre optic sensing expert',
@@ -65,6 +69,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Byron Skaftouros',
+    slug: 'byron-skaftouros',
     roles: [
       {
         jobTitle: 'Managing Director',
@@ -76,6 +81,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Tine Larsen',
+    slug: 'tine-larsen',
     roles: [
       {
         jobTitle: 'Senior Seismologist',
@@ -87,6 +93,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Enno Peters',
+    slug: 'enno-peters',
     roles: [
       {
         jobTitle: 'Group Leader',
@@ -98,6 +105,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Ioannis Moraitis',
+    slug: 'ioannis-moraitis',
     roles: [
       {
         jobTitle: 'Director, Research, Technology & Development',
@@ -109,6 +117,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Esther Garcés',
+    slug: 'esther-garces',
     roles: [
       {
         jobTitle: 'CEO',
@@ -120,6 +129,7 @@ export const advisoryBoardMembers = [
 
   {
     name: 'Steinar Bjornstad',
+    slug: 'steinar-bjornstad',
     roles: [
       {
         jobTitle: 'Research Manager',

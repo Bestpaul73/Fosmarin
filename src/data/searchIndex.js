@@ -131,7 +131,7 @@ function getSectionContent(pagePath, sectionId, translations) {
 
         'roles-and-contributions': translations.consortium?.roles,
 
-        'advisory-board': [translations.consortium?.advisory, advisoryBoardMembers],
+        'advisory-board': translations.consortium?.advisory,
 
         'authorities-and-stakeholders': translations.consortium?.stakeholders,
       };
@@ -282,8 +282,31 @@ export function getResultSnippets(item, normalizedQuery, maxSnippets = 3) {
   return snippets;
 }
 
+function buildAdvisoryMemberItems(translations, getLocalizedPath) {
+  const pageTitle = translations.navigation?.['/consortium']?.title ?? 'Consortium';
+
+  const advisoryTitle =
+    translations.navigation?.['/consortium']?.sections?.['advisory-board'] ?? 'Expert Advisory Board';
+
+  return advisoryBoardMembers.map((member) => ({
+    id: `advisory-member-${member.slug}`,
+
+    type: 'section',
+
+    title: member.name,
+
+    parentTitle: `${advisoryTitle} · ${pageTitle}`,
+
+    path: getLocalizedPath(`/consortium#advisory-${member.slug}`),
+
+    searchText: createSearchText(member.name, member.roles),
+
+    searchFragments: createSearchFragments(member.roles),
+  }));
+}
+
 export function buildSearchItems(translations, getLocalizedPath) {
-  return navigation.flatMap((page) => {
+  const navigationItems = navigation.flatMap((page) => {
     const translatedPage = translations.navigation?.[page.path];
 
     const pageTitle = translatedPage?.title ?? page.title;
@@ -292,9 +315,13 @@ export function buildSearchItems(translations, getLocalizedPath) {
 
     const pageItem = {
       id: `page-${page.path}`,
+
       type: 'page',
+
       title: pageTitle,
+
       parentTitle: '',
+
       path: getLocalizedPath(page.path),
 
       searchText: createSearchText(pageTitle, pageContent),
@@ -326,4 +353,8 @@ export function buildSearchItems(translations, getLocalizedPath) {
 
     return [pageItem, ...sectionItems];
   });
+
+  const advisoryMemberItems = buildAdvisoryMemberItems(translations, getLocalizedPath);
+
+  return [...navigationItems, ...advisoryMemberItems];
 }
