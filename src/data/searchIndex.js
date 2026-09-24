@@ -1,3 +1,4 @@
+import { advisoryBoardMembers } from './advisoryBoard';
 import { navigation } from './navigation';
 
 export function normalizeText(value = '') {
@@ -130,7 +131,7 @@ function getSectionContent(pagePath, sectionId, translations) {
 
         'roles-and-contributions': translations.consortium?.roles,
 
-        'advisory-board': translations.consortium?.advisory,
+        'advisory-board': [translations.consortium?.advisory, advisoryBoardMembers],
 
         'authorities-and-stakeholders': translations.consortium?.stakeholders,
       };
