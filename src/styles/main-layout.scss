@@ -1,3 +1,5 @@
+@use './tokens' as tokens;
+
 .site-layout {
   min-height: 100vh;
 
@@ -7,4 +9,135 @@
 
 .site-main {
   flex: 1;
+
+  /*
+   * Прозрачность крупных секций сайта.
+   *
+   * Более высокая специфичность:
+   *
+   * .site-main .project-overview
+   *
+   * позволяет этим правилам переопределять
+   * фон из отдельных SCSS-файлов страниц
+   * независимо от порядка подключения CSS.
+   */
+
+  .page-hero {
+    background:
+      radial-gradient(circle at 78% 18%, rgba(tokens.$cyan, 0.08), transparent 34%), rgba(tokens.$abyss, 0.72);
+  }
+
+  /*
+   * ABOUT
+   */
+
+  .project-overview,
+  .project-impact,
+  .eu-funding,
+  .why-it-matters {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .mission-vision,
+  .project-objectives,
+  .how-it-works,
+  .simple-words {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * CHALLENGE
+   */
+
+  .challenge-threats,
+  .challenge-action,
+  .challenge-cost {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .challenge-gaps,
+  .challenge-policy {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * USE CASES
+   */
+
+  .use-case-section {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .use-case-section--reverse {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * TECHNOLOGY
+   */
+
+  .technology-dark-fibre,
+  .technology-predictive,
+  .technology-processing {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .technology-multi,
+  .technology-architecture,
+  .technology-integration {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * CONSORTIUM
+   */
+
+  .consortium-partners,
+  .consortium-roles,
+  .consortium-advisory {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .consortium-glance,
+  .consortium-map,
+  .consortium-stakeholders {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * CONTACT
+   */
+
+  .contact-form-section,
+  .contact-social-section {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .contact-details-section {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * NEWS
+   */
+
+  .news-section {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .news-events {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
+
+  /*
+   * RESOURCES
+   */
+
+  .resources-section {
+    background-color: rgba(tokens.$abyss, 0.72);
+  }
+
+  .resources-presentations {
+    background-color: rgba(tokens.$deep, 0.68);
+  }
 }
