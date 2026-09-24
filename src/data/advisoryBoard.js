@@ -11,22 +11,6 @@ export const advisoryBoardMembers = [
   },
 
   {
-    name: 'Johanna Karvonen',
-    roles: [
-      {
-        jobTitle: 'Project Coordinator',
-        institution: 'VIGIMARE project',
-        country: 'EU',
-      },
-      {
-        jobTitle: 'RDI Specialist in Security Research',
-        institution: 'Laurea University of Applied Sciences',
-        country: 'Italy',
-      },
-    ],
-  },
-
-  {
     name: 'Aristofanis Stefatos',
     roles: [
       {
@@ -38,23 +22,17 @@ export const advisoryBoardMembers = [
   },
 
   {
-    name: 'Byron Skaftouros',
+    name: 'Johanna Karvonen',
     roles: [
       {
-        jobTitle: 'Managing Director',
-        institution: 'Power Sub Link (PSL S.A.)',
-        country: 'Greece',
+        jobTitle: 'Project Coordinator',
+        institution: 'VIGIMARE project',
+        country: 'EU',
       },
-    ],
-  },
-
-  {
-    name: 'Tine Larsen',
-    roles: [
       {
-        jobTitle: 'Senior Seismologist',
-        institution: 'Geological Survey of Denmark and Greenland (GEUS)',
-        country: 'Denmark',
+        jobTitle: 'RDI Specialist in Security Research',
+        institution: 'Laurea University of Applied Sciences',
+        country: 'Italy',
       },
     ],
   },
@@ -81,6 +59,28 @@ export const advisoryBoardMembers = [
         jobTitle: 'Member of a Working Group',
         institution: 'SubOptic Association',
         country: 'International',
+      },
+    ],
+  },
+
+  {
+    name: 'Byron Skaftouros',
+    roles: [
+      {
+        jobTitle: 'Managing Director',
+        institution: 'Power Sub Link (PSL S.A.)',
+        country: 'Greece',
+      },
+    ],
+  },
+
+  {
+    name: 'Tine Larsen',
+    roles: [
+      {
+        jobTitle: 'Senior Seismologist',
+        institution: 'Geological Survey of Denmark and Greenland (GEUS)',
+        country: 'Denmark',
       },
     ],
   },

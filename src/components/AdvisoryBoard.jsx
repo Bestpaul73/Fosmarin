@@ -32,6 +32,7 @@ function AdvisoryBoard({ id }) {
 
                     <small>
                       {role.institution}
+
                       {role.country && ` · ${role.country}`}
                     </small>
                   </li>
