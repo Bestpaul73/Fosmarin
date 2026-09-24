@@ -97,9 +97,11 @@
   background-color: tokens.$abyss;
 
   border: 1px solid rgba(tokens.$cyan, 0.3);
+
   border-radius: tokens.$radius-small;
 
   font-family: tokens.$font-mono, monospace;
+
   font-size: 9px;
   line-height: 1.4;
   letter-spacing: 0.07em;
@@ -159,6 +161,7 @@
     color: tokens.$mist-dim;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 10px;
     line-height: 1.4;
     text-transform: uppercase;
@@ -178,6 +181,7 @@
     color: tokens.$foam;
 
     font-family: tokens.$font-display, sans-serif;
+
     font-size: 19px;
     font-weight: 600;
   }
@@ -188,6 +192,7 @@
     color: tokens.$cyan;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 10px;
   }
 }
@@ -214,6 +219,7 @@
 
 .partner-map-layout {
   display: grid;
+
   grid-template-columns:
     minmax(0, 1.45fr)
     minmax(300px, 0.55fr);
@@ -233,6 +239,7 @@
   background: radial-gradient(circle at 52% 52%, rgba(tokens.$cyan, 0.08), transparent 48%), tokens.$abyss;
 
   border: 1px solid tokens.$line-strong;
+
   border-radius: tokens.$radius-default;
 }
 
@@ -285,6 +292,7 @@
     color: tokens.$foam;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 11px;
     font-weight: 600;
     line-height: 1.2;
@@ -313,6 +321,7 @@
   background-color: rgba(tokens.$cyan, 0.08);
 
   border: 1px solid rgba(tokens.$cyan, 0.55);
+
   border-radius: 50%;
 
   box-shadow: 0 0 18px rgba(tokens.$cyan, 0.18);
@@ -343,10 +352,12 @@
     background-color: tokens.$panel;
 
     border: 1px solid tokens.$line;
+
     border-radius: tokens.$radius-small;
 
     > div {
       display: flex;
+
       justify-content: space-between;
 
       gap: 12px;
@@ -361,6 +372,7 @@
         color: tokens.$cyan;
 
         font-family: tokens.$font-mono, monospace;
+
         font-size: 10px;
       }
     }
@@ -380,6 +392,7 @@
 
 .consortium-role-grid {
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 18px;
@@ -393,6 +406,7 @@
   background-color: tokens.$deep;
 
   border: 1px solid tokens.$line;
+
   border-radius: tokens.$radius-default;
 
   transform: translateY(0);
@@ -407,6 +421,7 @@
     color: tokens.$cyan;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 10px;
   }
 
@@ -416,6 +431,7 @@
     color: tokens.$foam;
 
     font-family: tokens.$font-display, sans-serif;
+
     font-size: 21px;
     font-weight: 600;
   }
@@ -428,32 +444,44 @@
   }
 
   li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
 
-    gap: 16px;
+    grid-template-columns:
+      minmax(170px, 0.9fr)
+      minmax(0, 1.4fr);
 
-    padding: 13px 0;
+    align-items: start;
+
+    gap: 20px;
+
+    padding: 14px 0;
 
     border-top: 1px solid tokens.$line;
 
     strong {
+      min-width: 0;
+
       color: tokens.$foam;
 
       font-size: 13px;
+      line-height: 1.4;
     }
 
     small {
+      min-width: 0;
+
       color: tokens.$mist;
 
-      font-size: 11px;
+      font-size: 12px;
+      line-height: 1.5;
+
       text-align: right;
     }
   }
 
   &:hover {
     background-color: tokens.$panel;
+
     border-color: tokens.$line-strong;
 
     transform: translateY(-6px);
@@ -468,6 +496,7 @@
 
 .stakeholder-grid {
   display: grid;
+
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 18px;
@@ -481,6 +510,7 @@
   background-color: tokens.$panel;
 
   border: 1px solid tokens.$line;
+
   border-radius: tokens.$radius-default;
 
   transform: translateY(0);
@@ -495,6 +525,7 @@
     color: tokens.$cyan;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 10px;
     line-height: 1.4;
     letter-spacing: 0.08em;
@@ -525,11 +556,13 @@
     border-top: 1px solid tokens.$line;
 
     font-family: tokens.$font-mono, monospace;
+
     font-size: 10px;
   }
 
   &:hover {
     background-color: tokens.$panel2;
+
     border-color: tokens.$line-strong;
 
     transform: translateY(-6px);
@@ -542,6 +575,7 @@
 
 .stakeholder-flow {
   display: grid;
+
   grid-template-columns:
     1fr
     auto
@@ -559,6 +593,7 @@
   background-color: tokens.$abyss;
 
   border: 1px solid tokens.$line-strong;
+
   border-radius: tokens.$radius-default;
 
   div {
@@ -567,6 +602,7 @@
     background-color: tokens.$panel;
 
     border: 1px solid tokens.$line;
+
     border-radius: tokens.$radius-small;
 
     strong,
@@ -578,6 +614,7 @@
       color: tokens.$foam;
 
       font-family: tokens.$font-display, sans-serif;
+
       font-size: 16px;
     }
 
@@ -607,6 +644,16 @@
 
   .partner-map-layout {
     grid-template-columns: 1fr;
+  }
+
+  .consortium-role-card {
+    li {
+      grid-template-columns:
+        minmax(150px, 0.85fr)
+        minmax(0, 1.15fr);
+
+      gap: 16px;
+    }
   }
 
   .stakeholder-grid {
@@ -664,10 +711,9 @@
 
   .consortium-role-card {
     li {
-      align-items: flex-start;
-      flex-direction: column;
+      grid-template-columns: 1fr;
 
-      gap: 5px;
+      gap: 6px;
 
       small {
         text-align: left;
