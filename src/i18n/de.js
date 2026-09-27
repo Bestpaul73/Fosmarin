@@ -89,7 +89,7 @@ const de = {
         events: 'Veranstaltungen',
         'press-releases': 'Pressemitteilungen',
         'media-gallery': 'Mediengalerie',
-        webinars: 'Webinare',
+        workshops: 'Workshops',
       },
     },
 

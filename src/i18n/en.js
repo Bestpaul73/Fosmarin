@@ -77,7 +77,7 @@ const en = {
         events: 'Events',
         'press-releases': 'Press Releases',
         'media-gallery': 'Media Gallery',
-        webinars: 'Webinars',
+        workshops: 'Workshops',
       },
     },
 

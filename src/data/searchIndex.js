@@ -149,7 +149,7 @@ function getSectionContent(pagePath, sectionId, translations) {
 
         'media-gallery': translations.common?.underConstruction,
 
-        webinars: translations.common?.underConstruction,
+        workshops: translations.common?.underConstruction,
       };
 
       return sectionMap[sectionId];

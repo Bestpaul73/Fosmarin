@@ -64,7 +64,7 @@ const sv = {
         "events": "Evenemang",
         "press-releases": "Pressmeddelanden",
         "media-gallery": "Mediegalleri",
-        "webinars": "Webbinarier"
+        "workshops": "Workshoppar"
       }
     },
     "/resources": {

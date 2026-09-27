@@ -82,9 +82,6 @@ function Footer() {
 
             <div className='footer-socials'>
               <span>LinkedIn</span>
-
-              <span>X (Twitter)</span>
-
               <span>YouTube</span>
             </div>
           </div>

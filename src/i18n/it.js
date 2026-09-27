@@ -64,7 +64,7 @@ const it = {
         "events": "Eventi",
         "press-releases": "Comunicati stampa",
         "media-gallery": "Galleria multimediale",
-        "webinars": "Webinar"
+        "workshops": "Workshop"
       }
     },
     "/resources": {
