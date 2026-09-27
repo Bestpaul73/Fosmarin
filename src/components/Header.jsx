@@ -15,7 +15,11 @@ import '../styles/site-search.scss';
 
 import tokens from '../tokens/tokens.json';
 
-const BREAKPOINT_TABLET = tokens.breakpoints.tablet;
+const BREAKPOINT_STANDARD_HEADER = 1360;
+
+const BREAKPOINT_LONG_HEADER = 1520;
+
+const LONG_NAV_LANGUAGES = new Set(['de', 'el']);
 
 const BREAKPOINT_WIDE_TOUCH_HEADER = tokens.breakpoints.wideTouchHeader;
 
@@ -31,12 +35,16 @@ function getLayoutWidth() {
   return document.documentElement.clientWidth;
 }
 
-function usesDesktopNavigation() {
+function getDesktopHeaderBreakpoint(language) {
+  return LONG_NAV_LANGUAGES.has(language) ? BREAKPOINT_LONG_HEADER : BREAKPOINT_STANDARD_HEADER;
+}
+
+function usesDesktopNavigation(language) {
   if (usesTouchNavigation()) {
     return getLayoutWidth() >= BREAKPOINT_WIDE_TOUCH_HEADER;
   }
 
-  return getLayoutWidth() > BREAKPOINT_TABLET;
+  return getLayoutWidth() > getDesktopHeaderBreakpoint(language);
 }
 
 function Header() {
@@ -50,47 +58,31 @@ function Header() {
 
   const [searchOpen, setSearchOpen] = useState(false);
 
-  // Показываем keyboard-focus только
-  // при работе клавиатурой.
   const [keyboardMode, setKeyboardMode] = useState(false);
 
-  // Сам Header — чтобы определять
-  // клики за его пределами.
   const headerRef = useRef(null);
 
-  // Весь блок переключателя языка.
   const languageSelectorRef = useRef(null);
 
-  // Кнопка, открывающая поиск.
   const searchButtonRef = useRef(null);
 
-  // Кнопка, открывающая список языков.
   const languageButtonRef = useRef(null);
 
-  // Кнопки языков внутри dropdown.
   const languageOptionRefs = useRef({});
 
-  // Какой язык нужно сфокусировать
-  // после открытия dropdown.
   const languageToFocusRef = useRef(null);
 
-  // Первые ссылки каждого submenu —
-  // для переноса focus после ArrowDown.
   const firstSubmenuLinkRefs = useRef({});
 
-  // Submenu, куда нужно поставить focus
-  // после его открытия.
   const submenuToFocusRef = useRef(null);
 
-  // Основные ссылки меню —
-  // для возврата focus после Escape.
   const mainMenuLinkRefs = useRef({});
 
-  // Показывает, что текущее submenu
-  // открыто с клавиатуры.
   const menuOpenedByKeyboardRef = useRef(false);
 
   const currentLanguage = languages.find((item) => item.code === language) ?? languages[0];
+
+  const usesLongNavigationLayout = LONG_NAV_LANGUAGES.has(language);
 
   useEffect(() => {
     const path = submenuToFocusRef.current;
@@ -140,7 +132,6 @@ function Header() {
 
       if (event.key === 'Escape') {
         setOpenMenu(null);
-        setSearchOpen(false);
 
         menuOpenedByKeyboardRef.current = false;
       }
@@ -290,7 +281,7 @@ function Header() {
   }
 
   function openDesktopMenu(path) {
-    if (usesDesktopNavigation() && canUseHover()) {
+    if (usesDesktopNavigation(language) && canUseHover()) {
       if (menuOpenedByKeyboardRef.current && openMenu === path) {
         return;
       }
@@ -304,13 +295,13 @@ function Header() {
   }
 
   function closeDesktopMenu() {
-    if (usesDesktopNavigation() && canUseHover() && !menuOpenedByKeyboardRef.current) {
+    if (usesDesktopNavigation(language) && canUseHover() && !menuOpenedByKeyboardRef.current) {
       setOpenMenu(null);
     }
   }
 
   function closeDesktopMenuByKeyboard(event) {
-    if (!usesDesktopNavigation() || !menuOpenedByKeyboardRef.current) {
+    if (!usesDesktopNavigation(language) || !menuOpenedByKeyboardRef.current) {
       return;
     }
 
@@ -326,7 +317,7 @@ function Header() {
   }
 
   function handleMainLinkKeyDown(event, path) {
-    if (event.key !== 'ArrowDown' || !usesDesktopNavigation()) {
+    if (event.key !== 'ArrowDown' || !usesDesktopNavigation(language)) {
       return;
     }
 
@@ -344,7 +335,7 @@ function Header() {
   }
 
   function handleSubmenuKeyDown(event, path) {
-    if (!usesDesktopNavigation()) {
+    if (!usesDesktopNavigation(language)) {
       return;
     }
 
@@ -426,7 +417,10 @@ function Header() {
   }
 
   return (
-    <header ref={headerRef} className={`header ${keyboardMode ? 'keyboard-mode' : ''}`}>
+    <header
+      ref={headerRef}
+      className={`header ${usesLongNavigationLayout ? 'header--long-nav' : ''} ${keyboardMode ? 'keyboard-mode' : ''}`}
+    >
       <div className='header-inner'>
         <Link className='logo' to={getLocalizedPath('/')} onClick={handleLogoClick}>
           FOSMARIN

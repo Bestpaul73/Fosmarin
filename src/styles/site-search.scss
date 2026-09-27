@@ -1,13 +1,10 @@
 @use './tokens' as tokens;
 
-.search-control {
-  flex-shrink: 0;
-
-  margin-left: 12px;
-}
+$search-panel-medium-breakpoint: 1520px;
 
 .search-trigger {
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -38,7 +35,9 @@
     fill: none;
 
     stroke: currentColor;
+
     stroke-width: 1.7;
+
     stroke-linecap: round;
   }
 
@@ -66,7 +65,7 @@
   left: 0;
   right: 0;
 
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--header-height, 80px));
 }
 
 .site-search-backdrop {
@@ -137,6 +136,7 @@
 
   input {
     width: 100%;
+
     min-width: 0;
 
     padding: 18px 0;
@@ -385,23 +385,7 @@
   border: 0;
 }
 
-@media (max-width: tokens.$breakpoint-tablet) {
-  .search-control {
-    order: 2;
-
-    margin-left: auto;
-    margin-right: 6px;
-  }
-
-  .header .language-selector {
-    margin-left: 0;
-    margin-right: 8px;
-  }
-
-  .site-search-layer {
-    height: calc(100vh - 70px);
-  }
-
+@media (max-width: $search-panel-medium-breakpoint) {
   .site-search-panel {
     width: calc(100% - 32px);
 

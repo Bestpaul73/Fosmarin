@@ -1,10 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+const DESKTOP_VIEWPORT = {
+  width: 1600,
+  height: 1000,
+};
+
 //
 // HEADER — DESKTOP
 //
 
 test('desktop: hover opens submenu', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -26,6 +33,8 @@ test('desktop: hover opens submenu', async ({ page }) => {
 });
 
 test('desktop: mouse leave closes submenu', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -55,6 +64,8 @@ test('desktop: mouse leave closes submenu', async ({ page }) => {
 //
 
 test('keyboard: ArrowDown opens submenu and focuses first link', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -79,6 +90,8 @@ test('keyboard: ArrowDown opens submenu and focuses first link', async ({ page }
 });
 
 test('keyboard: ArrowDown and ArrowUp cycle through submenu', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -114,6 +127,8 @@ test('keyboard: ArrowDown and ArrowUp cycle through submenu', async ({ page }) =
 });
 
 test('keyboard: ArrowRight opens next submenu', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -139,6 +154,8 @@ test('keyboard: ArrowRight opens next submenu', async ({ page }) => {
 });
 
 test('keyboard: Escape closes submenu and returns focus', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -167,6 +184,8 @@ test('keyboard: Escape closes submenu and returns focus', async ({ page }) => {
 });
 
 test('keyboard: click outside closes submenu', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/');
 
   const nav = page.getByRole('navigation', {
@@ -198,9 +217,9 @@ test('keyboard: click outside closes submenu', async ({ page }) => {
 // HEADER — MOBILE / BREAKPOINT
 //
 
-test('1200px: burger is visible', async ({ page }) => {
+test('EN 1360px: burger is visible', async ({ page }) => {
   await page.setViewportSize({
-    width: 1200,
+    width: 1360,
     height: 800,
   });
 
@@ -215,9 +234,9 @@ test('1200px: burger is visible', async ({ page }) => {
   await expect(burger).toHaveAttribute('aria-controls', 'primary-navigation');
 });
 
-test('1201px: burger is hidden', async ({ page }) => {
+test('EN 1361px: burger is hidden', async ({ page }) => {
   await page.setViewportSize({
-    width: 1201,
+    width: 1361,
     height: 800,
   });
 
@@ -228,6 +247,50 @@ test('1201px: burger is hidden', async ({ page }) => {
       name: 'Toggle navigation',
     }),
   ).not.toBeVisible();
+});
+
+test('DE 1520px: burger is visible', async ({ page }) => {
+  await page.setViewportSize({
+    width: 1520,
+    height: 800,
+  });
+
+  await page.goto('/de');
+
+  await expect(page.locator('.menu-toggle')).toBeVisible();
+});
+
+test('DE 1521px: burger is hidden', async ({ page }) => {
+  await page.setViewportSize({
+    width: 1521,
+    height: 800,
+  });
+
+  await page.goto('/de');
+
+  await expect(page.locator('.menu-toggle')).not.toBeVisible();
+});
+
+test('EL 1520px: burger is visible', async ({ page }) => {
+  await page.setViewportSize({
+    width: 1520,
+    height: 800,
+  });
+
+  await page.goto('/el');
+
+  await expect(page.locator('.menu-toggle')).toBeVisible();
+});
+
+test('EL 1521px: burger is hidden', async ({ page }) => {
+  await page.setViewportSize({
+    width: 1521,
+    height: 800,
+  });
+
+  await page.goto('/el');
+
+  await expect(page.locator('.menu-toggle')).not.toBeVisible();
 });
 
 test('mobile: burger opens navigation', async ({ page }) => {
@@ -497,6 +560,7 @@ test('footer: website link returns to home page', async ({ page }) => {
 //
 // STICKY HEADER
 //
+
 test('logo: returns current home page to top', async ({ page }) => {
   await page.goto('/de');
 
@@ -573,6 +637,8 @@ test('sticky header: hash target is not hidden behind header', async ({ page }) 
 //
 
 test('navigation: changing page resets scroll position to top', async ({ page }) => {
+  await page.setViewportSize(DESKTOP_VIEWPORT);
+
   await page.goto('/de/about');
 
   await page.evaluate(() => {
@@ -766,7 +832,7 @@ test('SEO: canonical points to the current localized page without query or hash'
   expect(new URL(href).hash).toBe('');
 });
 
-test('SEO: page exposes all language and x-default hreflang links', async ({ page }) => {
+test('SEO: page exposes all language hreflang links and x-default', async ({ page }) => {
   await page.goto('/es/about');
 
   const alternates = page.locator('link[rel="alternate"][hreflang]');
