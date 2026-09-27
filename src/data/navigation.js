@@ -183,8 +183,8 @@ export const navigation = [
         id: 'media-gallery',
       },
       {
-        title: 'Webinars',
-        id: 'webinars',
+        title: 'Workshops',
+        id: 'workshops',
       },
     ],
   },

@@ -64,7 +64,7 @@ const da = {
         "events": "Begivenheder",
         "press-releases": "Pressemeddelelser",
         "media-gallery": "Mediegalleri",
-        "webinars": "Webinarer"
+        "workshops": "Workshops"
       }
     },
     "/resources": {

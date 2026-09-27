@@ -98,7 +98,7 @@ const es = {
           'Comunicados de prensa',
         'media-gallery':
           'Galería multimedia',
-        webinars: 'Seminarios web',
+        workshops: 'Talleres',
       },
     },
 

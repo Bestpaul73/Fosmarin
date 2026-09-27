@@ -62,7 +62,7 @@ function News({ page }) {
 
           case 'press-releases':
           case 'media-gallery':
-          case 'webinars': {
+          case 'workshops': {
             const title = navSections[section.id];
 
             return (

@@ -26,7 +26,7 @@ export const partners = [
   {
     name: 'MELCANO',
     legalName: 'Melcano IT and Trading GmbH',
-    role: 'System Integration',
+    role: 'Systems Integrator',
     country: 'Austria',
     countryCode: 'AT',
     logo: melcanoLogo,

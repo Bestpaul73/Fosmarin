@@ -64,7 +64,7 @@ const el = {
         "events": "Εκδηλώσεις",
         "press-releases": "Δελτία Τύπου",
         "media-gallery": "Συλλογή πολυμέσων",
-        "webinars": "Διαδικτυακά σεμινάρια"
+        "workshops": "Εργαστήρια"
       }
     },
     "/resources": {
