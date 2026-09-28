@@ -199,8 +199,8 @@ const da = {
           "category": "Projektstart",
           "status": "Kommende",
           "dateLabel": "01. okt. 2026",
-          "title": "Officiel meddelelse om FOSMARIN-projektets start",
-          "excerpt": "Den officielle meddelelse om FOSMARIN-projektets start er planlagt til Atlantic Convergence 2026 i Lissabon, Portugal.",
+          "title": "Meddelelse om FOSMARIN-projektets start",
+          "excerpt": "Meddelelsen om FOSMARIN-projektets start er planlagt til Atlantic Convergence 2026 i Lissabon, Portugal.",
           "location": "Lissabon · Portugal"
         }
       }
@@ -1160,7 +1160,7 @@ const da = {
         "status": "Kommende",
         "dateLabel": "01. okt. 2026",
         "title": "Atlantic Convergence 2026",
-        "text": "FOSMARIN forventes at annoncere den officielle start på projektet ved Atlantic Convergence 2026.",
+        "text": "FOSMARIN forventes at annoncere starten på projektet ved Atlantic Convergence 2026.",
         "location": "Lissabon · Portugal"
       }
     }

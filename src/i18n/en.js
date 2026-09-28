@@ -266,10 +266,10 @@ const en = {
           dateLabel: '01 Oct 2026',
 
           title:
-            'FOSMARIN official project start announcement',
+            'FOSMARIN project start announcement',
 
           excerpt:
-            'The official FOSMARIN project start announcement is scheduled to take place at Atlantic Convergence 2026 in Lisbon, Portugal.',
+            'The FOSMARIN project start announcement is scheduled to take place at Atlantic Convergence 2026 in Lisbon, Portugal.',
 
           location: 'Lisbon · Portugal',
         },
@@ -1259,7 +1259,7 @@ const en = {
         "status": "Upcoming",
         "dateLabel": "01 Oct 2026",
         "title": "Atlantic Convergence 2026",
-        "text": "FOSMARIN is scheduled to announce the official start of the project at Atlantic Convergence 2026.",
+        "text": "FOSMARIN is scheduled to announce the start of the project at Atlantic Convergence 2026.",
         "location": "Lisbon · Portugal"
       }
     }

@@ -199,8 +199,8 @@ const el = {
           "category": "Έναρξη έργου",
           "status": "Προσεχώς",
           "dateLabel": "01 Οκτ 2026",
-          "title": "Επίσημη ανακοίνωση έναρξης του έργου FOSMARIN",
-          "excerpt": "Η επίσημη ανακοίνωση έναρξης του έργου FOSMARIN έχει προγραμματιστεί να γίνει στο Atlantic Convergence 2026 στη Λισαβόνα της Πορτογαλίας.",
+          "title": "Ανακοίνωση έναρξης του έργου FOSMARIN",
+          "excerpt": "Η ανακοίνωση έναρξης του έργου FOSMARIN έχει προγραμματιστεί να γίνει στο Atlantic Convergence 2026 στη Λισαβόνα της Πορτογαλίας.",
           "location": "Λισαβόνα · Πορτογαλία"
         }
       }
@@ -1160,7 +1160,7 @@ const el = {
         "status": "Προσεχώς",
         "dateLabel": "01 Οκτ 2026",
         "title": "Atlantic Convergence 2026",
-        "text": "Το FOSMARIN προγραμματίζεται να ανακοινώσει την επίσημη έναρξη του έργου στο Atlantic Convergence 2026.",
+        "text": "Το FOSMARIN προγραμματίζεται να ανακοινώσει την έναρξη του έργου στο Atlantic Convergence 2026.",
         "location": "Λισαβόνα · Πορτογαλία"
       }
     }
