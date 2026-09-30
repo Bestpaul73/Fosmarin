@@ -624,6 +624,7 @@ const sv = {
       "title": "Från undervattenskablar till offshoreinfrastruktur.",
       "intro": "FOSMARIN undersöker hur Fibre Optic Acoustic Sensing (FOAS), prediktiv analys och externa data kan stärka situationsbilden kring olika typer av kritisk maritim och undervattensinfrastruktur."
     },
+    "schemeAlt": "FOSMARIN-flöde för upptäckt och hantering av hot mot undervattensinfrastruktur",
     "topics": "ämnen",
     "clientInputText": "Detta användningsfall ingår i den godkända FOSMARIN-webbstrukturen. Detaljerat projektinnehåll läggs till när det tillhandahålls eller bekräftas av klienten.",
     "items": {

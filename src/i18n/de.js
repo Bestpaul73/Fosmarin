@@ -750,6 +750,7 @@ const de = {
       "title": "Von Unterseekabeln bis zur Offshore-Infrastruktur.",
       "intro": "FOSMARIN untersucht, wie faseroptische akustische Sensorik (FOAS), prädiktive Analytik und externe Daten das Lagebewusstsein rund um verschiedene Formen kritischer maritimer und Unterwasserinfrastruktur stärken können."
     },
+    "schemeAlt": "FOSMARIN-Ablauf zur Erkennung und Reaktion auf Bedrohungen für Unterwasserinfrastruktur",
     "topics": "Themen",
     "clientInputText": "Dieser Anwendungsfall ist Bestandteil der freigegebenen FOSMARIN-Websitestruktur. Detaillierte Projektinhalte werden ergänzt, sobald sie vom Auftraggeber bereitgestellt oder bestätigt wurden.",
     "items": {

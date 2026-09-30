@@ -776,6 +776,7 @@ const es = {
       "title": "Desde cables submarinos hasta infraestructuras marinas.",
       "intro": "FOSMARIN estudia cómo la detección acústica por fibra óptica (FOAS), la analítica predictiva y los datos externos pueden reforzar la conciencia situacional alrededor de distintos tipos de infraestructuras marítimas y submarinas críticas."
     },
+    "schemeAlt": "Flujo de FOSMARIN para la detección y respuesta ante amenazas a infraestructuras submarinas",
     "topics": "temas",
     "clientInputText": "Este caso de uso forma parte de la estructura aprobada del sitio web de FOSMARIN. El contenido detallado del proyecto se añadirá cuando sea proporcionado o confirmado por el cliente.",
     "items": {
