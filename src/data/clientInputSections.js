@@ -1,7 +1,4 @@
 export const clientInputSections = new Set([
-  // Consortium
-  'advisory-board',
-
   // News & Events
   'press-releases',
   'media-gallery',
