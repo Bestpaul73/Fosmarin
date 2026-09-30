@@ -3,6 +3,8 @@ import UseCaseSection from '../components/UseCaseSection';
 
 import { useLanguage } from '../i18n/LanguageContext';
 
+import scheme1 from '../assets/scheme1.jpg';
+
 import '../styles/use-cases.scss';
 
 function UseCases({ page }) {
@@ -11,11 +13,13 @@ function UseCases({ page }) {
 
   return (
     <>
-      <PageHero
-        eyebrow={useCases.hero.eyebrow}
-        title={useCases.hero.title}
-        intro={useCases.hero.intro}
-      />
+      <PageHero eyebrow={useCases.hero.eyebrow} title={useCases.hero.title} intro={useCases.hero.intro} />
+
+      <section className='use-cases-scheme'>
+        <div className='use-cases-scheme-inner'>
+          <img src={scheme1} alt='FOSMARIN subsea threat detection and response workflow' />
+        </div>
+      </section>
 
       {page.sections.map((section, index) => {
         const useCase = useCases.items[section.id];
@@ -24,14 +28,7 @@ function UseCases({ page }) {
           return null;
         }
 
-        return (
-          <UseCaseSection
-            id={section.id}
-            key={section.id}
-            useCase={useCase}
-            reverse={index % 2 !== 0}
-          />
-        );
+        return <UseCaseSection id={section.id} key={section.id} useCase={useCase} reverse={index % 2 !== 0} />;
       })}
     </>
   );
