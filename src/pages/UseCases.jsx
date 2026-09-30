@@ -13,11 +13,18 @@ function UseCases({ page }) {
 
   return (
     <>
-      <PageHero eyebrow={useCases.hero.eyebrow} title={useCases.hero.title} intro={useCases.hero.intro} />
+      <PageHero
+        eyebrow={useCases.hero.eyebrow}
+        title={useCases.hero.title}
+        intro={useCases.hero.intro}
+      />
 
       <section className='use-cases-scheme'>
         <div className='use-cases-scheme-inner'>
-          <img src={scheme1} alt='FOSMARIN subsea threat detection and response workflow' />
+          <img
+            src={scheme1}
+            alt={useCases.schemeAlt}
+          />
         </div>
       </section>
 
@@ -28,7 +35,14 @@ function UseCases({ page }) {
           return null;
         }
 
-        return <UseCaseSection id={section.id} key={section.id} useCase={useCase} reverse={index % 2 !== 0} />;
+        return (
+          <UseCaseSection
+            id={section.id}
+            key={section.id}
+            useCase={useCase}
+            reverse={index % 2 !== 0}
+          />
+        );
       })}
     </>
   );

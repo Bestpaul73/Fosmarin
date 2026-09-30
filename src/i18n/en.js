@@ -720,6 +720,7 @@ const en = {
       "title": "From subsea cables to offshore infrastructure.",
       "intro": "FOSMARIN explores how Fibre Optic Acoustic Sensing (FOAS), predictive analytics and external data can strengthen situational awareness around different forms of critical maritime and subsea infrastructure."
     },
+    "schemeAlt": "FOSMARIN subsea threat detection and response workflow",
     "topics": "topics",
     "clientInputText": "This use case is part of the approved FOSMARIN website structure. Detailed project content will be added when it is provided or confirmed by the client.",
     "items": {

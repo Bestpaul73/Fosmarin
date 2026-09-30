@@ -624,6 +624,7 @@ const it = {
       "title": "Dai cavi sottomarini alle infrastrutture offshore.",
       "intro": "FOSMARIN esplora come Fibre Optic Acoustic Sensing (FOAS), analisi predittiva e dati esterni possano rafforzare la consapevolezza situazionale attorno a diverse forme di infrastrutture marittime e sottomarine critiche."
     },
+    "schemeAlt": "Flusso FOSMARIN per il rilevamento e la risposta alle minacce alle infrastrutture sottomarine",
     "topics": "temi",
     "clientInputText": "Questo caso d'uso fa parte della struttura approvata del sito FOSMARIN. I contenuti dettagliati saranno aggiunti quando saranno forniti o confermati dal cliente.",
     "items": {
