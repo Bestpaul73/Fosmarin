@@ -152,10 +152,6 @@ export const navigation = [
         id: 'roles-and-contributions',
       },
       {
-        title: 'Expert Advisory Board',
-        id: 'advisory-board',
-      },
-      {
         title: 'Authorities & Stakeholders',
         id: 'authorities-and-stakeholders',
       },

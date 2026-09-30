@@ -1,4 +1,3 @@
-import { advisoryBoardMembers } from './advisoryBoard';
 import { navigation } from './navigation';
 
 export function normalizeText(value = '') {
@@ -130,8 +129,6 @@ function getSectionContent(pagePath, sectionId, translations) {
         'partner-map': translations.consortium?.partnerMap,
 
         'roles-and-contributions': translations.consortium?.roles,
-
-        'advisory-board': translations.consortium?.advisory,
 
         'authorities-and-stakeholders': translations.consortium?.stakeholders,
       };
@@ -282,29 +279,6 @@ export function getResultSnippets(item, normalizedQuery, maxSnippets = 3) {
   return snippets;
 }
 
-function buildAdvisoryMemberItems(translations, getLocalizedPath) {
-  const pageTitle = translations.navigation?.['/consortium']?.title ?? 'Consortium';
-
-  const advisoryTitle =
-    translations.navigation?.['/consortium']?.sections?.['advisory-board'] ?? 'Expert Advisory Board';
-
-  return advisoryBoardMembers.map((member) => ({
-    id: `advisory-member-${member.slug}`,
-
-    type: 'section',
-
-    title: member.name,
-
-    parentTitle: `${advisoryTitle} · ${pageTitle}`,
-
-    path: getLocalizedPath(`/consortium#advisory-${member.slug}`),
-
-    searchText: createSearchText(member.name, member.roles),
-
-    searchFragments: createSearchFragments(member.roles),
-  }));
-}
-
 export function buildSearchItems(translations, getLocalizedPath) {
   const navigationItems = navigation.flatMap((page) => {
     const translatedPage = translations.navigation?.[page.path];
@@ -354,7 +328,5 @@ export function buildSearchItems(translations, getLocalizedPath) {
     return [pageItem, ...sectionItems];
   });
 
-  const advisoryMemberItems = buildAdvisoryMemberItems(translations, getLocalizedPath);
-
-  return [...navigationItems, ...advisoryMemberItems];
+  return navigationItems;
 }
