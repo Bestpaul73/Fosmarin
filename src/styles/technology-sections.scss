@@ -128,6 +128,17 @@
 
 /* Dark fibre */
 
+.technology-dark-fibre-image {
+  display: block;
+
+  width: 100%;
+
+  margin: 28px 0 24px;
+
+  border: 1px solid tokens.$line;
+  border-radius: tokens.$radius-default;
+}
+
 .dark-fibre-diagram {
   display: grid;
   grid-template-columns: 220px minmax(120px, 1fr) 220px;

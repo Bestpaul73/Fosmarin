@@ -1,5 +1,8 @@
 import Reveal from './Reveal';
 import { useLanguage } from '../i18n/LanguageContext';
+
+import sea1 from '../assets/sea1.jpg';
+
 import '../styles/technology-sections.scss';
 
 function UsingDarkFibre({ id }) {
@@ -11,7 +14,11 @@ function UsingDarkFibre({ id }) {
       <div className='technology-inner'>
         <Reveal as='header' className='technology-section-header'>
           <p className='technology-eyebrow'>{copy.eyebrow}</p>
+
           <h2 id='dark-fibre-title'>{copy.title}</h2>
+
+          <img className='technology-dark-fibre-image' src={sea1} alt='' aria-hidden='true' />
+
           <p className='technology-section-intro'>{copy.intro}</p>
         </Reveal>
 
@@ -22,7 +29,11 @@ function UsingDarkFibre({ id }) {
           </div>
 
           <div className='dark-fibre-line' aria-hidden='true'>
-            <span /><span /><span /><span /><span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
           </div>
 
           <div className='dark-fibre-endpoint'>
@@ -43,6 +54,7 @@ function UsingDarkFibre({ id }) {
 
         <Reveal className='technology-highlight'>
           <strong>0</strong>
+
           <div>
             <span>{copy.highlightLabel}</span>
             <p>{copy.highlightText}</p>
