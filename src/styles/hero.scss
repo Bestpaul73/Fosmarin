@@ -57,6 +57,17 @@
   min-width: 0;
 }
 
+.hero-logo {
+  display: block;
+
+  width: 190px;
+  max-width: 42vw;
+
+  height: auto;
+
+  margin: 0 0 28px;
+}
+
 .hero-eyebrow {
   margin: 0 0 22px;
 
@@ -252,7 +263,7 @@
 
   align-self: start;
 
-  margin-top: 40px;
+  margin-top: 276px;
   margin-left: auto;
 
   padding: 7px;
@@ -502,7 +513,7 @@
     width: 100%;
     max-width: 390px;
 
-    margin-top: 40px;
+    margin-top: 276px;
   }
 }
 
@@ -534,6 +545,12 @@
 
     padding-top: 52px;
     padding-bottom: 28px;
+  }
+
+  .hero-logo {
+    width: 150px;
+
+    margin-bottom: 22px;
   }
 
   .hero-eyebrow {
