@@ -57,6 +57,12 @@
   text-transform: uppercase;
 }
 
+.latest-news-list {
+  display: grid;
+
+  gap: 18px;
+}
+
 .latest-news-card {
   display: grid;
   grid-template-columns:

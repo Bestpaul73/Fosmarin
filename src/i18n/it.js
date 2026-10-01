@@ -61,7 +61,6 @@ const it = {
       "title": "Notizie ed eventi",
       "sections": {
         "latest-news": "Ultime notizie",
-        "events": "Eventi",
         "press-releases": "Comunicati stampa",
         "media-gallery": "Galleria multimediale",
         "workshops": "Workshop"
@@ -195,6 +194,12 @@ const it = {
       "title": "Segui FOSMARIN mentre il progetto prende avvio.",
       "readUpdate": "Leggi l'aggiornamento",
       "items": {
+        "fosmarin-kick-off-meeting-vienna-2026": {
+          "status": "In programma",
+          "dateLabel": "06–07 ott 2026",
+          "title": "KOM / FOSMARIN kick-off meeting",
+          "location": "Vienna · Austria"
+        },
         "fosmarin-project-launch-2026": {
           "category": "Avvio del progetto",
           "status": "In programma",
@@ -1152,19 +1157,6 @@ const it = {
       "title": "Segui FOSMARIN mentre il progetto si sviluppa.",
       "intro": "Aggiornamenti, eventi, comunicati stampa e contenuti media di FOSMARIN — documentando i progressi dall'avvio del progetto attraverso sviluppo, validazione e dimostrazione."
     },
-    "events": {
-      "eyebrow": "Eventi",
-      "title": "Incontra FOSMARIN agli eventi del progetto.",
-      "intro": "Segui l'avvio del progetto, le conferenze e gli eventi pubblici mentre FOSMARIN passa dallo sviluppo alla validazione e dimostrazione.",
-      "item": {
-        "type": "Evento di progetto",
-        "status": "In programma",
-        "dateLabel": "01 ott 2026",
-        "title": "Atlantic Convergence 2026",
-        "text": "FOSMARIN prevede di annunciare l'avvio del progetto ad Atlantic Convergence 2026.",
-        "location": "Lisbona · Portogallo"
-      }
-    }
   },
   "resourcesPage": {
     "hero": {

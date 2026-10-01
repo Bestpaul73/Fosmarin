@@ -23,42 +23,7 @@ function News({ page }) {
       {page.sections.map((section) => {
         switch (section.id) {
           case 'latest-news':
-            return <LatestNews id={section.id} key={section.id} showLink={false} />;
-
-          case 'events': {
-            const event = news.events.item;
-
-            return (
-              <section
-                className='news-section news-events'
-                id={section.id}
-                key={section.id}
-                aria-labelledby={`${section.id}-title`}
-              >
-                <div className='news-inner'>
-                  <Reveal as='header' className='news-section-header'>
-                    <p className='news-eyebrow'>{news.events.eyebrow}</p>
-                    <h2 id={`${section.id}-title`}>{news.events.title}</h2>
-                    <p className='news-section-intro'>{news.events.intro}</p>
-                  </Reveal>
-
-                  <Reveal className='news-event-card'>
-                    <div className='news-event-meta'>
-                      <span className='news-event-status'>{event.status}</span>
-                      <span className='news-event-type'>{event.type}</span>
-                      <time dateTime='2026-10-01'>{event.dateLabel}</time>
-                    </div>
-
-                    <div className='news-event-content'>
-                      <h3>{event.title}</h3>
-                      <p>{event.text}</p>
-                      <span className='news-event-location'>{event.location}</span>
-                    </div>
-                  </Reveal>
-                </div>
-              </section>
-            );
-          }
+            return <LatestNews id={section.id} key={section.id} showLink={false} showAll />;
 
           case 'press-releases':
           case 'media-gallery':
