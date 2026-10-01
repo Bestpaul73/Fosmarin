@@ -10,6 +10,8 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 import SiteSearch from './SiteSearch';
 
+import fosmarinLogo from '../assets/fosmarin-logo-2.svg';
+
 import '../styles/header.scss';
 import '../styles/site-search.scss';
 
@@ -423,7 +425,8 @@ function Header() {
     >
       <div className='header-inner'>
         <Link className='logo' to={getLocalizedPath('/')} onClick={handleLogoClick}>
-          FOSMARIN
+          <img className='logo-mark' src={fosmarinLogo} alt='' aria-hidden='true' />
+          <span>FOSMARIN</span>
         </Link>
 
         <button

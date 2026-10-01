@@ -52,6 +52,11 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
   grid-column: 1;
   grid-row: 1;
 
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
   flex-shrink: 0;
 
   color: tokens.$foam;
@@ -80,6 +85,15 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
     border-radius: 2px;
   }
+}
+
+.logo-mark {
+  display: block;
+
+  width: 72px;
+  height: 72px;
+
+  flex: 0 0 72px;
 }
 
 .main-nav {
@@ -762,7 +776,16 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
   }
 
   .logo {
+    gap: 8px;
+
     font-size: 24px;
+  }
+
+  .logo-mark {
+    width: 52px;
+    height: 52px;
+
+    flex-basis: 52px;
   }
 
   .language-trigger {
