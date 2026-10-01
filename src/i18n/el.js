@@ -61,7 +61,6 @@ const el = {
       "title": "Νέα και εκδηλώσεις",
       "sections": {
         "latest-news": "Τελευταία νέα",
-        "events": "Εκδηλώσεις",
         "press-releases": "Δελτία Τύπου",
         "media-gallery": "Συλλογή πολυμέσων",
         "workshops": "Εργαστήρια"
@@ -195,6 +194,12 @@ const el = {
       "title": "Παρακολουθήστε το FOSMARIN καθώς ξεκινά το έργο.",
       "readUpdate": "Διαβάστε την ενημέρωση",
       "items": {
+        "fosmarin-kick-off-meeting-vienna-2026": {
+          "status": "Προσεχώς",
+          "dateLabel": "06–07 Οκτ 2026",
+          "title": "KOM / FOSMARIN kick-off meeting",
+          "location": "Βιέννη · Αυστρία"
+        },
         "fosmarin-project-launch-2026": {
           "category": "Έναρξη έργου",
           "status": "Προσεχώς",
@@ -1152,19 +1157,6 @@ const el = {
       "title": "Παρακολουθήστε το FOSMARIN καθώς εξελίσσεται το έργο.",
       "intro": "Ενημερώσεις έργου, εκδηλώσεις, δελτία Τύπου και πολυμέσα από το FOSMARIN — καταγράφοντας την πρόοδο από την έναρξη του έργου έως την ανάπτυξη, την επικύρωση και την επίδειξη."
     },
-    "events": {
-      "eyebrow": "Εκδηλώσεις",
-      "title": "Γνωρίστε το FOSMARIN σε εκδηλώσεις του έργου.",
-      "intro": "Παρακολουθήστε εκκινήσεις έργου, συνέδρια και δημόσιες εκδηλώσεις καθώς το FOSMARIN προχωρά από την ανάπτυξη στην επικύρωση και την επίδειξη.",
-      "item": {
-        "type": "Εκδήλωση έργου",
-        "status": "Προσεχώς",
-        "dateLabel": "01 Οκτ 2026",
-        "title": "Atlantic Convergence 2026",
-        "text": "Το FOSMARIN προγραμματίζεται να ανακοινώσει την έναρξη του έργου στο Atlantic Convergence 2026.",
-        "location": "Λισαβόνα · Πορτογαλία"
-      }
-    }
   },
   "resourcesPage": {
     "hero": {

@@ -167,10 +167,6 @@ export const navigation = [
         id: 'latest-news',
       },
       {
-        title: 'Events',
-        id: 'events',
-      },
-      {
         title: 'Press Releases',
         id: 'press-releases',
       },

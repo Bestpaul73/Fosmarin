@@ -8,18 +8,16 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 import '../styles/latest-news.scss';
 
-function LatestNews({ id, showLink = true }) {
+function LatestNews({ id, showLink = true, showAll = false }) {
   const { translations, getLocalizedPath } = useLanguage();
-
-  const latestNews = newsItems[0];
-
-  if (!latestNews) {
-    return null;
-  }
 
   const newsTranslations = translations.home.latestNews;
 
-  const translatedItem = newsTranslations.items[latestNews.id] ?? {};
+  const visibleNewsItems = showAll ? newsItems : newsItems.slice(0, 1);
+
+  if (visibleNewsItems.length === 0) {
+    return null;
+  }
 
   return (
     <section className='latest-news' id={id} aria-labelledby='latest-news-title'>
@@ -30,31 +28,58 @@ function LatestNews({ id, showLink = true }) {
           <h2 id='latest-news-title'>{newsTranslations.title}</h2>
         </Reveal>
 
-        <Reveal className='latest-news-card'>
-          <div className='latest-news-meta'>
-            <span className='latest-news-status'>{translatedItem.status ?? latestNews.status}</span>
+        <div className='latest-news-list'>
+          {visibleNewsItems.map((newsItem) => {
+            const translatedItem = newsTranslations.items[newsItem.id] ?? {};
 
-            <span className='latest-news-category'>{translatedItem.category ?? latestNews.category}</span>
+            return (
+              <Reveal
+                className='latest-news-card'
+                id={newsItem.id}
+                key={newsItem.id}
+              >
+                <div className='latest-news-meta'>
+                  <span className='latest-news-status'>
+                    {translatedItem.status ?? newsItem.status}
+                  </span>
 
-            <time dateTime={latestNews.date}>{translatedItem.dateLabel ?? latestNews.dateLabel}</time>
-          </div>
+                  {(translatedItem.category ?? newsItem.category) && (
+                    <span className='latest-news-category'>
+                      {translatedItem.category ?? newsItem.category}
+                    </span>
+                  )}
 
-          <div className='latest-news-content'>
-            <h3>{translatedItem.title ?? latestNews.title}</h3>
+                  <time dateTime={newsItem.date}>
+                    {translatedItem.dateLabel ?? newsItem.dateLabel}
+                  </time>
+                </div>
 
-            <p>{translatedItem.excerpt ?? latestNews.excerpt}</p>
+                <div className='latest-news-content'>
+                  <h3>{translatedItem.title ?? newsItem.title}</h3>
 
-            <span className='latest-news-location'>{translatedItem.location ?? latestNews.location}</span>
-          </div>
+                  {(translatedItem.excerpt ?? newsItem.excerpt) && (
+                    <p>{translatedItem.excerpt ?? newsItem.excerpt}</p>
+                  )}
 
-          {showLink && (
-            <Link className='latest-news-link' to={getLocalizedPath(latestNews.href)}>
-              {newsTranslations.readUpdate}
+                  <span className='latest-news-location'>
+                    {translatedItem.location ?? newsItem.location}
+                  </span>
+                </div>
 
-              <span aria-hidden='true'>→</span>
-            </Link>
-          )}
-        </Reveal>
+                {showLink && (
+                  <Link
+                    className='latest-news-link'
+                    to={getLocalizedPath(newsItem.href)}
+                  >
+                    {newsTranslations.readUpdate}
+
+                    <span aria-hidden='true'>→</span>
+                  </Link>
+                )}
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

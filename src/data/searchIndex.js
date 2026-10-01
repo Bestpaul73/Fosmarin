@@ -140,8 +140,6 @@ function getSectionContent(pagePath, sectionId, translations) {
       const sectionMap = {
         'latest-news': translations.home?.latestNews,
 
-        events: translations.news?.events,
-
         'press-releases': translations.common?.underConstruction,
 
         'media-gallery': translations.common?.underConstruction,
