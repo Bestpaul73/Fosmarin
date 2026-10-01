@@ -5,8 +5,6 @@ import Reveal from './Reveal';
 
 import { useLanguage } from '../i18n/LanguageContext';
 
-import fosmarinLogo from '../assets/fosmarin-logo-2.svg';
-
 import '../styles/hero.scss';
 
 function Hero() {
@@ -18,8 +16,6 @@ function Hero() {
     <section className='hero' aria-labelledby='hero-title'>
       <div className='hero-inner'>
         <Reveal className='hero-copy'>
-          <img className='hero-logo' src={fosmarinLogo} alt='' aria-hidden='true' />
-
           <p className='hero-eyebrow'>{hero.eyebrow}</p>
 
           <h1 className='hero-title' id='hero-title'>
