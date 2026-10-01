@@ -205,7 +205,7 @@ const it = {
           "status": "In programma",
           "dateLabel": "01 ott 2026",
           "title": "Annuncio dell'avvio del progetto FOSMARIN",
-          "excerpt": "L'annuncio dell'avvio del progetto FOSMARIN è previsto durante Atlantic Convergence 2026 a Lisbona, Portogallo.",
+          "excerpt": "FOSMARIN prevede di annunciare l'avvio del progetto ad Atlantic Convergence 2026.",
           "location": "Lisbona · Portogallo"
         }
       }

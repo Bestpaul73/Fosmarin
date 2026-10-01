@@ -321,7 +321,7 @@ const es = {
             'Anuncio del inicio del proyecto FOSMARIN',
 
           excerpt:
-            'El anuncio del inicio de FOSMARIN está previsto durante Atlantic Convergence 2026 en Lisboa, Portugal.',
+            'FOSMARIN tiene previsto anunciar el inicio del proyecto en Atlantic Convergence 2026.',
 
           location:
             'Lisboa · Portugal',

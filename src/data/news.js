@@ -15,8 +15,7 @@ export const newsItems = [
     date: '2026-10-01',
     dateLabel: '01 Oct 2026',
     title: 'FOSMARIN project start announcement',
-    excerpt:
-      'The FOSMARIN project start announcement is scheduled to take place at Atlantic Convergence 2026 in Lisbon, Portugal.',
+    excerpt: "FOSMARIN is scheduled to announce the project's start at Atlantic Convergence 2026.",
     location: 'Lisbon · Portugal',
     href: '/news#fosmarin-project-launch-2026',
   },

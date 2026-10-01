@@ -205,7 +205,7 @@ const da = {
           "status": "Kommende",
           "dateLabel": "01. okt. 2026",
           "title": "Meddelelse om FOSMARIN-projektets start",
-          "excerpt": "Meddelelsen om FOSMARIN-projektets start er planlagt til Atlantic Convergence 2026 i Lissabon, Portugal.",
+          "excerpt": "FOSMARIN forventes at annoncere projektets start ved Atlantic Convergence 2026.",
           "location": "Lissabon · Portugal"
         }
       }

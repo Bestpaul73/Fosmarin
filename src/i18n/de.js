@@ -298,7 +298,7 @@ const de = {
             'Bekanntgabe des FOSMARIN-Projektstarts',
 
           excerpt:
-            'Die Bekanntgabe des Starts von FOSMARIN ist für die Atlantic Convergence 2026 in Lissabon, Portugal, vorgesehen.',
+            'FOSMARIN plant, den Projektstart auf der Atlantic Convergence 2026 bekanntzugeben.',
 
           location: 'Lissabon · Portugal',
         },
