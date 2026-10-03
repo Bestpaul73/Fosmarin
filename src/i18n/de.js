@@ -496,12 +496,11 @@ const de = {
 
   common: {
     "underConstruction": {
-      "label": "Angaben des Auftraggebers erforderlich",
-      "defaultTitle": "Inhalt in Vorbereitung",
-      "defaultText": "Detaillierte Inhalte für diesen Abschnitt stehen noch aus und werden nach Freigabe ergänzt.",
-      "contentSuffix": "– Inhalt in Vorbereitung",
-      "projectMaterial": "Inhalte werden ergänzt, sobald Projektmaterial verfügbar und zur Veröffentlichung freigegeben ist.",
-      "resources": "Ressourcen werden ergänzt, sobald Projektergebnisse verfügbar oder zur Veröffentlichung freigegeben sind."
+
+      "defaultTitle": "Inhalte folgen in Kürze",
+
+      "defaultText": "Inhalte werden ergänzt, sobald Projektmaterial verfügbar und zur Veröffentlichung freigegeben ist."
+
     }
   },
 
@@ -1210,8 +1209,6 @@ const de = {
     "advisory": {
       "eyebrow": "Expertenbeirat",
       "title": "Externe Expertise zur Unterstützung des Projekts.",
-      "noticeTitle": "Inhalte zum Expertenbeirat sind in Vorbereitung",
-      "noticeText": "Der Expertenbeirat ist Bestandteil der freigegebenen FOSMARIN-Websitestruktur. Angaben zu den Mitgliedern werden ergänzt, sobald sie vom Auftraggeber bereitgestellt oder bestätigt wurden."
     },
     "stakeholders": {
       "eyebrow": "Behörden & Stakeholder",
@@ -1384,8 +1381,6 @@ const de = {
       "eyebrow": "Social-Media-Links",
       "title": "Folgen Sie FOSMARIN online.",
       "intro": "Offizielle Social-Media-Kanäle des Projekts werden ergänzt, sobald der Auftraggeber die entsprechenden Konten und URLs bestätigt.",
-      "noticeTitle": "Social-Media-Links sind in Vorbereitung",
-      "noticeText": "Offizielle Links zu LinkedIn, X und YouTube werden ergänzt, sobald die Projektkonten vom Auftraggeber bestätigt sind."
     }
   }
 };

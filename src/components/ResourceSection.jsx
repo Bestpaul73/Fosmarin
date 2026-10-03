@@ -16,10 +16,7 @@ function ResourceSection({ id, title, intro, underConstruction = false, children
 
         {underConstruction ? (
           <Reveal>
-            <UnderConstructionNotice
-              title={`${title} ${translations.common.underConstruction.contentSuffix}`}
-              text={translations.common.underConstruction.resources}
-            />
+            <UnderConstructionNotice />
           </Reveal>
         ) : (
           children

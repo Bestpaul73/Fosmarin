@@ -372,12 +372,11 @@ const sv = {
   },
   "common": {
     "underConstruction": {
-      "label": "Klientunderlag krävs",
-      "defaultTitle": "Innehåll under utveckling",
-      "defaultText": "Detaljerat innehåll för detta avsnitt inväntar underlag från klienten.",
-      "contentSuffix": "innehåll är under utveckling",
-      "projectMaterial": "Innehåll läggs till när projektmaterial finns tillgängligt och är godkänt för publicering.",
-      "resources": "Resurser läggs till när projektresultat blir tillgängliga eller godkänns för publicering."
+
+      "defaultTitle": "Innehåll läggs till snart",
+
+      "defaultText": "Innehåll läggs till när projektmaterial finns tillgängligt och är godkänt för publicering."
+
     }
   },
   "challenge": {
@@ -1082,8 +1081,6 @@ const sv = {
     "advisory": {
       "eyebrow": "Expertpanel",
       "title": "Extern expertis som stödjer projektet.",
-      "noticeTitle": "Innehållet för expertpanelen är under utveckling",
-      "noticeText": "Expertpanelen ingår i den godkända FOSMARIN-webbstrukturen. Medlemsinformation läggs till när den tillhandahålls eller bekräftas av klienten."
     },
     "stakeholders": {
       "eyebrow": "Myndigheter och intressenter",
@@ -1253,8 +1250,6 @@ const sv = {
       "eyebrow": "Länkar till sociala medier",
       "title": "Följ FOSMARIN online.",
       "intro": "Projektets officiella kanaler i sociala medier läggs till när klienten bekräftar relevanta konton och URL:er.",
-      "noticeTitle": "Länkar till sociala medier är under utveckling",
-      "noticeText": "Officiella LinkedIn-, X- och YouTube-länkar läggs till när projektets konton har bekräftats av klienten."
     }
   }
 };

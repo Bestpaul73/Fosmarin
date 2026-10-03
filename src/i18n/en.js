@@ -413,12 +413,11 @@ const en = {
 
   common: {
     underConstruction: {
-      label: 'Client input required',
-      defaultTitle: 'Content under construction',
-      defaultText: 'Detailed content for this section is pending client input.',
-      contentSuffix: 'content is under construction',
-      projectMaterial: 'Content will be added when project material is available and approved for publication.',
-      resources: 'Resources will be added as project outputs become available or are approved for publication.',
+
+      "defaultTitle": "Content will be added soon",
+
+      "defaultText": "Content will be added when project material is available and approved for publication."
+
     },
   },
 
@@ -1114,9 +1113,6 @@ const en = {
     advisory: {
       eyebrow: 'Expert Advisory Board',
       title: 'External expertise supporting the project.',
-      noticeTitle: 'Expert Advisory Board content is under construction',
-      noticeText:
-        'The Expert Advisory Board is part of the approved FOSMARIN website structure. Member information will be added when it is provided or confirmed by the client.',
     },
     stakeholders: {
       eyebrow: 'Authorities & stakeholders',
@@ -1293,9 +1289,6 @@ const en = {
       title: 'Follow FOSMARIN online.',
       intro:
         'Official project social media channels will be added once the client confirms the relevant accounts and URLs.',
-      noticeTitle: 'Social media links are under construction',
-      noticeText:
-        'Official LinkedIn, X and YouTube links will be added once the project accounts are confirmed by the client.',
     },
   },
 };

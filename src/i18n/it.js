@@ -372,12 +372,11 @@ const it = {
   },
   "common": {
     "underConstruction": {
-      "label": "Contenuto del cliente richiesto",
-      "defaultTitle": "Contenuto in preparazione",
-      "defaultText": "Il contenuto dettagliato di questa sezione è in attesa di materiale dal cliente.",
-      "contentSuffix": "il contenuto è in preparazione",
-      "projectMaterial": "Il contenuto sarà aggiunto quando il materiale del progetto sarà disponibile e approvato per la pubblicazione.",
-      "resources": "Le risorse saranno aggiunte man mano che i risultati del progetto diventeranno disponibili o saranno approvati per la pubblicazione."
+
+      "defaultTitle": "Il contenuto sarà aggiunto a breve",
+
+      "defaultText": "Il contenuto sarà aggiunto quando il materiale del progetto sarà disponibile e approvato per la pubblicazione."
+
     }
   },
   "challenge": {
@@ -1082,8 +1081,6 @@ const it = {
     "advisory": {
       "eyebrow": "Comitato consultivo di esperti",
       "title": "Competenze esterne a supporto del progetto.",
-      "noticeTitle": "Il contenuto del Comitato consultivo di esperti è in preparazione",
-      "noticeText": "Il Comitato consultivo di esperti fa parte della struttura approvata del sito FOSMARIN. Le informazioni sui membri saranno aggiunte quando saranno fornite o confermate dal cliente."
     },
     "stakeholders": {
       "eyebrow": "Autorità e stakeholder",
@@ -1253,8 +1250,6 @@ const it = {
       "eyebrow": "Link ai social media",
       "title": "Segui FOSMARIN online.",
       "intro": "I canali social ufficiali del progetto saranno aggiunti quando il cliente confermerà gli account e gli URL pertinenti.",
-      "noticeTitle": "I link ai social media sono in preparazione",
-      "noticeText": "I link ufficiali LinkedIn, X e YouTube saranno aggiunti quando gli account del progetto saranno confermati dal cliente."
     }
   }
 };
