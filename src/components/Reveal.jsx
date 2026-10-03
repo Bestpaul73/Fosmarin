@@ -17,15 +17,6 @@ function Reveal({ as: Component = 'div', className = '', children, id, ...props 
    * Если этот Reveal является целью
    * текущего hash-перехода,
    * показываем его сразу.
-   *
-   * Это важно, например, при переходе:
-   *
-   * /about
-   * →
-   * /consortium#advisory-tine-larsen
-   *
-   * Карточка не должна ждать,
-   * пока IntersectionObserver заметит её.
    */
   useEffect(() => {
     if (isHashTarget) {
@@ -41,11 +32,31 @@ function Reveal({ as: Component = 'div', className = '', children, id, ...props 
     }
 
     /*
-     * Если элемент уже был показан
-     * из-за hash-перехода,
+     * Если элемент уже показан,
      * IntersectionObserver больше не нужен.
      */
     if (isVisible) {
+      return undefined;
+    }
+
+    /*
+     * Важный случай:
+     *
+     * страница была открыта или обновлена
+     * уже в прокрученной позиции.
+     *
+     * Если Reveal находится выше viewport,
+     * пользователь его уже "прошёл".
+     *
+     * Поэтому считаем его видимым сразу,
+     * чтобы при прокрутке обратно вверх
+     * он не анимировался задним числом.
+     */
+    const rect = element.getBoundingClientRect();
+
+    if (rect.bottom <= 0) {
+      setIsVisible(true);
+
       return undefined;
     }
 
