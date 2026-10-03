@@ -16,7 +16,7 @@ function ContactSocialSection({ id }) {
         </Reveal>
 
         <Reveal>
-          <UnderConstructionNotice title={copy.noticeTitle} text={copy.noticeText} />
+          <UnderConstructionNotice />
         </Reveal>
       </div>
     </section>

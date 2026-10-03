@@ -44,10 +44,7 @@ function News({ page }) {
                   </Reveal>
 
                   <Reveal>
-                    <UnderConstructionNotice
-                      title={`${title} ${translations.common.underConstruction.contentSuffix}`}
-                      text={translations.common.underConstruction.projectMaterial}
-                    />
+                    <UnderConstructionNotice />
                   </Reveal>
                 </div>
               </section>

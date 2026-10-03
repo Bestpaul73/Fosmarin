@@ -15,10 +15,7 @@ function ContentPage({ page }) {
             <h2>{section.title}</h2>
 
             {needsClientInput ? (
-              <UnderConstructionNotice
-                title={`${section.title} is under construction`}
-                text='Content for this section will be added when the relevant project material is provided or confirmed by the client.'
-              />
+              <UnderConstructionNotice />
             ) : (
               <p>Content coming soon.</p>
             )}

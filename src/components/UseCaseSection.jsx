@@ -25,10 +25,7 @@ function UseCaseSection({ id, useCase, reverse = false }) {
           <p className='use-case-intro'>{useCase.intro}</p>
 
           {isClientInput ? (
-            <UnderConstructionNotice
-              title={`${useCase.eyebrow} ${translations.common.underConstruction.contentSuffix}`}
-              text={translations.useCases.clientInputText}
-            />
+            <UnderConstructionNotice />
           ) : (
             <>
               <ul className='use-case-tags' aria-label={`${useCase.eyebrow} ${translations.useCases.topics}`}>

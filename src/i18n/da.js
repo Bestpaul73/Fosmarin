@@ -372,12 +372,11 @@ const da = {
   },
   "common": {
     "underConstruction": {
-      "label": "Klientinput påkrævet",
-      "defaultTitle": "Indhold under udarbejdelse",
-      "defaultText": "Detaljeret indhold til dette afsnit afventer input fra klienten.",
-      "contentSuffix": "indhold er under udarbejdelse",
-      "projectMaterial": "Indhold tilføjes, når projektmaterialet er tilgængeligt og godkendt til offentliggørelse.",
-      "resources": "Ressourcer tilføjes, efterhånden som projektresultater bliver tilgængelige eller godkendes til offentliggørelse."
+
+      "defaultTitle": "Indhold tilføjes snart",
+
+      "defaultText": "Indhold tilføjes, når projektmaterialet er tilgængeligt og godkendt til offentliggørelse."
+
     }
   },
   "challenge": {
@@ -1082,8 +1081,6 @@ const da = {
     "advisory": {
       "eyebrow": "Ekspertrådgivningsudvalg",
       "title": "Ekstern ekspertise, der understøtter projektet.",
-      "noticeTitle": "Indhold til ekspertrådgivningsudvalget er under udarbejdelse",
-      "noticeText": "Ekspertrådgivningsudvalget er en del af den godkendte FOSMARIN-webstruktur. Medlemsoplysninger tilføjes, når de leveres eller bekræftes af klienten."
     },
     "stakeholders": {
       "eyebrow": "Myndigheder og interessenter",
@@ -1253,8 +1250,6 @@ const da = {
       "eyebrow": "Links til sociale medier",
       "title": "Følg FOSMARIN online.",
       "intro": "Officielle sociale mediekanaler for projektet tilføjes, når klienten bekræfter de relevante konti og URL'er.",
-      "noticeTitle": "Links til sociale medier er under udarbejdelse",
-      "noticeText": "Officielle LinkedIn-, X- og YouTube-links tilføjes, når projektets konti er bekræftet af klienten."
     }
   }
 };
