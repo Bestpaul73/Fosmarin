@@ -17,6 +17,7 @@ import News from './pages/News';
 import Resources from './pages/Resources';
 import ContentPage from './pages/ContentPage';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 const aboutPage = navigation.find((page) => page.path === '/about');
 
@@ -134,6 +135,8 @@ function AppRoutes() {
             />
           )),
         )}
+
+        <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
   );
