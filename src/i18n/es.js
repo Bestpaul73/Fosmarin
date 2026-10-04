@@ -1388,9 +1388,11 @@ const es = {
         "subject": "Introduce un asunto.",
         "message": "Introduce tu mensaje."
       },
-      "note": "El envío del formulario se conectará al servicio de correo o backend seleccionado por el proyecto antes del lanzamiento.",
+      "note": "Los campos obligatorios están marcados con un asterisco.",
       "button": "Enviar mensaje",
-      "success": "El formulario se ha validado correctamente. La entrega final de mensajes se habilitará antes del lanzamiento."
+      "sending": "Enviando…",
+      "success": "Tu mensaje se ha enviado correctamente.",
+      "error": "No hemos podido enviar tu mensaje. Inténtalo de nuevo más tarde.",
     },
     "details": {
       "eyebrow": "Póngase en contacto",

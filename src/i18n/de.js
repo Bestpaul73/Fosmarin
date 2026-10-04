@@ -1362,9 +1362,11 @@ const de = {
         "subject": "Bitte geben Sie einen Betreff ein.",
         "message": "Bitte geben Sie Ihre Nachricht ein."
       },
-      "note": "Der Formularversand wird vor dem Start mit dem ausgewählten E-Mail- oder Backend-Dienst des Projekts verbunden.",
+      "note": "Pflichtfelder sind mit einem Sternchen gekennzeichnet.",
       "button": "Nachricht senden",
-      "success": "Das Formular wurde erfolgreich validiert. Die endgültige Nachrichtenübermittlung wird vor dem Start aktiviert."
+      "sending": "Wird gesendet…",
+      "success": "Ihre Nachricht wurde erfolgreich gesendet.",
+      "error": "Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
     },
     "details": {
       "eyebrow": "Kontakt aufnehmen",
