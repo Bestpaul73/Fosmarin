@@ -1231,9 +1231,11 @@ const it = {
         "subject": "Inserisci un oggetto.",
         "message": "Inserisci il tuo messaggio."
       },
-      "note": "L'invio del modulo sarà collegato al servizio email o backend scelto per il progetto prima del lancio.",
+      "note": "I campi obbligatori sono contrassegnati da un asterisco.",
       "button": "Invia messaggio",
-      "success": "Il modulo viene validato correttamente. La consegna finale dei messaggi sarà abilitata prima del lancio."
+      "sending": "Invio in corso…",
+      "success": "Il messaggio è stato inviato correttamente.",
+      "error": "Non è stato possibile inviare il messaggio. Riprova più tardi.",
     },
     "details": {
       "eyebrow": "Mettiti in contatto",

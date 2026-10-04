@@ -9,6 +9,7 @@ const initialFormData = {
   organisation: '',
   subject: '',
   message: '',
+  fax_number: '',
 };
 
 function ContactFormSection({ id }) {
@@ -17,7 +18,9 @@ function ContactFormSection({ id }) {
 
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('idle');
+
+  const isSending = submitStatus === 'sending';
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -32,7 +35,9 @@ function ContactFormSection({ id }) {
       [name]: '',
     }));
 
-    setSubmitted(false);
+    if (submitStatus !== 'idle') {
+      setSubmitStatus('idle');
+    }
   }
 
   function validateForm() {
@@ -59,19 +64,38 @@ function ContactFormSection({ id }) {
     return nextErrors;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const nextErrors = validateForm();
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setSubmitted(false);
+      setSubmitStatus('idle');
       return;
     }
 
     setErrors({});
-    setSubmitted(true);
+    setSubmitStatus('sending');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Contact form request failed');
+      }
+
+      setFormData(initialFormData);
+      setSubmitStatus('success');
+    } catch {
+      setSubmitStatus('error');
+    }
   }
 
   return (
@@ -84,12 +108,27 @@ function ContactFormSection({ id }) {
         </Reveal>
 
         <Reveal>
-          <form className='contact-form' onSubmit={handleSubmit} noValidate>
+          <form className='contact-form' onSubmit={handleSubmit} noValidate aria-busy={isSending}>
+            <div className='contact-field contact-field--honeypot' aria-hidden='true'>
+              <label htmlFor='contact-fax-number'>Fax number</label>
+
+              <input
+                id='contact-fax-number'
+                name='fax_number'
+                type='text'
+                autoComplete='off'
+                tabIndex='-1'
+                value={formData.fax_number}
+                onChange={handleChange}
+              />
+            </div>
+
             <div className='contact-form-grid'>
               <div className='contact-field'>
                 <label htmlFor='contact-name'>
                   {copy.labels.name} <span aria-hidden='true'>*</span>
                 </label>
+
                 <input
                   id='contact-name'
                   name='name'
@@ -100,13 +139,19 @@ function ContactFormSection({ id }) {
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? 'contact-name-error' : undefined}
                 />
-                {errors.name && <p className='contact-field-error' id='contact-name-error'>{errors.name}</p>}
+
+                {errors.name && (
+                  <p className='contact-field-error' id='contact-name-error'>
+                    {errors.name}
+                  </p>
+                )}
               </div>
 
               <div className='contact-field'>
                 <label htmlFor='contact-email'>
                   {copy.labels.email} <span aria-hidden='true'>*</span>
                 </label>
+
                 <input
                   id='contact-email'
                   name='email'
@@ -117,11 +162,17 @@ function ContactFormSection({ id }) {
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'contact-email-error' : undefined}
                 />
-                {errors.email && <p className='contact-field-error' id='contact-email-error'>{errors.email}</p>}
+
+                {errors.email && (
+                  <p className='contact-field-error' id='contact-email-error'>
+                    {errors.email}
+                  </p>
+                )}
               </div>
 
               <div className='contact-field'>
                 <label htmlFor='contact-organisation'>{copy.labels.organisation}</label>
+
                 <input
                   id='contact-organisation'
                   name='organisation'
@@ -136,6 +187,7 @@ function ContactFormSection({ id }) {
                 <label htmlFor='contact-subject'>
                   {copy.labels.subject} <span aria-hidden='true'>*</span>
                 </label>
+
                 <input
                   id='contact-subject'
                   name='subject'
@@ -145,7 +197,12 @@ function ContactFormSection({ id }) {
                   aria-invalid={Boolean(errors.subject)}
                   aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
                 />
-                {errors.subject && <p className='contact-field-error' id='contact-subject-error'>{errors.subject}</p>}
+
+                {errors.subject && (
+                  <p className='contact-field-error' id='contact-subject-error'>
+                    {errors.subject}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -153,6 +210,7 @@ function ContactFormSection({ id }) {
               <label htmlFor='contact-message'>
                 {copy.labels.message} <span aria-hidden='true'>*</span>
               </label>
+
               <textarea
                 id='contact-message'
                 name='message'
@@ -162,17 +220,31 @@ function ContactFormSection({ id }) {
                 aria-invalid={Boolean(errors.message)}
                 aria-describedby={errors.message ? 'contact-message-error' : undefined}
               />
-              {errors.message && <p className='contact-field-error' id='contact-message-error'>{errors.message}</p>}
+
+              {errors.message && (
+                <p className='contact-field-error' id='contact-message-error'>
+                  {errors.message}
+                </p>
+              )}
             </div>
 
             <div className='contact-form-footer'>
               <p className='contact-form-note'>{copy.note}</p>
-              <button className='contact-submit' type='submit'>{copy.button}</button>
+
+              <button className='contact-submit' type='submit' disabled={isSending}>
+                {isSending ? copy.sending : copy.button}
+              </button>
             </div>
 
-            {submitted && (
-              <div className='contact-form-status' role='status'>
+            {submitStatus === 'success' && (
+              <div className='contact-form-status' role='status' aria-live='polite'>
                 {copy.success}
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className='contact-form-status contact-form-status--error' role='alert'>
+                {copy.error}
               </div>
             )}
           </form>

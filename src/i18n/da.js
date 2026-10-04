@@ -1231,9 +1231,11 @@ const da = {
         "subject": "Indtast et emne.",
         "message": "Indtast din besked."
       },
-      "note": "Indsendelse af formularen forbindes med projektets valgte e-mail- eller backendtjeneste før lancering.",
+      "note": "Obligatoriske felter er markeret med en stjerne.",
       "button": "Send besked",
-      "success": "Formularen valideres korrekt. Den endelige levering af beskeden aktiveres før lancering."
+      "sending": "Sender…",
+      "success": "Din besked er sendt.",
+      "error": "Din besked kunne ikke sendes. Prøv igen senere.",
     },
     "details": {
       "eyebrow": "Kontakt os",

@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 /TZ/
 test-results/
+.vercel
+.env*

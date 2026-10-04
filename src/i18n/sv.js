@@ -1231,9 +1231,11 @@ const sv = {
         "subject": "Ange ett ämne.",
         "message": "Ange ditt meddelande."
       },
-      "note": "Formuläret kommer att kopplas till projektets valda e-post- eller backendtjänst före lansering.",
+      "note": "Obligatoriska fält är markerade med en asterisk.",
       "button": "Skicka meddelande",
-      "success": "Formuläret valideras korrekt. Slutlig meddelandeleverans aktiveras före lansering."
+      "sending": "Skickar…",
+      "success": "Ditt meddelande har skickats.",
+      "error": "Det gick inte att skicka ditt meddelande. Försök igen senare.",
     },
     "details": {
       "eyebrow": "Kontakta oss",
