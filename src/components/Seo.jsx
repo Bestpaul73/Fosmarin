@@ -1,11 +1,17 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { buildStructuredData } from '../data/structuredData';
+
 import { useLanguage } from '../i18n/LanguageContext';
 
 import { languages, localizePath, stripLanguagePrefix } from '../i18n/languages';
 
 const SITE_NAME = 'FOSMARIN';
+
+const DEFAULT_SITE_URL = 'https://fosmarin.vercel.app';
+
+const SOCIAL_IMAGE_PATH = '/og-image.png';
 
 const SEO = {
   '/': {
@@ -411,21 +417,66 @@ function Seo() {
   useEffect(() => {
     const path = normalizePath(location.pathname);
 
-    const pageSeo = SEO[path] ?? SEO['/'];
+    const pageSeo = SEO[path];
 
-    const content = pageSeo[language] ?? pageSeo.en;
+    const isKnownPage = Boolean(pageSeo);
 
-    const siteUrl = (import.meta.env.VITE_SITE_URL || window.location.origin).replace(/\/+$/, '');
+    const content = isKnownPage
+      ? pageSeo[language] ?? pageSeo.en
+      : {
+          title: 'Page not found | FOSMARIN',
+          description: 'The requested page could not be found on the FOSMARIN website.',
+        };
 
-    const canonicalPath = localizePath(path, language);
+    const siteUrl = (import.meta.env.VITE_SITE_URL || DEFAULT_SITE_URL).replace(/\/+$/, '');
+
+    const isProductionOrigin = window.location.origin === siteUrl;
+
+    const canonicalPath = isKnownPage ? localizePath(path, language) : localizePath('/', language);
 
     const canonicalUrl = `${siteUrl}${canonicalPath}`;
+
+    const socialImageUrl = `${siteUrl}${SOCIAL_IMAGE_PATH}`;
+
+    // Keep one JSON-LD script in the head; unknown routes must clear it.
+    const structuredData = buildStructuredData({
+      siteUrl,
+      canonicalUrl,
+      path,
+      language,
+      title: content.title,
+      description: content.description,
+      projectDescription: SEO['/'].en.description,
+      languageCodes: languages.map(({ code }) => code),
+      isKnownPage,
+    });
+
+    let structuredDataScript = document.head.querySelector('#fosmarin-jsonld');
+
+    if (structuredData) {
+      if (!structuredDataScript) {
+        structuredDataScript = document.createElement('script');
+        structuredDataScript.id = 'fosmarin-jsonld';
+        structuredDataScript.type = 'application/ld+json';
+        document.head.appendChild(structuredDataScript);
+      }
+
+      // textContent treats JSON as data, including quotes and HTML-like text.
+      structuredDataScript.textContent = JSON.stringify(structuredData);
+    } else {
+      structuredDataScript?.remove();
+    }
 
     document.title = content.title;
 
     setMeta('meta[name="description"]', {
       name: 'description',
       content: content.description,
+    });
+
+    setMeta('meta[name="robots"]', {
+      name: 'robots',
+      content: isKnownPage && isProductionOrigin ? 'index,follow' : 'noindex,nofollow',
     });
 
     setMeta('meta[property="og:title"]', {
@@ -458,6 +509,56 @@ function Seo() {
       content: OG_LOCALES[language] ?? OG_LOCALES.en,
     });
 
+    setMeta('meta[property="og:image"]', {
+      property: 'og:image',
+      content: socialImageUrl,
+    });
+
+    setMeta('meta[property="og:image:type"]', {
+      property: 'og:image:type',
+      content: 'image/png',
+    });
+
+    setMeta('meta[property="og:image:width"]', {
+      property: 'og:image:width',
+      content: '1200',
+    });
+
+    setMeta('meta[property="og:image:height"]', {
+      property: 'og:image:height',
+      content: '630',
+    });
+
+    setMeta('meta[property="og:image:alt"]', {
+      property: 'og:image:alt',
+      content: 'FOSMARIN — Resilient subsea infrastructure monitoring',
+    });
+
+    setMeta('meta[name="twitter:card"]', {
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+
+    setMeta('meta[name="twitter:title"]', {
+      name: 'twitter:title',
+      content: content.title,
+    });
+
+    setMeta('meta[name="twitter:description"]', {
+      name: 'twitter:description',
+      content: content.description,
+    });
+
+    setMeta('meta[name="twitter:image"]', {
+      name: 'twitter:image',
+      content: socialImageUrl,
+    });
+
+    setMeta('meta[name="twitter:image:alt"]', {
+      name: 'twitter:image:alt',
+      content: 'FOSMARIN — Resilient subsea infrastructure monitoring',
+    });
+
     setLink('link[rel="canonical"]', {
       rel: 'canonical',
       href: canonicalUrl,
@@ -467,31 +568,36 @@ function Seo() {
       element.remove();
     });
 
-    languages.forEach(({ code }) => {
-      const alternate = document.createElement('link');
+    if (isKnownPage) {
+      languages.forEach(({ code }) => {
+        const alternate = document.createElement('link');
 
-      alternate.setAttribute('rel', 'alternate');
+        alternate.setAttribute('rel', 'alternate');
 
-      alternate.setAttribute('hreflang', code);
+        alternate.setAttribute('hreflang', code);
 
-      alternate.setAttribute('href', `${siteUrl}${localizePath(path, code)}`);
+        alternate.setAttribute('href', `${siteUrl}${localizePath(path, code)}`);
 
-      alternate.setAttribute('data-fosmarin-hreflang', 'true');
+        alternate.setAttribute('data-fosmarin-hreflang', 'true');
 
-      document.head.appendChild(alternate);
-    });
+        document.head.appendChild(alternate);
+      });
 
-    const xDefault = document.createElement('link');
+      const xDefault = document.createElement('link');
 
-    xDefault.setAttribute('rel', 'alternate');
+      xDefault.setAttribute('rel', 'alternate');
 
-    xDefault.setAttribute('hreflang', 'x-default');
+      xDefault.setAttribute('hreflang', 'x-default');
 
-    xDefault.setAttribute('href', `${siteUrl}${localizePath(path, 'en')}`);
+      xDefault.setAttribute('href', `${siteUrl}${localizePath(path, 'en')}`);
 
-    xDefault.setAttribute('data-fosmarin-hreflang', 'true');
+      xDefault.setAttribute('data-fosmarin-hreflang', 'true');
 
-    document.head.appendChild(xDefault);
+      document.head.appendChild(xDefault);
+    }
+    return () => {
+      document.head.querySelector('#fosmarin-jsonld')?.remove();
+    };
   }, [language, location.pathname]);
 
   return null;
