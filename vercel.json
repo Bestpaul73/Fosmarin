@@ -1,8 +1,28 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "^/$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/(?:de|es|da|sv|el|it)/?$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/(?:(?:de|es|da|sv|el|it)/)?(?:about|challenge|use-cases|technology|consortium|news|resources|contact)/?$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 404,
+      "headers": {
+        "X-Robots-Tag": "noindex, nofollow"
+      }
     }
   ]
 }
