@@ -1,6 +1,5 @@
 .reveal {
   opacity: 0;
-
   transform: translateY(22px);
 
   transition:
@@ -9,17 +8,21 @@
 
   &.is-visible {
     opacity: 1;
-
     transform: translateY(0);
+  }
+
+  // Временная диагностика LCP — после проверки удалить.
+  .hero & {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
-
     transform: none;
-
     transition: none;
   }
 }
