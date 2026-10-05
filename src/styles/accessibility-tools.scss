@@ -1,0 +1,519 @@
+@use './tokens' as tokens;
+
+:root {
+  --a11y-tab-width: 44px;
+}
+
+// Скрываем выехавшую за экран панель без горизонтального скролла.
+.accessibility-tools__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 401;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.accessibility-tools {
+  --a11y-top: 110px;
+  --a11y-heading-height: 64px;
+
+  position: absolute;
+  top: var(--a11y-top);
+  right: 0;
+  width: min(330px, calc(100% - var(--a11y-tab-width)));
+
+  transform: translateX(100%);
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  pointer-events: none;
+  overflow-wrap: anywhere;
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  button {
+    font: inherit;
+    cursor: pointer;
+  }
+
+  button:focus-visible {
+    outline: 3px solid tokens.$cyan;
+    outline-offset: -4px;
+  }
+
+  // В закрытом состоянии здесь помещается только язычок.
+  &__heading {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--a11y-tab-width));
+    z-index: 2;
+    width: var(--a11y-tab-width);
+  }
+
+  // Единая кнопка: иконка, заголовок и крестик.
+  &__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: var(--a11y-heading-height);
+    padding: 0;
+
+    border: 1px solid tokens.$cyan;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+
+    background: tokens.$panel2;
+    color: tokens.$foam;
+    text-align: left;
+
+    pointer-events: auto;
+
+    svg {
+      width: 32px;
+      height: 32px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 var(--a11y-tab-width);
+    height: 100%;
+  }
+
+  &__heading-title {
+    display: none;
+    flex: 1;
+    min-width: 0;
+    padding: 0 16px;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  &__heading-close {
+    display: none;
+    place-items: center;
+    flex: 0 0 44px;
+    height: 44px;
+    margin-right: 16px;
+    font-size: 30px;
+  }
+
+  // Заголовок остаётся видимым до конца анимации закрытия.
+  &:has(dialog[open]) {
+    .accessibility-tools__heading {
+      width: calc(100% + var(--a11y-tab-width));
+    }
+
+    .accessibility-tools__heading-title {
+      display: block;
+    }
+
+    .accessibility-tools__heading-close {
+      display: grid;
+    }
+
+    .accessibility-tools__trigger {
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        left: var(--a11y-tab-width);
+        right: 0;
+        bottom: -1px;
+        height: 1px;
+        background: tokens.$panel2;
+        pointer-events: none;
+      }
+    }
+  }
+
+  dialog {
+    position: static;
+
+    width: 100%;
+    max-height: calc(100dvh - var(--a11y-top) - 12px);
+    margin: 0;
+    padding: 0;
+
+    overflow: auto;
+    overscroll-behavior: contain;
+
+    border: 1px solid tokens.$cyan;
+    border-radius: 0 0 0 10px;
+    outline: none;
+
+    background: tokens.$panel2;
+    color: tokens.$foam;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    pointer-events: auto;
+  }
+
+  &__heading-space {
+    height: calc(var(--a11y-heading-height) - 1px);
+  }
+
+  &__controls {
+    padding: 8px;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      width: 100%;
+      min-height: 48px;
+      padding: 12px;
+
+      border: 1px solid transparent;
+      border-radius: 5px;
+
+      background: transparent;
+      color: tokens.$foam;
+
+      text-align: left;
+      line-height: 1.4;
+
+      span {
+        width: 28px;
+        flex-shrink: 0;
+        text-align: center;
+      }
+
+      &:hover:not(:disabled),
+      &[aria-pressed='true'] {
+        border-color: tokens.$cyan;
+        background: tokens.$cyan;
+        color: tokens.$abyss;
+      }
+
+      &:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+    }
+  }
+}
+
+html.a11y-underline .site-layout a {
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em;
+}
+
+html.a11y-font .site-layout,
+html.a11y-font .site-layout * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html[data-a11y-mode='grayscale'] {
+  .site-layout,
+  body::before {
+    filter: grayscale(1);
+  }
+}
+
+html[data-a11y-mode='negative'] {
+  .site-layout,
+  body::before {
+    filter: invert(1);
+  }
+}
+
+@mixin colour-mode($background, $foreground, $link) {
+  body {
+    background: $background;
+    color: $foreground;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  .site-layout,
+  .site-layout * {
+    color: $foreground !important;
+    background-color: $background !important;
+    background-image: none !important;
+    border-color: $foreground !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .site-layout a {
+    color: $link !important;
+    text-decoration: underline !important;
+  }
+
+  .site-layout :focus-visible {
+    outline: 3px solid $link !important;
+    outline-offset: -3px;
+  }
+
+  .site-layout :is(a, button):is(:hover, :focus-visible) {
+    background-color: $link !important;
+    color: $background !important;
+
+    * {
+      background-color: transparent !important;
+      color: inherit !important;
+    }
+  }
+
+  .site-layout .nav-link.active {
+    border-bottom: 3px solid $link !important;
+    font-weight: 700;
+  }
+
+  .site-layout .nav-link::after {
+    background-color: $link !important;
+  }
+
+  .site-layout .menu-toggle span {
+    background-color: $foreground !important;
+  }
+
+  .site-layout .menu-toggle:is(:hover, :focus-visible) span {
+    background-color: $background !important;
+  }
+}
+
+html[data-a11y-mode='high'] {
+  @include colour-mode(#000, #fff, #ffeb00);
+}
+
+html[data-a11y-mode='light'] {
+  @include colour-mode(#fff, #17212b, #004b87);
+}
+
+// Фоны занимают всю ширину экрана.
+.site-layout {
+  width: 100%;
+  min-width: 0;
+}
+
+// Место для язычка резервируем внутри секций.
+.site-main > section,
+.site-main > .content-page,
+.site-layout > .header,
+.site-layout > .footer {
+  padding-right: var(--a11y-tab-width);
+}
+
+.site-main > .not-found {
+  padding-right: calc(1.5rem + var(--a11y-tab-width));
+}
+
+.site-main,
+.header-inner {
+  min-width: 0;
+}
+
+.site-main,
+.site-main :is(h1, h2, h3, h4, h5, h6, p, li, a, button, label, span, strong, small, dt, dd, th, td) {
+  overflow-wrap: anywhere;
+}
+
+@mixin accessibility-compact-header {
+  --header-height: 70px;
+
+  .header-inner {
+    grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+    min-height: 70px;
+    column-gap: 8px;
+  }
+
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .search-control {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .language-selector {
+    grid-column: 4;
+    grid-row: 1;
+    margin: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .menu-toggle {
+    grid-column: 5;
+    grid-row: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+
+    border: none;
+    background: none;
+
+    span {
+      width: 24px;
+      height: 2px;
+      background: tokens.$foam;
+    }
+
+    &.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    &.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  .main-nav {
+    position: absolute;
+    z-index: 200;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+
+    width: auto;
+    min-width: 0;
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+
+    background: tokens.$abyss;
+    border: 1px solid tokens.$line;
+
+    &.mobile-open {
+      display: flex;
+    }
+  }
+
+  .nav-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .nav-link {
+    height: auto;
+    padding: 16px 24px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .submenu-toggle {
+    display: block;
+  }
+
+  .submenu {
+    position: static;
+    grid-column: 1 / -1;
+
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+
+    padding: 4px 0 10px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    a {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      padding: 10px 24px;
+    }
+  }
+}
+
+@media (max-width: 1564px) {
+  .header {
+    @include accessibility-compact-header;
+  }
+}
+
+html.a11y-large-text .header {
+  @include accessibility-compact-header;
+}
+
+@media (max-width: 560px) {
+  .header .logo span {
+    font-size: clamp(12px, 3.2vw, 18px);
+  }
+
+  html.a11y-large-text .header .header-inner {
+    column-gap: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header .logo span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+}
+
+.scroll-to-top {
+  right: calc(28px + var(--a11y-tab-width));
+}
+
+@media (max-width: 700px) {
+  :root {
+    --a11y-tab-width: 28px;
+  }
+
+  .accessibility-tools {
+    --a11y-top: 90px;
+    width: min(280px, calc(100% - var(--a11y-tab-width)));
+  }
+
+  .accessibility-tools__trigger svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scroll-to-top {
+    right: calc(20px + var(--a11y-tab-width));
+  }
+}
+
+@media (max-height: 600px) {
+  .accessibility-tools {
+    --a11y-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accessibility-tools {
+    transition: none;
+  }
+}
