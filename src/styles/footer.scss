@@ -22,19 +22,34 @@
 
 .footer-navigation {
   display: grid;
-  grid-template-columns: 1.2fr 1.2fr 1.2fr 0.8fr 1fr;
-  gap: 40px;
 
+  // Колонки могут сжиматься независимо от длины слов.
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(0, 1.2fr)
+    minmax(0, 1.2fr)
+    minmax(0, 0.8fr)
+    minmax(0, 1fr);
+
+  gap: 40px;
   padding-bottom: 48px;
 
   border-bottom: 1px solid tokens.$line;
 }
 
 .footer-column {
+  min-width: 0;
+  overflow-wrap: anywhere;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+
+  > * {
+    min-width: 0;
+    max-width: 100%;
+  }
 
   a {
     color: tokens.$mist;
@@ -72,6 +87,9 @@
 }
 
 .footer-socials {
+  min-width: 0;
+  max-width: 100%;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -96,6 +114,7 @@
     display: block;
 
     width: 220px;
+    max-width: 100%;
     height: auto;
 
     border-radius: tokens.$radius-small;
@@ -103,7 +122,9 @@
 }
 
 .footer-funding-text {
+  min-width: 0;
   max-width: 720px;
+  overflow-wrap: anywhere;
 
   p {
     margin: 0;
@@ -125,6 +146,9 @@
 }
 
 .footer-bottom {
+  min-width: 0;
+  overflow-wrap: anywhere;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,7 +170,7 @@
 
 @media (max-width: tokens.$breakpoint-tablet) {
   .footer-navigation {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 40px;
   }
 
@@ -158,5 +182,12 @@
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-navigation {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
   }
 }

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Seo from '../components/Seo';
+import AccessibilityTools from '../components/AccessibilityTools';
 import ScrollToHash from '../components/ScrollToHash';
 import ScrollToTop from '../components/ScrollToTop';
 
@@ -10,21 +11,25 @@ import '../styles/main-layout.scss';
 
 function MainLayout() {
   return (
-    <div className='site-layout'>
-      <Seo />
+    <>
+      <div className='site-layout'>
+        <Seo />
 
-      <Header />
+        <Header />
 
-      <ScrollToHash />
+        <ScrollToHash />
 
-      <main className='site-main'>
-        <Outlet />
-      </main>
+        <main className='site-main'>
+          <Outlet />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
+
+      <AccessibilityTools />
 
       <ScrollToTop />
-    </div>
+    </>
   );
 }
 

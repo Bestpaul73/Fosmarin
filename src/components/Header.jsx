@@ -21,7 +21,7 @@ const BREAKPOINT_STANDARD_HEADER = 1360;
 
 const BREAKPOINT_LONG_HEADER = 1520;
 
-const LONG_NAV_LANGUAGES = new Set(['de', 'el']);
+const LONG_NAV_LANGUAGES = new Set(['de', 'el', 'da']);
 
 const BREAKPOINT_WIDE_TOUCH_HEADER = tokens.breakpoints.wideTouchHeader;
 
@@ -42,6 +42,13 @@ function getDesktopHeaderBreakpoint(language) {
 }
 
 function usesDesktopNavigation(language) {
+  const toggle = document.querySelector('.header .menu-toggle');
+
+  // Ориентируемся на реально показанный CSS-вариант меню.
+  if (toggle) {
+    return getComputedStyle(toggle).display === 'none';
+  }
+
   if (usesTouchNavigation()) {
     return getLayoutWidth() >= BREAKPOINT_WIDE_TOUCH_HEADER;
   }
