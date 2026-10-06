@@ -1,17 +1,10 @@
-import { createContext, useContext, useEffect, useMemo } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import {
-  defaultLanguage,
-  languages,
-  getLanguageFromPath,
-  getLanguagePrefix,
-  localizePath,
-  stripLanguagePrefix,
-} from './languages';
+import { defaultLanguage, languages, getLanguageFromPath, localizePath, stripLanguagePrefix } from './languages';
 
-import { getTranslations } from './translations';
+import { getTranslations, loadTranslations, initialTranslationError } from './translations';
 
 const LanguageContext = createContext(null);
 
@@ -39,8 +32,7 @@ function getStoredLanguage() {
       return storedLanguage;
     }
   } catch {
-    // Если localStorage недоступен,
-    // просто продолжаем без него.
+    // Продолжаем работу без localStorage.
   }
 
   return null;
@@ -50,71 +42,121 @@ function storeLanguage(language) {
   try {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   } catch {
-    // Работа сайта не должна зависеть
-    // от доступности localStorage.
+    // Переключение языка не зависит от localStorage.
   }
 }
 
 export function LanguageProvider({ children }) {
   const location = useLocation();
-
   const navigate = useNavigate();
 
   const language = getLanguageFromPath(location.pathname);
+  const translations = getTranslations(language);
 
-  const translations = useMemo(() => getTranslations(language), [language]);
+  const [, refreshTranslations] = useState(0);
+  const [loadError, setLoadError] = useState(initialTranslationError);
+
+  const switchRequest = useRef(0);
+  const latestLocation = useRef(location);
+
+  useEffect(() => {
+    latestLocation.current = location;
+  }, [location]);
 
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);
 
+  // Дополнительная защита для перехода через Router
+  // на язык, который ещё не загружен.
   useEffect(() => {
-    // Автоопределение языка работает
-    // только на главной английской странице "/".
-    //
-    // Если пользователь открыл:
-    // /about
-    // /de/about
-    // /es/about
-    // /da/about
-    // /sv/about
-    // /el/about
-    // /it/about
-    //
-    // URL имеет высший приоритет,
-    // поэтому ничего не меняем.
+    if (getTranslations(language) || initialTranslationError) {
+      return;
+    }
+
+    let cancelled = false;
+
+    loadTranslations(language)
+      .then(() => {
+        if (!cancelled) {
+          setLoadError(null);
+          refreshTranslations((version) => version + 1);
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setLoadError(error);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
+
+  const changeLanguage = useCallback(
+    async (nextLanguage, { replace = false, persist = true } = {}) => {
+      if (!languages.some((item) => item.code === nextLanguage)) {
+        return;
+      }
+
+      const request = ++switchRequest.current;
+      const sourceLocation = latestLocation.current;
+
+      try {
+        // Пока перевод загружается, текущая страница остаётся.
+        await loadTranslations(nextLanguage);
+
+        // Устаревший запрос не должен менять язык или страницу.
+        if (request !== switchRequest.current || sourceLocation.key !== latestLocation.current.key) {
+          return;
+        }
+
+        setLoadError(null);
+
+        if (persist) {
+          storeLanguage(nextLanguage);
+        }
+
+        const basePath = stripLanguagePrefix(sourceLocation.pathname);
+
+        const nextPath = localizePath(basePath, nextLanguage);
+
+        navigate(`${nextPath}${sourceLocation.search}${sourceLocation.hash}`, { replace });
+      } catch (error) {
+        if (request === switchRequest.current && sourceLocation.key === latestLocation.current.key) {
+          setLoadError(error);
+        }
+      }
+    },
+    [navigate],
+  );
+
+  useEffect(() => {
+    // Явный URL страницы имеет высший приоритет.
+    // Автоопределение работает только на "/".
     if (location.pathname !== '/') {
       return;
     }
 
-    const storedLanguage = getStoredLanguage();
+    const preferredLanguage = getStoredLanguage() ?? getBrowserLanguage();
 
-    const preferredLanguage = storedLanguage ?? getBrowserLanguage();
-
-    if (preferredLanguage === defaultLanguage) {
-      return;
+    if (preferredLanguage !== defaultLanguage) {
+      void changeLanguage(preferredLanguage, {
+        replace: true,
+        persist: false,
+      });
     }
+  }, [location.pathname, location.search, location.hash, changeLanguage]);
 
-    const prefix = getLanguagePrefix(preferredLanguage);
+  const getLocalizedPath = useCallback((path) => localizePath(path, language), [language]);
 
-    navigate(`${prefix}${location.search}${location.hash}`, {
-      replace: true,
-    });
-  }, [location.pathname, location.search, location.hash, navigate]);
-
-  function getLocalizedPath(path) {
-    return localizePath(path, language);
-  }
-
-  function switchLanguage(nextLanguage) {
-    storeLanguage(nextLanguage);
-
-    const basePath = stripLanguagePrefix(location.pathname);
-
-    const nextPath = localizePath(basePath, nextLanguage);
-
-    navigate(`${nextPath}${location.search}${location.hash}`);
-  }
+  const switchLanguage = useCallback(
+    (nextLanguage) => {
+      void changeLanguage(nextLanguage);
+    },
+    [changeLanguage],
+  );
 
   const value = useMemo(
     () => ({
@@ -123,10 +165,38 @@ export function LanguageProvider({ children }) {
       getLocalizedPath,
       switchLanguage,
     }),
-    [language, translations, location.pathname, location.search, location.hash],
+    [language, translations, getLocalizedPath, switchLanguage],
   );
 
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
+  if (!translations) {
+    return (
+      <div role={loadError ? 'alert' : 'status'}>
+        <p>{loadError ? 'The page language could not be loaded. Please reload the page.' : 'Loading…'}</p>
+
+        {loadError && (
+          <button type='button' onClick={() => window.location.reload()}>
+            Reload page
+          </button>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {loadError && (
+        <div role='alert'>
+          <p>The selected language could not be loaded. Your current page is still available. Please try again.</p>
+
+          <button type='button' onClick={() => setLoadError(null)}>
+            Close
+          </button>
+        </div>
+      )}
+
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {
