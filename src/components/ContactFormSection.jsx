@@ -236,9 +236,7 @@ function ContactFormSection({ id }) {
               <p className='contact-form-note'>{copy.note}</p>
 
               <button className='contact-submit' type='submit' disabled={isSending}>
-                {isSending && <span className='contact-submit-spinner' aria-hidden='true' />}
-
-                <span>{isSending ? copy.sending : copy.button}</span>
+                {copy.button}
               </button>
             </div>
 

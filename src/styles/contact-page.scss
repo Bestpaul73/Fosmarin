@@ -176,8 +176,6 @@
   align-items: center;
   justify-content: center;
 
-  gap: 10px;
-
   flex: 0 0 auto;
 
   min-height: 46px;
@@ -214,30 +212,18 @@
 
   &:disabled {
     cursor: not-allowed;
-
     opacity: 0.65;
-
     transform: none;
     box-shadow: none;
   }
 }
 
-.contact-submit-spinner {
-  flex: 0 0 auto;
+/* Курсор ожидания над формой во время отправки */
 
-  width: 1.15em;
-  height: 1.15em;
-
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-
-  animation: contact-submit-spin 0.75s linear infinite;
-}
-
-@keyframes contact-submit-spin {
-  to {
-    transform: rotate(360deg);
+.contact-form[aria-busy='true'] {
+  &,
+  * {
+    cursor: wait;
   }
 }
 
@@ -291,7 +277,6 @@
 
   &:hover {
     background-color: tokens.$panel2;
-
     transform: translateY(-6px);
 
     border-color: tokens.$line-strong;
@@ -307,7 +292,6 @@
     font-family: tokens.$font-mono, monospace;
     font-size: 10px;
     line-height: 1.5;
-
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -371,10 +355,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .contact-submit-spinner {
-    animation: none;
-  }
-
   .contact-submit,
   .contact-detail-card,
   .contact-field input,
