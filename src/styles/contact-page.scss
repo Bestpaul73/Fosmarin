@@ -200,7 +200,7 @@
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-1px);
 
     box-shadow: 0 10px 24px rgba(tokens.$cyan, 0.18);
   }
