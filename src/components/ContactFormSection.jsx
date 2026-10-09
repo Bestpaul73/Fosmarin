@@ -35,7 +35,9 @@ function ContactFormSection({ id }) {
       [name]: '',
     }));
 
-    if (submitStatus !== 'idle') {
+    // Сбрасываем результат предыдущей отправки,
+    // но сохраняем состояние текущего запроса.
+    if (submitStatus === 'success' || submitStatus === 'error') {
       setSubmitStatus('idle');
     }
   }
@@ -66,6 +68,8 @@ function ContactFormSection({ id }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    if (isSending) return;
 
     const nextErrors = validateForm();
 
@@ -232,7 +236,9 @@ function ContactFormSection({ id }) {
               <p className='contact-form-note'>{copy.note}</p>
 
               <button className='contact-submit' type='submit' disabled={isSending}>
-                {isSending ? copy.sending : copy.button}
+                {isSending && <span className='contact-submit-spinner' aria-hidden='true' />}
+
+                <span>{isSending ? copy.sending : copy.button}</span>
               </button>
             </div>
 
