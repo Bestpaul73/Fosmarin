@@ -120,7 +120,6 @@
   }
 }
 
-
 .contact-field--honeypot {
   position: absolute;
 
@@ -173,6 +172,10 @@
 }
 
 .contact-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   flex: 0 0 auto;
 
   min-height: 46px;
@@ -197,7 +200,7 @@
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-1px);
 
     box-shadow: 0 10px 24px rgba(tokens.$cyan, 0.18);
   }
@@ -212,6 +215,15 @@
     opacity: 0.65;
     transform: none;
     box-shadow: none;
+  }
+}
+
+/* Курсор ожидания над формой во время отправки */
+
+.contact-form[aria-busy='true'] {
+  &,
+  * {
+    cursor: wait;
   }
 }
 
