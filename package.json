@@ -11,7 +11,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "generate:tokens": "node scripts/generate-tokens.js",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:i18n": "node scripts/check-translations.js"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",
