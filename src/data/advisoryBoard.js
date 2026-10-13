@@ -35,7 +35,7 @@ export const advisoryBoardMembers = [
       {
         jobTitle: 'RDI Specialist in Security Research',
         institution: 'Laurea University of Applied Sciences',
-        country: 'Italy',
+        country: 'Finland',
       },
     ],
   },

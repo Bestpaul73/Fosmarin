@@ -244,39 +244,39 @@ const SEO = {
 
   '/news': {
     en: {
-      title: 'News & Events | FOSMARIN',
+      title: 'News | FOSMARIN',
       description:
-        'Follow FOSMARIN news, events, press releases, workshops and project updates on resilient subsea infrastructure monitoring.',
+        'Follow FOSMARIN news, press releases, workshops and project updates on resilient subsea infrastructure monitoring.',
     },
     de: {
-      title: 'Neuigkeiten & Veranstaltungen | FOSMARIN',
+      title: 'Neuigkeiten | FOSMARIN',
       description:
-        'Verfolgen Sie Neuigkeiten, Veranstaltungen, Pressemitteilungen, Workshops und Projektupdates von FOSMARIN.',
+        'Verfolgen Sie Neuigkeiten, Pressemitteilungen, Workshops und Projektupdates von FOSMARIN.',
     },
     es: {
-      title: 'Noticias y eventos | FOSMARIN',
+      title: 'Noticias | FOSMARIN',
       description:
-        'Siga las noticias, eventos, comunicados de prensa, talleres y novedades del proyecto FOSMARIN.',
+        'Siga las noticias, comunicados de prensa, talleres y novedades del proyecto FOSMARIN.',
     },
     da: {
-      title: 'Nyheder og begivenheder | FOSMARIN',
+      title: 'Nyheder | FOSMARIN',
       description:
-        'Følg FOSMARIN-nyheder, begivenheder, pressemeddelelser, workshops og projektopdateringer om robust overvågning af undersøisk infrastruktur.',
+        'Følg FOSMARIN-nyheder, pressemeddelelser, workshops og projektopdateringer om robust overvågning af undersøisk infrastruktur.',
     },
     sv: {
-      title: 'Nyheter och evenemang | FOSMARIN',
+      title: 'Nyheter | FOSMARIN',
       description:
-        'Följ FOSMARIN-nyheter, evenemang, pressmeddelanden, workshoppar och projektuppdateringar om robust övervakning av undervattensinfrastruktur.',
+        'Följ FOSMARIN-nyheter, pressmeddelanden, workshoppar och projektuppdateringar om robust övervakning av undervattensinfrastruktur.',
     },
     el: {
-      title: 'Νέα και εκδηλώσεις | FOSMARIN',
+      title: 'Νέα | FOSMARIN',
       description:
-        'Παρακολουθήστε νέα, εκδηλώσεις, δελτία Τύπου, εργαστήρια και ενημερώσεις του FOSMARIN για ανθεκτική παρακολούθηση υποθαλάσσιων υποδομών.',
+        'Παρακολουθήστε νέα, δελτία Τύπου, εργαστήρια και ενημερώσεις του FOSMARIN για ανθεκτική παρακολούθηση υποθαλάσσιων υποδομών.',
     },
     it: {
-      title: 'Notizie ed eventi | FOSMARIN',
+      title: 'Notizie | FOSMARIN',
       description:
-        'Segui notizie, eventi, comunicati stampa, workshop e aggiornamenti FOSMARIN sul monitoraggio resiliente delle infrastrutture sottomarine.',
+        'Segui notizie, comunicati stampa, workshop e aggiornamenti FOSMARIN sul monitoraggio resiliente delle infrastrutture sottomarine.',
     },
   },
 

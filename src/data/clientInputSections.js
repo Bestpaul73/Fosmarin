@@ -1,5 +1,5 @@
 export const clientInputSections = new Set([
-  // News & Events
+  // News
   'press-releases',
   'media-gallery',
   'workshops',
