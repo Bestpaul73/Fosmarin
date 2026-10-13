@@ -58,7 +58,7 @@ const sv = {
       }
     },
     "/news": {
-      "title": "Nyheter och evenemang",
+      "title": "Nyheter",
       "sections": {
         "latest-news": "Senaste nytt",
         "press-releases": "Pressmeddelanden",
@@ -195,17 +195,17 @@ const sv = {
       "readUpdate": "Läs uppdateringen",
       "items": {
         "fosmarin-kick-off-meeting-vienna-2026": {
-          "status": "Kommande",
+          "status": "Genomfört",
           "dateLabel": "6–7 okt 2026",
           "title": "KOM / FOSMARIN kick-off meeting",
           "location": "Wien · Österrike"
         },
         "fosmarin-project-launch-2026": {
           "category": "Projektstart",
-          "status": "Kommande",
+          "status": "Projektet startat",
           "dateLabel": "1 okt 2026",
           "title": "Tillkännagivande av FOSMARIN-projektets start",
-          "excerpt": "FOSMARIN planerar att tillkännage projektets start vid Atlantic Convergence 2026.",
+          "excerpt": "FOSMARIN startade den 1 oktober 2026.",
           "location": "Lissabon · Portugal"
         }
       }
@@ -1144,15 +1144,16 @@ const sv = {
       "Greece": "Grekland",
       "Spain": "Spanien",
       "Italy": "Italien",
+      "Finland": "Finland",
       "Denmark": "Danmark",
       "Faroe Islands": "Färöarna"
     }
   },
   "news": {
     "hero": {
-      "eyebrow": "Nyheter och evenemang",
+      "eyebrow": "Nyheter",
       "title": "Följ FOSMARIN medan projektet utvecklas.",
-      "intro": "Projektuppdateringar, evenemang, pressmeddelanden och medier från FOSMARIN — som dokumenterar framsteg från projektstart genom utveckling, validering och demonstration."
+      "intro": "Projektuppdateringar, pressmeddelanden och medier från FOSMARIN — som dokumenterar framsteg från projektstart genom utveckling, validering och demonstration."
     },
   },
   "resourcesPage": {

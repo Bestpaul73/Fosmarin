@@ -159,7 +159,7 @@ export const navigation = [
   },
 
   {
-    title: 'News & Events',
+    title: 'News',
     path: '/news',
     sections: [
       {

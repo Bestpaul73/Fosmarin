@@ -63,7 +63,7 @@ const en = {
     },
 
     '/news': {
-      title: 'News & Events',
+      title: 'News',
       sections: {
         'latest-news': 'Latest News',
         'press-releases': 'Press Releases',
@@ -232,19 +232,19 @@ const en = {
 
       items: {
         'fosmarin-kick-off-meeting-vienna-2026': {
-          status: 'Upcoming',
+          status: 'Completed',
           dateLabel: '06–07 Oct 2026',
           title: 'KOM / FOSMARIN kick-off meeting',
           location: 'Vienna · Austria',
         },
         'fosmarin-project-launch-2026': {
           category: 'Project launch',
-          status: 'Upcoming',
+          status: 'Project launched',
           dateLabel: '01 Oct 2026',
 
           title: 'FOSMARIN project start announcement',
 
-          excerpt: "FOSMARIN is scheduled to announce the project's start at Atlantic Convergence 2026.",
+          excerpt: "FOSMARIN launched on 1 October 2026.",
 
           location: 'Lisbon · Portugal',
         },
@@ -1170,6 +1170,7 @@ const en = {
       Greece: 'Greece',
       Spain: 'Spain',
       Italy: 'Italy',
+      Finland: 'Finland',
       Denmark: 'Denmark',
       'Faroe Islands': 'Faroe Islands',
     },
@@ -1177,10 +1178,10 @@ const en = {
 
   news: {
     hero: {
-      eyebrow: 'News & Events',
+      eyebrow: 'News',
       title: 'Follow FOSMARIN as the project develops.',
       intro:
-        'Project updates, events, press releases and media from FOSMARIN — documenting progress from project launch through development, validation and demonstration.',
+        'Project updates, press releases and media from FOSMARIN — documenting progress from project launch through development, validation and demonstration.',
     },
   },
 

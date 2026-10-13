@@ -58,7 +58,7 @@ const it = {
       }
     },
     "/news": {
-      "title": "Notizie ed eventi",
+      "title": "Notizie",
       "sections": {
         "latest-news": "Ultime notizie",
         "press-releases": "Comunicati stampa",
@@ -195,17 +195,17 @@ const it = {
       "readUpdate": "Leggi l'aggiornamento",
       "items": {
         "fosmarin-kick-off-meeting-vienna-2026": {
-          "status": "In programma",
+          "status": "Concluso",
           "dateLabel": "06–07 ott 2026",
           "title": "KOM / FOSMARIN kick-off meeting",
           "location": "Vienna · Austria"
         },
         "fosmarin-project-launch-2026": {
           "category": "Avvio del progetto",
-          "status": "In programma",
+          "status": "Progetto avviato",
           "dateLabel": "01 ott 2026",
           "title": "Annuncio dell'avvio del progetto FOSMARIN",
-          "excerpt": "FOSMARIN prevede di annunciare l'avvio del progetto ad Atlantic Convergence 2026.",
+          "excerpt": "FOSMARIN è iniziato il 1° ottobre 2026.",
           "location": "Lisbona · Portogallo"
         }
       }
@@ -1144,15 +1144,16 @@ const it = {
       "Greece": "Grecia",
       "Spain": "Spagna",
       "Italy": "Italia",
+      "Finland": "Finlandia",
       "Denmark": "Danimarca",
       "Faroe Islands": "Isole Faroe"
     }
   },
   "news": {
     "hero": {
-      "eyebrow": "Notizie ed eventi",
+      "eyebrow": "Notizie",
       "title": "Segui FOSMARIN mentre il progetto si sviluppa.",
-      "intro": "Aggiornamenti, eventi, comunicati stampa e contenuti media di FOSMARIN — documentando i progressi dall'avvio del progetto attraverso sviluppo, validazione e dimostrazione."
+      "intro": "Aggiornamenti, comunicati stampa e contenuti media di FOSMARIN — documentando i progressi dall'avvio del progetto attraverso sviluppo, validazione e dimostrazione."
     },
   },
   "resourcesPage": {
