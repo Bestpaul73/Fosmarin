@@ -138,10 +138,10 @@ export default async function handler(request, response) {
         address: mailConfig.from,
       },
       to: mailConfig.to,
-      replyTo: {
-        name: formData.name,
-        address: formData.email,
-      },
+      // replyTo: {
+      //   name: formData.name,
+      //   address: formData.email,
+      // },
       subject: `FOSMARIN contact form: ${formData.subject}`,
       text: [
         'New message from the FOSMARIN contact form',
