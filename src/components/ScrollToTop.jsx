@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/scroll-to-top.scss';
 
 function ScrollToTop() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -21,6 +24,17 @@ function ScrollToTop() {
   }, []);
 
   const scrollToTop = () => {
+    if (location.hash) {
+      navigate(
+        { pathname: location.pathname, search: location.search, hash: '' },
+        {
+          replace: true,
+          state: { ...location.state, scrollToTop: true },
+        }
+      );
+      return;
+    }
+
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;

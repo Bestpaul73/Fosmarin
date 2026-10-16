@@ -390,15 +390,17 @@ html[data-a11y-mode='light'] {
   .main-nav {
     position: absolute;
     z-index: 200;
+    grid-area: auto;
+    justify-self: end;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: auto;
+    right: var(--header-side-padding, 24px);
 
     display: none;
     flex-direction: column;
     align-items: stretch;
 
-    width: auto;
+    width: min(360px, calc(100% - var(--header-side-padding, 24px) - var(--header-side-padding, 24px)));
     min-width: 0;
     max-height: calc(100dvh - 70px);
     overflow-y: auto;
