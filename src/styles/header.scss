@@ -7,6 +7,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
 .header {
   --header-height: 80px;
+  --header-side-padding: 24px;
 
   position: sticky;
   top: 0;
@@ -45,7 +46,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
   margin: 0 auto;
 
-  padding: 0 24px;
+  padding: 0 var(--header-side-padding, 24px);
 }
 
 .logo {
@@ -545,7 +546,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
     min-height: 70px;
 
-    padding: 0 24px;
+    padding: 0 var(--header-side-padding, 24px);
   }
 
   .logo {
@@ -623,10 +624,12 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
     position: absolute;
     z-index: 200;
 
+    grid-area: auto;
+    justify-self: end;
     top: 100%;
 
-    left: 0;
-    right: 0;
+    left: auto;
+    right: var(--header-side-padding, 24px);
 
     display: none;
 
@@ -634,7 +637,7 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 
     align-items: stretch;
 
-    width: auto;
+    width: min(360px, calc(100% - var(--header-side-padding, 24px) - var(--header-side-padding, 24px)));
     min-width: 0;
 
     margin: 0;
@@ -769,6 +772,9 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
 }
 
 @media (max-width: 560px) {
+  .header {
+    --header-side-padding: 16px;
+  }
   .header-inner {
     column-gap: 6px;
 

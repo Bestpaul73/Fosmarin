@@ -11,23 +11,16 @@
   @include pageSections.section-inner;
 }
 
-.eu-funding-main {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-
-  gap: 72px;
-
-  align-items: center;
+.eu-funding-main,
+.eu-funding-content {
+  min-width: 0;
 }
 
 .eu-funding-content {
   h2 {
     max-width: 700px;
-
     margin: 0 0 20px;
-
     color: tokens.$foam;
-
     font-family: tokens.$font-display, sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 600;
@@ -48,32 +41,33 @@
 
 .eu-funding-facts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-
   margin: 0;
-
   overflow: hidden;
-
   background-color: tokens.$line;
-
   border: 1px solid tokens.$line;
   border-radius: tokens.$radius-default;
 
   > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     min-width: 0;
-
     padding: 22px;
-
     background-color: tokens.$abyss;
+    overflow-wrap: anywhere;
+  }
+
+  dl {
+    min-width: 0;
+    margin: 0;
   }
 
   dt {
     margin: 0 0 8px;
-
     color: tokens.$mist;
-
     font-family: tokens.$font-mono, monospace;
     font-size: 10px;
     line-height: 1.5;
@@ -83,34 +77,41 @@
 
   dd {
     margin: 0;
-
     color: tokens.$foam;
-
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
   }
 }
 
-.eu-funding-visual {
-  display: flex;
-  align-items: center;
+.eu-funding-cordis {
+  a {
+    color: tokens.$foam;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+  }
+}
+
+.eu-funding-logo {
   justify-content: center;
-
-  min-height: 240px;
-
-  padding: 40px;
-
-  background-color: tokens.$abyss;
-
-  border: 1px solid tokens.$line;
-  border-radius: tokens.$radius-default;
 
   img {
     display: block;
-
     width: 100%;
-    max-width: 280px;
+    max-width: 220px;
     height: auto;
   }
 }
@@ -118,44 +119,26 @@
 .eu-funding-disclaimer {
   margin-top: 48px;
   padding-top: 24px;
-
   border-top: 1px solid tokens.$line;
 
   p {
     max-width: 920px;
-
     margin: 0;
-
     color: tokens.$mist;
-
     font-size: 12px;
     line-height: 1.7;
   }
 }
 
 @media (max-width: 980px) {
-  .eu-funding-main {
-    grid-template-columns: 1fr;
-
-    gap: 42px;
-  }
-
-  .eu-funding-visual {
-    justify-content: flex-start;
-
-    min-height: 0;
-
-    padding: 32px;
+  .eu-funding-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 700px) {
   .eu-funding-facts {
     grid-template-columns: 1fr;
-  }
-
-  .eu-funding-visual {
-    padding: 26px 24px;
   }
 
   .eu-funding-disclaimer {

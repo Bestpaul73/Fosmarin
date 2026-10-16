@@ -112,7 +112,10 @@ function ScrollToHash() {
 
       window.scrollTo({
         top: 0,
-        behavior: 'auto',
+        behavior: location.state?.scrollToTop &&
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'smooth'
+          : 'auto',
       });
 
       return;

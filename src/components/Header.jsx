@@ -71,6 +71,10 @@ function Header() {
 
   const headerRef = useRef(null);
 
+  const navigationRef = useRef(null);
+
+  const menuToggleRef = useRef(null);
+
   const languageSelectorRef = useRef(null);
 
   const searchButtonRef = useRef(null);
@@ -140,6 +144,15 @@ function Header() {
       }
 
       if (event.key === 'Escape') {
+        if (
+          navigationRef.current?.contains(event.target) &&
+          menuToggleRef.current?.getAttribute('aria-expanded') === 'true'
+        ) {
+          menuToggleRef.current.focus();
+        }
+
+        setMobileOpen(false);
+        setLanguageOpen(false);
         setOpenMenu(null);
 
         menuOpenedByKeyboardRef.current = false;
@@ -148,6 +161,13 @@ function Header() {
 
     function handlePointerDown(event) {
       setKeyboardMode(false);
+
+      if (
+        !navigationRef.current?.contains(event.target) &&
+        !menuToggleRef.current?.contains(event.target)
+      ) {
+        setMobileOpen(false);
+      }
 
       if (!headerRef.current?.contains(event.target)) {
         setOpenMenu(null);
@@ -210,9 +230,33 @@ function Header() {
   }
 
   function openLanguageMenu(languageCode = language) {
+    setMobileOpen(false);
+    setOpenMenu(null);
+    setSearchOpen(false);
+    menuOpenedByKeyboardRef.current = false;
+    submenuToFocusRef.current = null;
     languageToFocusRef.current = languageCode;
-
     setLanguageOpen(true);
+  }
+
+  function toggleLanguageMenu() {
+    if (languageOpen) {
+      languageToFocusRef.current = null;
+      setLanguageOpen(false);
+      return;
+    }
+
+    openLanguageMenu();
+  }
+
+  function toggleMobileMenu() {
+    setLanguageOpen(false);
+    setSearchOpen(false);
+    setOpenMenu(null);
+    languageToFocusRef.current = null;
+    submenuToFocusRef.current = null;
+    menuOpenedByKeyboardRef.current = false;
+    setMobileOpen((currentValue) => !currentValue);
   }
 
   function handleLanguageButtonKeyDown(event) {
@@ -437,12 +481,13 @@ function Header() {
         </Link>
 
         <button
+          ref={menuToggleRef}
           className={`menu-toggle ${mobileOpen ? 'open' : ''}`}
           type='button'
           aria-label={translations.header.toggleNavigation}
           aria-expanded={mobileOpen}
           aria-controls='primary-navigation'
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={toggleMobileMenu}
         >
           <span></span>
           <span></span>
@@ -450,6 +495,7 @@ function Header() {
         </button>
 
         <nav
+          ref={navigationRef}
           id='primary-navigation'
           className={`main-nav ${mobileOpen ? 'mobile-open' : ''}`}
           aria-label={translations.header.primaryNavigation}
@@ -548,7 +594,7 @@ function Header() {
             aria-haspopup='menu'
             aria-expanded={languageOpen}
             aria-controls='language-menu'
-            onClick={() => setLanguageOpen(!languageOpen)}
+            onClick={toggleLanguageMenu}
             onKeyDown={handleLanguageButtonKeyDown}
           >
             <span>{currentLanguage.label}</span>
