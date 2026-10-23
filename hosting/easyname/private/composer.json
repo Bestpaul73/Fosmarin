@@ -1,0 +1,17 @@
+{
+  "name": "fosmarin/easyname-contact",
+  "description": "Private SMTP handler for the FOSMARIN contact form on easyname",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "ext-openssl": "*",
+    "phpmailer/phpmailer": "^7.0"
+  },
+  "config": {
+    "platform": {
+      "php": "8.2.0"
+    },
+    "sort-packages": true
+  },
+  "license": "proprietary"
+}

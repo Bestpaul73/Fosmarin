@@ -1,0 +1,5 @@
+# ФРАГМЕНТ, а не замена всей конфигурации сайта.
+# При переносе объединить с будущими правилами SPA/404 в .htaccess сайта.
+# Браузер продолжит отправлять JSON на /api/contact, как на Vercel.
+RewriteEngine On
+RewriteRule ^api/contact/?$ api/contact.php [END]
