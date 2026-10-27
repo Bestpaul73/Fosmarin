@@ -1,0 +1,3 @@
+# Deny direct HTTP access to this directory and its contents.
+# PHP may still read these files from the filesystem.
+Require all denied

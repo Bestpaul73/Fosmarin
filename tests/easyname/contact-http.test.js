@@ -28,7 +28,7 @@ async function freePort() {
 test('easyname HTTP and SMTP', async (t) => {
   const temp = await mkdtemp(join(tmpdir(), 'fosmarin-contact-'));
   const publicDirectory = join(temp, 'html', 'fosmarin-project');
-  const privateDirectory = join(temp, 'files', 'fosmarin');
+  const privateDirectory = join(publicDirectory, '.private');
   let smtp;
   let phpServer;
   const sockets = new Set();

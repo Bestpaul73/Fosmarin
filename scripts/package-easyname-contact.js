@@ -4,18 +4,23 @@ import { resolve, join } from 'node:path';
 
 const source = resolve('hosting/easyname');
 const destination = join(source, 'package');
-const privateDestination = join(destination, 'files/fosmarin');
+const privateDestination = join(destination, 'html/fosmarin-project/.private');
 
 // PHPMailer устанавливается Composer. Проверяем его наличие до создания пакета.
 await readFile(join(source, 'private/vendor/autoload.php'));
 await readFile(join(source, 'private/composer.lock'));
+// Без запрета HTTP-доступа пакет с каталогом .private создавать нельзя.
+const protection = await readFile(join(source, 'private/.htaccess'), 'utf8');
+if (!/^Require all denied\s*$/m.test(protection)) {
+  throw new Error('Missing HTTP access restriction for .private');
+}
 await rm(destination, { recursive: true, force: true });
 await mkdir(join(destination, 'html/fosmarin-project'), { recursive: true });
 await mkdir(privateDestination, { recursive: true });
 await cp(join(source, 'public'), join(destination, 'html/fosmarin-project'), { recursive: true });
 
 // Явный список: заполненный contact-config.php с паролем не копируется.
-for (const name of ['src', 'vendor', 'composer.json', 'composer.lock', 'contact-config.example.php']) {
+for (const name of ['.htaccess', 'src', 'vendor', 'composer.json', 'composer.lock', 'contact-config.example.php']) {
   await cp(join(source, 'private', name), join(privateDestination, name), { recursive: true });
 }
 await cp(join(source, 'api-routing.htaccess.example'), join(destination, 'api-routing.htaccess.example'));
