@@ -4,7 +4,7 @@ import { resolve, join } from 'node:path';
 
 const source = resolve('hosting/easyname');
 const destination = join(source, 'package');
-const privateDestination = join(destination, 'private/fosmarin');
+const privateDestination = join(destination, 'files/fosmarin');
 
 // PHPMailer устанавливается Composer. Проверяем его наличие до создания пакета.
 await readFile(join(source, 'private/vendor/autoload.php'));

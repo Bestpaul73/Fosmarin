@@ -12,9 +12,9 @@ header('X-Content-Type-Options: nosniff');
 
 // Схема размещения:
 // <webspace>/html/fosmarin-project/api/contact.php — этот файл;
-// <webspace>/private/fosmarin/ — код, PHPMailer и конфигурация.
+// <webspace>/files/fosmarin/ — код, PHPMailer и конфигурация.
 // Три уровня от каталога api дают корень webspace, а не публичную папку html.
-$privateDirectory = dirname(__DIR__, 3) . '/private/fosmarin';
+$privateDirectory = dirname(__DIR__, 3) . '/files/fosmarin';
 $core = $privateDirectory . '/src/contact.php';
 
 if (!is_file($core) || !is_readable($core)) {
