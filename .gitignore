@@ -35,3 +35,11 @@ dist-ssr
 # Vercel and environment variables
 .vercel
 .env*
+
+# Private easyname configuration and PHP dependencies
+/hosting/easyname/private/contact-config.php
+/hosting/easyname/private/vendor/
+/hosting/easyname/package/
+
+# Downloaded project archive
+/fosmarin-compact-menu-20261016.zip
