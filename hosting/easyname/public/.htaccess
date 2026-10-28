@@ -1,0 +1,3 @@
+# Адрес формы /api/contact запускает обработчик api/contact.php.
+RewriteEngine On
+RewriteRule ^api/contact/?$ api/contact.php [END]
