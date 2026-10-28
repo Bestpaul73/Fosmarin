@@ -17,6 +17,7 @@ function ContactFormSection({ id }) {
   const copy = translations.contact.form;
 
   const [formData, setFormData] = useState(initialFormData);
+  // Store error keys so visible messages follow the current language.
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState('idle');
 
@@ -46,21 +47,21 @@ function ContactFormSection({ id }) {
     const nextErrors = {};
 
     if (!formData.name.trim()) {
-      nextErrors.name = copy.errors.name;
+      nextErrors.name = 'name';
     }
 
     if (!formData.email.trim()) {
-      nextErrors.email = copy.errors.email;
+      nextErrors.email = 'email';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nextErrors.email = copy.errors.emailInvalid;
+      nextErrors.email = 'emailInvalid';
     }
 
     if (!formData.subject.trim()) {
-      nextErrors.subject = copy.errors.subject;
+      nextErrors.subject = 'subject';
     }
 
     if (!formData.message.trim()) {
-      nextErrors.message = copy.errors.message;
+      nextErrors.message = 'message';
     }
 
     return nextErrors;
@@ -146,7 +147,7 @@ function ContactFormSection({ id }) {
 
                 {errors.name && (
                   <p className='contact-field-error' id='contact-name-error'>
-                    {errors.name}
+                    {copy.errors[errors.name]}
                   </p>
                 )}
               </div>
@@ -169,7 +170,7 @@ function ContactFormSection({ id }) {
 
                 {errors.email && (
                   <p className='contact-field-error' id='contact-email-error'>
-                    {errors.email}
+                    {copy.errors[errors.email]}
                   </p>
                 )}
               </div>
@@ -204,7 +205,7 @@ function ContactFormSection({ id }) {
 
                 {errors.subject && (
                   <p className='contact-field-error' id='contact-subject-error'>
-                    {errors.subject}
+                    {copy.errors[errors.subject]}
                   </p>
                 )}
               </div>
@@ -227,7 +228,7 @@ function ContactFormSection({ id }) {
 
               {errors.message && (
                 <p className='contact-field-error' id='contact-message-error'>
-                  {errors.message}
+                  {copy.errors[errors.message]}
                 </p>
               )}
             </div>
