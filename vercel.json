@@ -9,11 +9,7 @@
       "dest": "/index.html"
     },
     {
-      "src": "^/(?:de|es|da|sv|el|it)/?$",
-      "dest": "/index.html"
-    },
-    {
-      "src": "^/(?:(?:de|es|da|sv|el|it)/)?(?:about|challenge|use-cases|technology|consortium|news|resources|contact)/?$",
+      "src": "^/(?:about|challenge|use-cases|technology|consortium|news|resources|contact)/?$",
       "dest": "/index.html"
     },
     {

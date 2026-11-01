@@ -1,3 +1,4 @@
+import { languages as publishedLanguages } from '../src/i18n/languages.js';
 import { test, expect } from '@playwright/test';
 
 const languages = [
@@ -49,7 +50,7 @@ const languages = [
     searchLabel: 'Cerca in FOSMARIN',
     query: 'Consorzio',
   },
-];
+].filter(({ code }) => publishedLanguages.some((language) => language.code === code));
 
 for (const language of languages) {
   test.describe(`interactions: ${language.code}`, () => {
@@ -163,6 +164,7 @@ for (const language of languages) {
  */
 
 test.describe('language selector keyboard', () => {
+  test.skip(publishedLanguages.length < 2, 'The release has no language selector.');
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({
       width: 1440,

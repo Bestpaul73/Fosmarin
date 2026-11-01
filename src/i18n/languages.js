@@ -1,4 +1,4 @@
-export const languages = [
+export const availableLanguages = [
   {
     code: 'en',
     label: 'EN',
@@ -42,6 +42,11 @@ export const languages = [
     prefix: '/it',
   },
 ];
+
+// Publish a language only after its translation has been approved.
+// Add one code at a time, then run npm run generate:languages and rebuild.
+export const enabledLanguageCodes = ['en'];
+export const languages = availableLanguages.filter(({ code }) => enabledLanguageCodes.includes(code));
 
 export const defaultLanguage = 'en';
 

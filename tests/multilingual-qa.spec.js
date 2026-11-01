@@ -1,3 +1,4 @@
+import { languages as publishedLanguages } from '../src/i18n/languages.js';
 import { test, expect } from '@playwright/test';
 
 const languages = [
@@ -29,7 +30,7 @@ const languages = [
     code: 'it',
     prefix: '/it',
   },
-];
+].filter(({ code }) => publishedLanguages.some((language) => language.code === code));
 
 const pages = [
   '/',

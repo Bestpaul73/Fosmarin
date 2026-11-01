@@ -529,7 +529,16 @@ $wide-touch-mobile-max: tokens.$breakpoint-wide-touch-header - 1px;
   }
 }
 
+.header--single-language .header-inner {
+  grid-template-columns: auto minmax(max-content, 1fr) auto;
+}
+
 @mixin compact-header-layout {
+  &.header--single-language {
+    .header-inner { grid-template-columns: auto minmax(0, 1fr) auto auto; }
+    .menu-toggle { grid-column: 4; }
+  }
+
   --header-height: 70px;
 
   .header-inner {

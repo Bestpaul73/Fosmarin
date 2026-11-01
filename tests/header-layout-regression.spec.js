@@ -1,6 +1,7 @@
+import { languages } from '../src/i18n/languages.js';
 import { test, expect } from '@playwright/test';
 
-for (const lang of ['en', 'de', 'es', 'da', 'sv', 'el', 'it']) {
+for (const { code: lang } of languages) {
   for (const width of [320, 393, 1564, 1920]) {
     for (const textSize of [0, 4]) {
       test(`header: ${lang}, ${width}px, text ${textSize}`, async ({ page }) => {
@@ -35,11 +36,16 @@ for (const lang of ['en', 'de', 'es', 'da', 'sv', 'el', 'it']) {
         await page.keyboard.press('Escape');
         await expect(burger).toHaveAttribute('aria-expanded', 'false');
         await burger.click();
+        if (languages.length > 1) {
         await page.locator('.language-trigger').click();
         await expect(burger).toHaveAttribute('aria-expanded', 'false');
         await expect(page.locator('.language-menu')).toBeVisible();
         await burger.click();
         await expect(page.locator('.language-menu')).toHaveCount(0);
+        } else {
+          await expect(page.locator('.language-trigger')).toHaveCount(0);
+          await page.keyboard.press('Escape');
+        }
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
       });
     }
