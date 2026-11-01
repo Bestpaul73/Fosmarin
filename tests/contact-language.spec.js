@@ -1,3 +1,4 @@
+import { languages } from '../src/i18n/languages.js';
 import { test, expect } from '@playwright/test';
 import en from '../src/i18n/en';
 import de from '../src/i18n/de';
@@ -10,6 +11,7 @@ import it from '../src/i18n/it';
 const translations = { en, de, es, da, sv, el, it };
 for (const invalidEmail of [false, true]) {
   test(`errors follow language changes, invalid email: ${invalidEmail}`, async ({ page }) => {
+    test.skip(!languages.some(({ code }) => code === 'de') || languages.length < 2, 'German is not published yet.');
     let requests = 0;
     await page.route('**/api/contact', async (route) => {
       requests += 1;
@@ -19,7 +21,7 @@ for (const invalidEmail of [false, true]) {
     await page.locator('#contact-organisation').fill('Keep this organisation');
     if (invalidEmail) await page.locator('#contact-email').fill('invalid-email');
     await page.locator('.contact-submit').click();
-    for (const language of ['en', 'es', 'da', 'sv', 'el', 'it', 'de']) {
+    for (const language of [...languages.filter(({ code }) => code !== 'de').map(({ code }) => code), 'de']) {
       await page.locator('.language-trigger').click();
       await page.locator(`[data-language="${language}"]`).click();
       await expect(page.locator('html')).toHaveAttribute('lang', language);

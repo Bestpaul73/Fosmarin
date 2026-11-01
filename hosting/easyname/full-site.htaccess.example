@@ -26,8 +26,7 @@ RewriteRule ^ - [END]
 
 # Только известные страницы получают HTTP 200 с index.html.
 RewriteRule ^$ index.html [END]
-RewriteRule ^(?:de|es|da|sv|el|it)/?$ index.html [END]
-RewriteRule ^(?:(?:de|es|da|sv|el|it)/)?(?:about|challenge|use-cases|technology|consortium|news|resources|contact)/?$ index.html [END]
+RewriteRule ^(?:about|challenge|use-cases|technology|consortium|news|resources|contact)/?$ index.html [END]
 
 # Неизвестный адрес получает настоящий 404 и React-страницу NotFound через ErrorDocument.
 RewriteRule ^ - [R=404,END]

@@ -325,6 +325,11 @@ html[data-a11y-mode='light'] {
 }
 
 @mixin accessibility-compact-header {
+  &.header--single-language {
+    .header-inner { grid-template-columns: auto minmax(0, 1fr) auto auto; }
+    .menu-toggle { grid-column: 4; }
+  }
+
   --header-height: 70px;
 
   .header-inner {

@@ -472,7 +472,7 @@ function Header() {
   return (
     <header
       ref={headerRef}
-      className={`header ${usesLongNavigationLayout ? 'header--long-nav' : ''} ${keyboardMode ? 'keyboard-mode' : ''}`}
+      className={`header ${languages.length === 1 ? 'header--single-language' : ''} ${usesLongNavigationLayout ? 'header--long-nav' : ''} ${keyboardMode ? 'keyboard-mode' : ''}`}
     >
       <div className='header-inner'>
         <Link className='logo' to={getLocalizedPath('/')} onClick={handleLogoClick}>
@@ -585,7 +585,7 @@ function Header() {
           </button>
         </div>
 
-        <div ref={languageSelectorRef} className='language-selector'>
+        {languages.length > 1 && (<div ref={languageSelectorRef} className='language-selector'>
           <button
             ref={languageButtonRef}
             className={`language-trigger ${languageOpen ? 'open' : ''}`}
@@ -631,7 +631,7 @@ function Header() {
               ))}
             </div>
           )}
-        </div>
+        </div>)}
       </div>
 
       <SiteSearch open={searchOpen} onClose={closeSearch} triggerRef={searchButtonRef} />

@@ -63,9 +63,9 @@ test('SPA navigation updates one JSON-LD script and clears it on 404', async ({ 
 });
 
 test('known page uses production canonical and hreflang links', async ({ page }) => {
-  await page.goto('/de/technology');
+  await page.goto('/technology');
 
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${PRODUCTION_ORIGIN}/de/technology`);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${PRODUCTION_ORIGIN}/technology`);
 
   await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute(
     'href',
@@ -87,12 +87,12 @@ test('localhost pages are noindex while keeping production canonical', async ({ 
 });
 
 test('unknown route renders 404 and is noindex', async ({ page }) => {
-  await page.goto('/de/this-page-does-not-exist');
+  await page.goto('/this-page-does-not-exist');
 
   await expect(
     page.getByRole('heading', {
       level: 1,
-      name: 'Seite nicht gefunden',
+      name: 'Page not found',
     }),
   ).toBeVisible();
 

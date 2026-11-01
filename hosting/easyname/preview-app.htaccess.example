@@ -1,0 +1,34 @@
+# FOSMARIN Preview: правила приложения.
+# Вставить ПОСЛЕ END auto-generated .htaccess, сохранив блок Basic Auth панели.
+# Этот фрагмент сам по себе не включает авторизацию.
+# Сгенерировано из src/data/navigation.js и src/i18n/languages.js.
+# Повторная генерация: node scripts/generate-easyname-routing.js
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+ErrorDocument 404 /index.html
+
+# При HTTP 404 возвращаем HTML React, но запрещаем индексацию и кеширование ошибки.
+Header always set X-Robots-Tag "noindex, nofollow"
+Header always set Cache-Control "no-store" "expr=%{REQUEST_STATUS} == 404"
+
+RewriteEngine On
+RewriteRule ^\.ht(?:access|passwd)$ - [F]
+
+# Дополнительный запрет прямого доступа к .private; её собственный .htaccess сохраняем.
+RewriteRule ^\.private(?:/|$) - [F]
+
+# Серверная форма обрабатывается до правил React. Запрос и его тело не перенаправляются.
+RewriteRule ^api/contact/?$ api/contact.php [END]
+
+# Существующие файлы и каталоги отдаются обычным способом.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [END]
+
+# Только известные страницы получают HTTP 200 с index.html.
+RewriteRule ^$ index.html [END]
+RewriteRule ^(?:about|challenge|use-cases|technology|consortium|news|resources|contact)/?$ index.html [END]
+
+# Неизвестный адрес получает настоящий 404 и React-страницу NotFound через ErrorDocument.
+RewriteRule ^ - [R=404,END]
